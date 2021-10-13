@@ -1,5 +1,8 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Entity, model, property, belongsTo, hasMany} from '@loopback/repository';
 import {Jurado} from './jurado.model';
+import {Recordatorio} from './recordatorio.model';
+import {ResultadoEvaluacion} from './resultado-evaluacion.model';
+import {Solicitud} from './solicitud.model';
 
 @model()
 export class InvitacionEvaluar extends Entity {
@@ -15,6 +18,7 @@ export class InvitacionEvaluar extends Entity {
     required: true,
   })
   IdSolicitud: number;
+
   @property({
     type: 'date',
     required: true,
@@ -41,6 +45,15 @@ export class InvitacionEvaluar extends Entity {
 
   @belongsTo(() => Jurado, {name: 'a_jurado'})
   IdJurado: number;
+
+  @belongsTo(() => Recordatorio, {name: 'tiene_recordatorio'})
+  IdRecordatorio: number;
+
+  @hasMany(() => ResultadoEvaluacion, {keyTo: 'IdInvitacionEvaluar'})
+  resultadoEvaluacions: ResultadoEvaluacion[];
+
+  @hasMany(() => Solicitud, {keyTo: 'IdInvitacionEvaluar'})
+  solicitudes: Solicitud[];
 
   constructor(data?: Partial<InvitacionEvaluar>) {
     super(data);

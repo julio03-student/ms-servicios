@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Facultad} from './facultad.model';
 
 @model()
 export class Departamento extends Entity {
@@ -15,12 +16,8 @@ export class Departamento extends Entity {
   })
   NombreDepartamento: string;
 
-  @property({
-    type: 'number',
-    required: true,
-  })
+  @belongsTo(() => Facultad, {name: 'tiene_facultad'})
   IdFacultad: number;
-
 
   constructor(data?: Partial<Departamento>) {
     super(data);

@@ -3,6 +3,7 @@ import {Modalidad} from './modalidad.model';
 import {EstadoSolicitud} from './estado-solicitud.model';
 import {TipoSolicitud} from './tipo-solicitud.model';
 import {LineaInvestigacion} from './linea-investigacion.model';
+import {InvitacionEvaluar} from './invitacion-evaluar.model';
 
 @model()
 export class Solicitud extends Entity {
@@ -47,6 +48,9 @@ export class Solicitud extends Entity {
 
   @belongsTo(() => LineaInvestigacion, {name: 'lineaInvestigacion'})
   IdLineaInvestigacion: number;
+
+  @belongsTo(() => InvitacionEvaluar, {name: 'tiene_invitacion'})
+  IdInvitacionEvaluar: number;
 
   constructor(data?: Partial<Solicitud>) {
     super(data);
