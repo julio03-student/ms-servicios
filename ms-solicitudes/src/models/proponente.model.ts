@@ -17,9 +17,8 @@ export class Proponente extends Entity {
 
   @property({
     type: 'string',
-    required: true,
   })
-  SegundoNombreProponente: string;
+  OtrosNombresProponente?: string;
 
   @property({
     type: 'string',
@@ -37,6 +36,12 @@ export class Proponente extends Entity {
     type: 'string',
     required: true,
   })
+  DocumentoIdProponente: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
   CorreoProponente: string;
 
   @property({
@@ -46,16 +51,16 @@ export class Proponente extends Entity {
   CelularProponente: string;
 
   @property({
-    type: 'string',
-    required: true,
-  })
-  FotografiaProponente: string;
-
-  @property({
     type: 'number',
     required: true,
   })
   IdTipoVinculacion: number;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  FotografiaProponente: string;
 
 
   constructor(data?: Partial<Proponente>) {

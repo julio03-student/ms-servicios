@@ -1,4 +1,5 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Jurado} from './jurado.model';
 
 @model()
 export class InvitacionEvaluar extends Entity {
@@ -14,13 +15,6 @@ export class InvitacionEvaluar extends Entity {
     required: true,
   })
   IdSolicitud: number;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  IdJurado: number;
-
   @property({
     type: 'date',
     required: true,
@@ -45,6 +39,8 @@ export class InvitacionEvaluar extends Entity {
   })
   ObservacionesInvitacionEvaluar: string;
 
+  @belongsTo(() => Jurado, {name: 'a_jurado'})
+  IdJurado: number;
 
   constructor(data?: Partial<InvitacionEvaluar>) {
     super(data);

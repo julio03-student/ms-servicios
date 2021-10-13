@@ -1,4 +1,8 @@
-import {Entity, model, property} from '@loopback/repository';
+import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Modalidad} from './modalidad.model';
+import {EstadoSolicitud} from './estado-solicitud.model';
+import {TipoSolicitud} from './tipo-solicitud.model';
+import {LineaInvestigacion} from './linea-investigacion.model';
 
 @model()
 export class Solicitud extends Entity {
@@ -20,31 +24,6 @@ export class Solicitud extends Entity {
     required: true,
   })
   NombreTrabajoSolicitud: string;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  IdModalidad: number;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  IdEstado: number;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  IdTipoSolicitud: number;
-
-  @property({
-    type: 'number',
-    required: true,
-  })
-  IdLineaInvestigacion: number;
-
   @property({
     type: 'string',
     required: true,
@@ -57,6 +36,17 @@ export class Solicitud extends Entity {
   })
   DescripcionGeneralSolicitud: string;
 
+  @belongsTo(() => Modalidad, {name: 'modalidad'})
+  IdModalidad: number;
+
+  @belongsTo(() => EstadoSolicitud, {name: 'estado'})
+  IdEstado: number;
+
+  @belongsTo(() => TipoSolicitud, {name: 'tipoSolicitud'})
+  IdTipoSolicitud: number;
+
+  @belongsTo(() => LineaInvestigacion, {name: 'lineaInvestigacion'})
+  IdLineaInvestigacion: number;
 
   constructor(data?: Partial<Solicitud>) {
     super(data);
