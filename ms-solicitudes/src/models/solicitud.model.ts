@@ -1,9 +1,13 @@
-import {Entity, model, property, belongsTo} from '@loopback/repository';
+import {Entity, model, property, belongsTo, hasMany} from '@loopback/repository';
 import {Modalidad} from './modalidad.model';
 import {EstadoSolicitud} from './estado-solicitud.model';
 import {TipoSolicitud} from './tipo-solicitud.model';
 import {LineaInvestigacion} from './linea-investigacion.model';
 import {InvitacionEvaluar} from './invitacion-evaluar.model';
+import {Comite} from './comite.model';
+import {SolicitudComite} from './solicitud-comite.model';
+import {Proponente} from './proponente.model';
+import {SolicitudProponente} from './solicitud-proponente.model';
 
 @model()
 export class Solicitud extends Entity {
@@ -51,6 +55,12 @@ export class Solicitud extends Entity {
 
   @belongsTo(() => InvitacionEvaluar, {name: 'tiene_invitacion'})
   IdInvitacionEvaluar: number;
+
+  @hasMany(() => Comite, {through: {model: () => SolicitudComite, keyFrom: 'IdSolicitud', keyTo: 'IdComite'}})
+  comites: Comite[];
+
+  @hasMany(() => Proponente, {through: {model: () => SolicitudProponente, keyFrom: 'IdSolicitud', keyTo: 'IdProponente'}})
+  proponentes: Proponente[];
 
   constructor(data?: Partial<Solicitud>) {
     super(data);

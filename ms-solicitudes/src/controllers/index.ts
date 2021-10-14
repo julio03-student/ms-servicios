@@ -19,3 +19,6 @@ export * from './tipo-vinculacion-proponente.controller';
 export * from './proponente-tipo-vinculacion.controller';
 export * from './facultad-departamento.controller';
 export * from './departamento-facultad.controller';
+export * from './solicitud-comite.controller';
+export * from './proponente-departamento.controller';
+export * from './solicitud-proponente.controller';
