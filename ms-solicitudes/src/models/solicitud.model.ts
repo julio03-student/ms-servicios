@@ -9,7 +9,42 @@ import {SolicitudComite} from './solicitud-comite.model';
 import {Proponente} from './proponente.model';
 import {SolicitudProponente} from './solicitud-proponente.model';
 
-@model()
+@model({
+  settings: {
+    foreignKeys: {
+      fk_solicitud_IdModalidad: {
+        name: 'fk_solicitud_IdModalidad',
+        entity: 'Modalidad',
+        entityKey: 'IdModalidad',
+        foreignKey: 'IdModalidad',
+      },
+      fk_solicitud_IdEstado: {
+        name: 'fk_solicitud_IdEstado',
+        entity: 'Estado',
+        entityKey: 'IdEstado',
+        foreignKey: 'IdEstado',
+      },
+      fk_solicitud_IdLineaInvestigacion: {
+        name: 'fk_solicitud_IdLineaInvestigacion',
+        entity: 'LineaInvestigacion',
+        entityKey: 'IdLineaInvestigacion',
+        foreignKey: 'IdLineaInvestigacion',
+      },
+      fk_solicitud_IdTipoSolicitud: {
+        name: 'fk_solicitud_IdTipoSolicitud',
+        entity: 'TipoSolicitud',
+        entityKey: 'IdTipoSolicitud',
+        foreignKey: 'IdTipoSolicitud',
+      },
+      fk_solicitud_IdInvitacionEvaluar: {
+        name: 'fk_solicitud_IdInvitacionEvaluar',
+        entity: 'InvitacionEvaluar',
+        entityKey: 'IdInvitacionEvaluar',
+        foreignKey: 'IdInvitacionEvaluar',
+      },
+    },
+  },
+})
 export class Solicitud extends Entity {
   @property({
     type: 'number',
