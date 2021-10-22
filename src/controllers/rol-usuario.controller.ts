@@ -61,7 +61,7 @@ export class RolUsuarioController {
           schema: getModelSchemaRef(Usuario, {
             title: 'NewUsuarioInRol',
             exclude: ['_idUsuario'],
-            optional: ['rolId']
+            optional: ['idRol']
           }),
         },
       },

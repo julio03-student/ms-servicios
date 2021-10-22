@@ -10,9 +10,9 @@ export class PermisoRol extends Entity {
   _id?: string;
 
   @property({
-    type: 'number',
+    type: 'string',
   })
-  idRol?: number;
+  idRol?: string;
 
   @property({
     type: 'string',

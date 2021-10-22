@@ -4,7 +4,7 @@ import {Rol} from './rol.model';
 @model()
 export class Usuario extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
     generated: true,
   })
@@ -68,9 +68,9 @@ export class Usuario extends Entity {
   tiene_un: Rol;
 
   @property({
-    type: 'number',
+    type: 'string',
   })
-  rolId?: number;
+  idRol?: string;
 
   constructor(data?: Partial<Usuario>) {
     super(data);

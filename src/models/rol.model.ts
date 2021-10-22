@@ -6,7 +6,7 @@ import {PermisoRol} from './permiso-rol.model';
 @model()
 export class Rol extends Entity {
   @property({
-    type: 'number',
+    type: 'string',
     id: true,
     generated: true,
   })
@@ -23,11 +23,6 @@ export class Rol extends Entity {
     required: true,
   })
   permisos: string[];
-
-  @property({
-    type: 'number',
-  })
-  idRol?: number;
 
   @hasMany(() => Usuario)
   usuarios: Usuario[];
