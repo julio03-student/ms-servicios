@@ -1,7 +1,18 @@
-import {Entity, model, property, hasOne} from '@loopback/repository';
+import {Entity, model, property, hasOne, belongsTo} from '@loopback/repository';
 import {Rol} from './rol.model';
 
-@model()
+@model({
+  settings: {
+    foreignKeys: {
+      fk_user_idRol: {
+        name: 'fk_user_idRol',
+        entity: 'Rol',
+        entityKey: '_idRol',
+        foreignKey: 'idRol',
+      }
+    },
+  },
+})
 export class Usuario extends Entity {
   @property({
     type: 'string',
@@ -64,13 +75,8 @@ export class Usuario extends Entity {
   })
   estadoUsuario: string;
 
-  @hasOne(() => Rol, {keyTo: 'idRol'})
-  tiene_un: Rol;
-
-  @property({
-    type: 'string',
-  })
-  idRol?: string;
+  @belongsTo(() => Rol, {name: 'tiene_un'})
+  idRol: string;
 
   constructor(data?: Partial<Usuario>) {
     super(data);

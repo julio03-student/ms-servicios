@@ -1,6 +1,24 @@
 import {Entity, model, property} from '@loopback/repository';
 
-@model()
+@model({
+  settings: {
+    foreignKeys: {
+      fk_permisoRol_idRol: {
+        name: 'fk_permisoRol_idRol',
+        entity: 'Rol',
+        entityKey: '_idRol',
+        foreignKey: 'idRol',
+      },
+      fk_permisoRol_idPermiso: {
+        name: 'fk_permisoRol_idPermiso',
+        entity: 'Permiso',
+        entityKey: '_idPermiso',
+        foreignKey: 'idPermiso',
+      }
+    },
+  },
+}
+)
 export class PermisoRol extends Entity {
   @property({
     type: 'string',

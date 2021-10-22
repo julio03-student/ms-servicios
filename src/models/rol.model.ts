@@ -18,13 +18,7 @@ export class Rol extends Entity {
   })
   nombreRol: string;
 
-  @property({
-    type: 'string',
-    required: true,
-  })
-  permisos: string[];
-
-  @hasMany(() => Usuario)
+  @hasMany(() => Usuario, {keyTo: 'idRol'})
   usuarios: Usuario[];
 
   @hasMany(() => Permiso, {through: {model: () => PermisoRol, keyFrom: 'idRol', keyTo: 'idPermiso'}})
