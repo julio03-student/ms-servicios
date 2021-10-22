@@ -75,6 +75,12 @@ export class Usuario extends Entity {
   })
   estadoUsuario: string;
 
+  @property({
+    type: 'string',
+    required: false,
+  })
+  clave?: string;
+
   @belongsTo(() => Rol, {name: 'tiene_un'})
   idRol: string;
 
