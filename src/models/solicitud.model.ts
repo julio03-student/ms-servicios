@@ -9,7 +9,7 @@ import {SolicitudComite} from './solicitud-comite.model';
 import {Proponente} from './proponente.model';
 import {SolicitudProponente} from './solicitud-proponente.model';
 
-@model({
+@model(/*/{
   settings: {
     foreignKeys: {
       fk_solicitud_IdModalidad: {
@@ -44,7 +44,7 @@ import {SolicitudProponente} from './solicitud-proponente.model';
       },
     },
   },
-})
+}/*/)
 export class Solicitud extends Entity {
   @property({
     type: 'number',

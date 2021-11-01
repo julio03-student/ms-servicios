@@ -2,17 +2,17 @@ import {Entity, model, property, belongsTo} from '@loopback/repository';
 import {Facultad} from './facultad.model';
 
 @model({
-  settings: {
-    foreignKeys: {
-      fk_departamento_IdFacultad: {
-        name: 'fk_departamento_IdFacultad',
-        entity: 'Facultad',
-        entityKey: 'IdFacultad',
-        foreignKey: 'IdFacultad',
-      }
-    },
-  },
-})
+   settings: {
+     foreignKeys: {
+       fk_departamento_IdFacultad: {
+         name: 'fk_departamento_IdFacultad',
+         entity: 'Facultad',
+         entityKey: 'IdFacultad',
+         foreignKey: 'IdFacultad',
+       }
+     },
+   },
+ })
 export class Departamento extends Entity {
   @property({
     type: 'number',

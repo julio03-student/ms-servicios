@@ -4,7 +4,7 @@ import {Recordatorio} from './recordatorio.model';
 import {ResultadoEvaluacion} from './resultado-evaluacion.model';
 import {Solicitud} from './solicitud.model';
 
-@model({
+@model(/*/{
   settings: {
     foreignKeys: {
       fk_invitacionEvaluar_IdRecordatorio: {
@@ -21,7 +21,7 @@ import {Solicitud} from './solicitud.model';
       }
     },
   },
-})
+}/*/)
 export class InvitacionEvaluar extends Entity {
   @property({
     type: 'number',

@@ -17,3 +17,4 @@ export * from './modalidad.model';
 export * from './recordatorio.model';
 export * from './resultado-evaluacion.model';
 export * from './proponente.model';
+export * from './arreglolineadeinvestigacion.model';
