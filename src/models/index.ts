@@ -18,3 +18,6 @@ export * from './recordatorio.model';
 export * from './resultado-evaluacion.model';
 export * from './proponente.model';
 export * from './arreglolineadeinvestigacion.model';
+export * from './arreglo-solicitudes.model';
+export * from './arreglo-comites.model';
+export * from './arreglo-departamentos.model';

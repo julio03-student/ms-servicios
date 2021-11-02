@@ -27,9 +27,8 @@ import {JuradoLineaInvestigacionRepository, JuradoRepository, LineaInvestigacion
 export class JuradoLineaInvestigacionController {
   constructor(
     @repository(JuradoRepository) protected juradoRepository: JuradoRepository,
-    @repository(JuradoLineaInvestigacionRepository) protected juradoLineainvestigacionRepository: JuradoLineaInvestigacionRepository,
-    @repository(LineaInvestigacionRepository) protected lineaInvestigacionRepository: LineaInvestigacionRepository
-    ) { }
+    @repository(JuradoLineaInvestigacionRepository) protected juradoLineainvestigacionRepository: JuradoLineaInvestigacionRepository
+    ) {}
 
   @get('/jurados/{id}/linea-investigacions', {
     responses: {
@@ -43,7 +42,7 @@ export class JuradoLineaInvestigacionController {
       },
     },
   })
-  async findLineasdeJurados(
+  async find(
     @param.path.number('id') id: number,
     @param.query.object('filter') filter?: Filter<LineaInvestigacion>,
   ): Promise<LineaInvestigacion[]> {
@@ -110,29 +109,6 @@ export class JuradoLineaInvestigacionController {
       return true
     }
     return false
-  }
-
-  @patch('/jurados/{id}/linea-investigacions', {
-    responses: {
-      '200': {
-        description: 'Jurado.LineaInvestigacion PATCH success count',
-        content: {'application/json': {schema: CountSchema}},
-      },
-    },
-  })
-  async patch(
-    @param.path.number('id') id: number,
-    @requestBody({
-      content: {
-        'application/json': {
-          schema: getModelSchemaRef(LineaInvestigacion, {partial: true}),
-        },
-      },
-    })
-    lineaInvestigacion: Partial<LineaInvestigacion>,
-    @param.query.object('where', getWhereSchemaFor(LineaInvestigacion)) where?: Where<LineaInvestigacion>,
-  ): Promise<Count> {
-    return this.juradoRepository.lineaInvestigacions(id).patch(lineaInvestigacion, where);
   }
 
   @del('/jurados/{id_jurado}/{id_linea}')

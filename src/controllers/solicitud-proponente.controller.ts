@@ -14,17 +14,20 @@ import {
   patch,
   post,
   requestBody,
+  response
 } from '@loopback/rest';
 import {
 Solicitud,
 SolicitudProponente,
 Proponente,
+ArregloSolicitudes,
 } from '../models';
-import {SolicitudRepository} from '../repositories';
+import {SolicitudProponenteRepository, SolicitudRepository} from '../repositories';
 
 export class SolicitudProponenteController {
   constructor(
     @repository(SolicitudRepository) protected solicitudRepository: SolicitudRepository,
+    @repository(SolicitudProponenteRepository) protected solicitudProponenteRepository: SolicitudProponenteRepository
   ) { }
 
   @get('/solicituds/{id}/proponentes', {
@@ -46,65 +49,86 @@ export class SolicitudProponenteController {
     return this.solicitudRepository.proponentes(id).find(filter);
   }
 
-  @post('/solicituds/{id}/proponentes', {
+  @post('/solicitud-proponente', {
     responses: {
       '200': {
-        description: 'create a Proponente model instance',
-        content: {'application/json': {schema: getModelSchemaRef(Proponente)}},
+        description: 'create a intance of solicitud with a proponente',
+        content: {'application/json': {schema: getModelSchemaRef(SolicitudProponente)}},
       },
     },
   })
-  async create(
-    @param.path.number('id') id: typeof Solicitud.prototype.IdSolicitud,
+  async createRelation(
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Proponente, {
-            title: 'NewProponenteInSolicitud',
-            exclude: ['IdProponente'],
+          schema: getModelSchemaRef(SolicitudProponente, {
+            title: 'NewSolicitudProponente',
+            exclude: ['IdSolicitudProponente'],
           }),
         },
       },
-    }) proponente: Omit<Proponente, 'IdProponente'>,
-  ): Promise<Proponente> {
-    return this.solicitudRepository.proponentes(id).create(proponente);
+    }) datos: Omit<SolicitudProponente, 'IdSolicitudProponente'>,
+  ): Promise<SolicitudProponente | null> {
+    let registro = await this.solicitudProponenteRepository.create(datos)
+    return registro
   }
 
-  @patch('/solicituds/{id}/proponentes', {
+  @post('/asociar-solicitudes-proponentes/{id}', {
     responses: {
       '200': {
-        description: 'Solicitud.Proponente PATCH success count',
-        content: {'application/json': {schema: CountSchema}},
+        description: 'create a intance of solicitud with a proponente',
+        content: {'application/json': {schema: getModelSchemaRef(SolicitudProponente)}},
       },
     },
   })
-  async patch(
-    @param.path.number('id') id: number,
+  async createRelations(
     @requestBody({
       content: {
         'application/json': {
-          schema: getModelSchemaRef(Proponente, {partial: true}),
+          schema: getModelSchemaRef(ArregloSolicitudes),
         },
       },
-    })
-    proponente: Partial<Proponente>,
-    @param.query.object('where', getWhereSchemaFor(Proponente)) where?: Where<Proponente>,
-  ): Promise<Count> {
-    return this.solicitudRepository.proponentes(id).patch(proponente, where);
+    }) datos: ArregloSolicitudes,
+    @param.path.number('id') id_Proponente: typeof Proponente.prototype.IdProponente
+  ): Promise<Boolean> {
+    if (datos.solicitudes.length > 0) {
+      datos.solicitudes.forEach(async (id_solicitud: number) => {
+        let existe = await this.solicitudProponenteRepository.findOne({
+          where: {
+            IdProponente: id_Proponente,
+            IdSolicitud: id_solicitud
+          }
+        })
+        if (!existe) {
+          this.solicitudProponenteRepository.create({
+            IdProponente: id_Proponente,
+            IdSolicitud: id_solicitud
+          })
+        }
+      })
+      return true
+    }
+    return false
   }
 
-  @del('/solicituds/{id}/proponentes', {
-    responses: {
-      '200': {
-        description: 'Solicitud.Proponente DELETE success count',
-        content: {'application/json': {schema: CountSchema}},
-      },
-    },
+  @del('/solicitudes/{id_proponente}/{id_solicitud}')
+  @response(204, {
+    description: 'relation DELETE success'
   })
-  async delete(
-    @param.path.number('id') id: number,
-    @param.query.object('where', getWhereSchemaFor(Proponente)) where?: Where<Proponente>,
-  ): Promise<Count> {
-    return this.solicitudRepository.proponentes(id).delete(where);
+  async EliminarProponentedeSolicitud(
+    @param.path.number('id_prpoponente') id_Proponente: number,
+    @param.path.number('id_solicitud') id_Solicitud: number
+  ): Promise<Boolean> {
+    let reg = await this.solicitudProponenteRepository.findOne({
+      where: {
+        IdProponente: id_Proponente,
+        IdSolicitud: id_Solicitud
+      }
+    })
+    if (reg) {
+      await this.solicitudProponenteRepository.deleteById(reg.IdSolicitudProponente)
+      return true
+    }
+    return false
   }
 }
