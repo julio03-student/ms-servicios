@@ -36,12 +36,6 @@ export class Jurado extends Entity {
   })
   VinculacionJurado: string;
 
-  @property({
-    type: 'string',
-    required: true,
-  })
-  ClaveJurado: string;
-
   @hasMany(() => InvitacionEvaluar, {keyTo: 'IdJurado'})
   invitacionEvaluars: InvitacionEvaluar[];
 
