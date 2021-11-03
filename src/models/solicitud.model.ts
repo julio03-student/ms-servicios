@@ -20,8 +20,8 @@ import {SolicitudProponente} from './solicitud-proponente.model';
       },
       fk_solicitud_IdEstado: {
         name: 'fk_solicitud_IdEstado',
-        entity: 'Estado',
-        entityKey: 'IdEstado',
+        entity: 'EstadoSolicitud',
+        entityKey: 'IdEstadoSolicitud',
         foreignKey: 'IdEstado',
       },
       fk_solicitud_IdLineaInvestigacion: {

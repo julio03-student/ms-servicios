@@ -39,3 +39,4 @@ export * from './facultad.controller';
 export * from './departamento.controller';
 export * from './cargar-archivos.controller';
 export * from './descargar-archivos.controller';
+export * from './imagen-proponente.controller';

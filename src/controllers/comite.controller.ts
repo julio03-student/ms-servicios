@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -20,6 +21,7 @@ import {
 import {Comite} from '../models';
 import {ComiteRepository} from '../repositories';
 
+@authenticate("admin")
 export class ComiteController {
   constructor(
     @repository(ComiteRepository)

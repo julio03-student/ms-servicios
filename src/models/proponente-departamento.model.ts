@@ -11,7 +11,7 @@ import {Entity, model, property} from '@loopback/repository';
       },
       fk_proponenteDepartamento_IdDepartamento: {
         name: 'fk_proponenteDepartamento_IdDepartamento',
-        entity: 'Departamente',
+        entity: 'Departamento',
         entityKey: 'IdDepartamento',
         foreignKey: 'IdDepartamento',
       }

@@ -63,11 +63,6 @@ export class Proponente extends Entity {
     required: true,
   })
   CelularProponente: string;
-  @property({
-    type: 'string',
-    required: true,
-  })
-  FotografiaProponente: string;
 
   @belongsTo(() => TipoVinculacion, {name: 'tiene_tipoVinculacion'})
   IdTipoVinculacion: number;
