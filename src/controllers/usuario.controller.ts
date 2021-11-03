@@ -174,7 +174,7 @@ export class UsuarioController {
   ///Métodos adicionales
 
 
-  @post('/identificar-usuarios')
+  @post('/identificar-usuario')
   @response(200, {
     description: 'identificación del usuario',
     content: {'application/json': {schema: getModelSchemaRef(Credenciales)}},
