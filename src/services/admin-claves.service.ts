@@ -1,6 +1,6 @@
 import {injectable, /* inject, */ BindingScope} from '@loopback/core';
 import {repository} from '@loopback/repository';
-import {Credenciales, Usuario} from '../models';
+import {Credenciales, CredencialesRecuperarPassword, Usuario} from '../models';
 import {CambiarClave} from '../models/cambiar-clave.model';
 import {UsuarioRepository} from '../repositories';
 const generator = require('generate-password')
@@ -38,23 +38,6 @@ export class AdminClavesService {
       return usuario
     } else{
       return null;
-    }
-  }
-
-  async RecuperarClave(correo: string): Promise<Usuario | null>{
-    let usuario = await this.usuarioRepository.findOne({
-      where: {
-        emailUsuario: correo
-      }
-    })
-    if(usuario){
-      let clave = this.CrearClaveAleatoria()
-      usuario.clave = this.CifrarTexto(clave)
-      await this.usuarioRepository.updateById(usuario._idUsuario, usuario)
-      ///Notificar la nueva contraseña
-      return usuario
-    } else{
-      return null
     }
   }
 

@@ -5,5 +5,7 @@ export namespace Configuracion {
     export const asuntoCambio = "Cambio de contraseña"
     export const asuntoCrearUser = "Registro creado correctamente"
     export const mensajeCrearUser = "Se ha registrado correctamenete en el sistema, su contraseña es: "
+    export const ulrSms = "http://localhost:5000/sms"
+    export const mensajeRecuperarPassword = "Su nueva contraseña generada aleatoriamente es "
     
 }
