@@ -22,7 +22,7 @@ import { Configuracion } from '../llaves/configuracion';
 import {Credenciales, CredencialesRecuperarPassword, NotificacionEmail, NotificacionSms, Usuario} from '../models';
 import {CambiarClave} from '../models/cambiar-clave.model';
 import {UsuarioRepository} from '../repositories';
-import {AdminClavesService, NotificacionesService} from '../services';
+import {AdminClavesService, NotificacionesService, SesionUsuariosService} from '../services';
 
 export class UsuarioController {
   constructor(
@@ -31,7 +31,9 @@ export class UsuarioController {
     @service(AdminClavesService)
     public servicioClaves: AdminClavesService,
     @service(NotificacionesService)
-    public servicioNotificaciones: NotificacionesService
+    public servicioNotificaciones: NotificacionesService,
+    @service(SesionUsuariosService)
+    private servicioSesionUsuario: SesionUsuariosService
   ) { }
 
   @post('/usuarios')
@@ -61,7 +63,7 @@ export class UsuarioController {
       let datos = new NotificacionEmail();
       datos.destinatario = usuario.emailUsuario;
       datos.asunto = Configuracion.asuntoCrearUser;
-      datos.mensaje = `Hola ${usuario.nombresUsuario} <br/> ${Configuracion.mensajeCrearUser}  ${clave}` 
+      datos.mensaje = `Hola ${usuario.nombresUsuario} <br/> ${Configuracion.mensajeCrearUser}  ${clave}`
       this.servicioNotificaciones.EnviarCorreo(datos);
       this.servicioNotificaciones.EnviarCorreo(datos);
     }
@@ -188,17 +190,17 @@ export class UsuarioController {
       },
     })
     credenciales: Credenciales
-  ): Promise<Usuario | null> {
-    let usuario = await this.usuarioRepository.findOne({
-      where: {
-        emailUsuario: credenciales.usuario,
-        clave: credenciales.clave
-      }
-    })
+  ): Promise<object | null> {
+    let usuario = await this.servicioSesionUsuario.IdentificarUsuario(credenciales)
+    let tk = ""
     if (usuario) {
       usuario.clave = ""
+      tk = await this.servicioSesionUsuario.GenerarToken(usuario)
     }
-    return usuario
+    return {
+      token: tk,
+      usuario: usuario
+    }
   }
 
   @post('/cambiar-clave')
@@ -223,7 +225,7 @@ export class UsuarioController {
       let datos = new NotificacionEmail();
       datos.destinatario = usuario.emailUsuario;
       datos.asunto = Configuracion.asuntoCambio;
-      datos.mensaje = `Hola ${usuario.nombresUsuario} <br/> ${Configuracion.mensajeCambioClave}` 
+      datos.mensaje = `Hola ${usuario.nombresUsuario} <br/> ${Configuracion.mensajeCambioClave}`
       this.servicioNotificaciones.EnviarCorreo(datos);
       this.servicioNotificaciones.EnviarCorreo(datos);
     }
@@ -253,12 +255,12 @@ export class UsuarioController {
       let claveCifrada = this.servicioClaves.CifrarTexto(clave);
       usuario.clave = this.servicioClaves.CifrarTexto(clave)
       await this.usuarioRepository.updateById(usuario._idUsuario, usuario)
-      
+
       let datos = new NotificacionSms();
       datos.destino = usuario.celularUsuario;
-      datos.mensaje = `Hola ${usuario.nombresUsuario} <br/> ${Configuracion.mensajeRecuperarPassword} ${clave}` 
+      datos.mensaje = `Hola ${usuario.nombresUsuario} <br/> ${Configuracion.mensajeRecuperarPassword} ${clave}`
       this.servicioNotificaciones.EnviarSms(datos);
-      
+
     }
     return usuario
   }

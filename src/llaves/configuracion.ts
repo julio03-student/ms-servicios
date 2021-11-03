@@ -7,5 +7,8 @@ export namespace Configuracion {
     export const mensajeCrearUser = "Se ha registrado correctamenete en el sistema, su contraseña es: "
     export const ulrSms = "http://localhost:5000/sms"
     export const mensajeRecuperarPassword = "Su nueva contraseña generada aleatoriamente es "
-    
+    export const urlCrearToken = "http://localhost:3004/crear-token"
+    export const argNombre = "nombre"
+    export const argId = "id"
+    export const argRol = "id_rol"
 }
