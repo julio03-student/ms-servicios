@@ -16,4 +16,3 @@ export * from './solicitud-proponente.repository';
 export * from './solicitud.repository';
 export * from './tipo-solicitud.repository';
 export * from './tipo-vinculacion.repository';
-export * from './imagen.repository';
