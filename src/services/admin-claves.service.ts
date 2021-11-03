@@ -25,7 +25,7 @@ export class AdminClavesService {
     return textoCifrado
   }
 
-  async CambiarClave(credencialesClave: CambiarClave): Promise<Boolean>{
+  async CambiarClave(credencialesClave: CambiarClave): Promise<Usuario | null>{
     let usuario = await this.usuarioRepository.findOne({
       where: {
         _idUsuario: credencialesClave.id_usuario,
@@ -35,9 +35,9 @@ export class AdminClavesService {
     if(usuario){
       usuario.clave = credencialesClave.claveNueva
       await this.usuarioRepository.updateById(credencialesClave.id_usuario, usuario)
-      return true
+      return usuario
     } else{
-      return false
+      return null;
     }
   }
 

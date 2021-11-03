@@ -18,17 +18,20 @@ import {
   requestBody,
   response,
 } from '@loopback/rest';
-import {Credenciales, Usuario} from '../models';
+import { Configuracion } from '../llaves/configuracion';
+import {Credenciales, NotificacionEmail, Usuario} from '../models';
 import {CambiarClave} from '../models/cambiar-clave.model';
 import {UsuarioRepository} from '../repositories';
-import {AdminClavesService} from '../services';
+import {AdminClavesService, NotificacionesService} from '../services';
 
 export class UsuarioController {
   constructor(
     @repository(UsuarioRepository)
     public usuarioRepository: UsuarioRepository,
     @service(AdminClavesService)
-    public servicioClaves: AdminClavesService
+    public servicioClaves: AdminClavesService,
+    @service(NotificacionesService)
+    public servicioNotificaciones: NotificacionesService
   ) { }
 
   @post('/usuarios')
@@ -55,7 +58,12 @@ export class UsuarioController {
     usuario.clave = claveCifrada
     let usuarioCreado = await this.usuarioRepository.create(usuario)
     if (usuarioCreado) {
-      ///Enviar clave por correo electrónico
+      let datos = new NotificacionEmail();
+      datos.destinatario = usuario.emailUsuario;
+      datos.asunto = Configuracion.asuntoCrearUser;
+      datos.mensaje = `Hola ${usuario.nombresUsuario} <br/> ${Configuracion.mensajeCrearUser}  ${clave}` 
+      this.servicioNotificaciones.EnviarCorreo(datos);
+      this.servicioNotificaciones.EnviarCorreo(datos);
     }
     return usuarioCreado
   }
@@ -188,7 +196,7 @@ export class UsuarioController {
       }
     })
     if (usuario) {
-      ///Generar token y agregarlo a la respuesta
+      usuario.clave = ""
     }
     return usuario
   }
@@ -210,11 +218,16 @@ export class UsuarioController {
     })
     credencialesClave: CambiarClave
   ): Promise<Boolean> {
-    let respuesta = await this.servicioClaves.CambiarClave(credencialesClave)
-    if(respuesta){
-      /// Enviar correo al usuario
+    let usuario = await this.servicioClaves.CambiarClave(credencialesClave)
+    if(usuario){
+      let datos = new NotificacionEmail();
+      datos.destinatario = usuario.emailUsuario;
+      datos.asunto = Configuracion.asuntoCambio;
+      datos.mensaje = `Hola ${usuario.nombresUsuario} <br/> ${Configuracion.mensajeCambioClave}` 
+      this.servicioNotificaciones.EnviarCorreo(datos);
+      this.servicioNotificaciones.EnviarCorreo(datos);
     }
-    return respuesta
+    return usuario != null;
   }
 
   @post('/recuperar-clave')
