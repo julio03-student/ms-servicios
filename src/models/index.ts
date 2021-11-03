@@ -21,3 +21,4 @@ export * from './arreglolineadeinvestigacion.model';
 export * from './arreglo-solicitudes.model';
 export * from './arreglo-comites.model';
 export * from './arreglo-departamentos.model';
+export * from './imagen.model';

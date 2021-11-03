@@ -39,3 +39,5 @@ export * from './facultad.controller';
 export * from './departamento.controller';
 export * from './cargar-archivos.controller';
 export * from './descargar-archivos.controller';
+export * from './proponente-imagen.controller';
+export * from './jurado-imagen.controller';

@@ -1,6 +1,8 @@
 import {inject} from '@loopback/core'
+import {repository} from '@loopback/repository'
 import {
   HttpErrors,
+  param,
   post,
   Request,
   requestBody,
@@ -10,9 +12,14 @@ import {
 import multer from 'multer'
 import path from 'path'
 import {Keys as llaves} from '../config/keys'
+import {Imagen} from '../models'
+import {ImagenRepository} from '../repositories'
 
 export class CargarArchivosController {
-  constructor() { }
+  constructor(
+    @repository(ImagenRepository)
+    private imagenRepository: ImagenRepository
+  ) { }
 
 
   /**
@@ -44,6 +51,40 @@ export class CargarArchivosController {
     if (res) {
       const nombre_archivo = response.req?.file?.filename;
       if (nombre_archivo) {
+        return {filename: nombre_archivo};
+      }
+    }
+    return res;
+  }
+
+  @post('/CargarImagenProponente/{idProponente}', {
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+            },
+          },
+        },
+        description: 'Función de carga de imágenes de los proponentes.',
+      },
+    },
+  })
+  async cargarImagenProponente(
+    @inject(RestBindings.Http.RESPONSE) response: Response,
+    @requestBody.file() request: Request,
+    @param.path.number('idProponente') idProponente: number
+  ): Promise<object | false> {
+    const rutaImagen = path.join(__dirname, llaves.carpetaImagen);
+    let res = await this.StoreFileToPath(rutaImagen, llaves.nombreCampoImagen, request, response, llaves.extensionesPermitidasIMG);
+    if (res) {
+      const nombre_archivo = response.req?.file?.filename;
+      if (nombre_archivo) {
+        let img = new Imagen();
+        img.nombreImagen = nombre_archivo;
+        img.IdProponente = idProponente;
+        await this.imagenRepository.save(img)
         return {filename: nombre_archivo};
       }
     }
