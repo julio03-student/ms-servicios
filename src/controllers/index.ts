@@ -37,3 +37,5 @@ export * from './tipo-vinculacion.controller';
 export * from './proponente.controller';
 export * from './facultad.controller';
 export * from './departamento.controller';
+export * from './cargar-archivos.controller';
+export * from './descargar-archivos.controller';
