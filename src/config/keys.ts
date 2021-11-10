@@ -10,4 +10,5 @@ export namespace Keys{
   export const rolAdmin = "6180945c19782f27f0016928"
   export const argToken = "token"
   export const argRolValidar = "rol"
+  export const urlUsuarios = "http://localhost:3002/usuarios"
 }

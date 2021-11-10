@@ -23,6 +23,12 @@ export class Jurado extends Entity {
     type: 'string',
     required: true,
   })
+  ApellidosJurado: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
   TelefonoJurado: string;
 
   @property({

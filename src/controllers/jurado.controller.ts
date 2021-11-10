@@ -17,8 +17,10 @@ import {
   requestBody,
   response,
 } from '@loopback/rest';
+import {Keys} from '../config/keys';
 import {Jurado} from '../models';
 import {JuradoRepository} from '../repositories';
+const fetch = require('node-fetch');
 
 export class JuradoController {
   constructor(
@@ -44,6 +46,32 @@ export class JuradoController {
     })
     jurado: Omit<Jurado, 'IdJurado'>,
   ): Promise<Jurado> {
+      let user = {
+      nombresUsuario: jurado.NombreJurado,
+      apellidosUsuario: jurado.ApellidosJurado,
+      documentoUsuario: '',
+      fechaNacimientoUsuario: '',
+      emailUsuario: jurado.CorreoJurado,
+      direccionUsuario: "",
+      celularUsuario: "",
+      telefonoUsuario: "",
+      estadoUsuario: "Empleado",
+      clave: "",
+      idRol: "6180946419782f27f0016929"
+    }
+
+    /* let url = `${Keys.urlUsuarios}/usuarios` */
+
+    let res = await fetch(Keys.urlUsuarios, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+     console.log("responsacion: /n"+res.ok)
+
     return this.juradoRepository.create(jurado);
   }
 
