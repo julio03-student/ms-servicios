@@ -19,11 +19,11 @@ export class Jurado extends Entity {
   })
   NombreJurado: string;
 
-  @property({
+  /* @property({
     type: 'string',
     required: true,
   })
-  ApellidosJurado: string;
+  ApellidosJurado: string; */
 
   @property({
     type: 'string',

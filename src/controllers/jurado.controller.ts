@@ -48,15 +48,15 @@ export class JuradoController {
   ): Promise<Jurado> {
       let user = {
       nombresUsuario: jurado.NombreJurado,
-      apellidosUsuario: jurado.ApellidosJurado,
-      documentoUsuario: '',
-      fechaNacimientoUsuario: '',
+      apellidosUsuario: jurado.NombreJurado,
+      documentoUsuario: '102328716231',
+      fechaNacimientoUsuario: '1960-10-22T03:56:08.214+00:00',
       emailUsuario: jurado.CorreoJurado,
-      direccionUsuario: "",
-      celularUsuario: "",
-      telefonoUsuario: "",
+      direccionUsuario: "Calle 10 #182",
+      celularUsuario: jurado.TelefonoJurado,
+      telefonoUsuario: jurado.TelefonoJurado,
       estadoUsuario: "Empleado",
-      clave: "",
+      clave: "61723",
       idRol: "6180946419782f27f0016929"
     }
 
@@ -70,7 +70,7 @@ export class JuradoController {
       },
       body: JSON.stringify(user)
     })
-     console.log("responsacion: /n"+res.ok)
+     console.log("responsacion: /n"+await res.text())
 
     return this.juradoRepository.create(jurado);
   }
