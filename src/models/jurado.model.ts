@@ -19,11 +19,11 @@ export class Jurado extends Entity {
   })
   NombreJurado: string;
 
-  /* @property({
+  @property({
     type: 'string',
     required: true,
   })
-  ApellidosJurado: string; */
+  ApellidosJurado: string;
 
   @property({
     type: 'string',
@@ -35,7 +35,25 @@ export class Jurado extends Entity {
     type: 'string',
     required: true,
   })
+  DocumentoJurado: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
   CorreoJurado: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  DireccionJurado: string;
+
+  @property({
+    type: 'date',
+    required: true,
+  })
+  fechaNacimiento: string;
 
   @property({
     type: 'string',

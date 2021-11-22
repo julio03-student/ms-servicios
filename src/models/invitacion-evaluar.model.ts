@@ -31,12 +31,6 @@ export class InvitacionEvaluar extends Entity {
   IdInvitacionEvaluar?: number;
 
   @property({
-    type: 'number',
-    required: true,
-  })
-  IdSolicitud: number;
-
-  @property({
     type: 'date',
     required: true,
   })

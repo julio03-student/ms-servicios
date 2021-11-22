@@ -19,11 +19,17 @@ import {
 } from '@loopback/rest';
 import {Proponente} from '../models';
 import {ProponenteRepository} from '../repositories';
+import {Keys} from '../config/keys';
+const fetch = require('node-fetch');
+import {ToolsService} from '../services';
+import {service} from '@loopback/core';
 
 export class ProponenteController {
   constructor(
     @repository(ProponenteRepository)
     public proponenteRepository : ProponenteRepository,
+    @service(ToolsService)
+    public toolsService : ToolsService
   ) {}
 
   @post('/proponentes')
@@ -44,6 +50,29 @@ export class ProponenteController {
     })
     proponente: Omit<Proponente, 'IdProponente'>,
   ): Promise<Proponente> {
+    let user = {
+      nombresUsuario: proponente.PrimerNombreProponente,
+      apellidosUsuario: proponente.ApellidosProponente,
+      documentoUsuario: proponente.DocumentoIdProponente,
+      fechaNacimientoUsuario: proponente.fechaNacimiento,
+      emailUsuario: proponente.CorreoProponente,
+      direccionUsuario: proponente.Direccion,
+      celularUsuario: proponente.CelularProponente,
+      telefonoUsuario: proponente.CelularProponente,
+      estadoUsuario: "Empleado",
+      clave: this.toolsService.passwordGenerator(),
+      idRol: "619ad93f9a17df1c78aa353f"
+    }
+
+    let res = await fetch(Keys.urlUsuarios, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(user)
+    })
+     console.log("responsacion: /n"+await res.text())
     return this.proponenteRepository.create(proponente);
   }
 

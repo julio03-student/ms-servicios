@@ -1,3 +1,4 @@
+import {service} from '@loopback/core';
 import {
   Count,
   CountSchema,
@@ -21,11 +22,14 @@ import {Keys} from '../config/keys';
 import {Jurado} from '../models';
 import {JuradoRepository} from '../repositories';
 const fetch = require('node-fetch');
+import {ToolsService} from '../services';
 
 export class JuradoController {
   constructor(
     @repository(JuradoRepository)
     public juradoRepository : JuradoRepository,
+    @service(ToolsService)
+    public toolsService : ToolsService
   ) {}
 
   @post('/jurados')
@@ -48,16 +52,16 @@ export class JuradoController {
   ): Promise<Jurado> {
       let user = {
       nombresUsuario: jurado.NombreJurado,
-      apellidosUsuario: jurado.NombreJurado,
-      documentoUsuario: '102328716231',
-      fechaNacimientoUsuario: '1960-10-22T03:56:08.214+00:00',
+      apellidosUsuario: jurado.ApellidosJurado,
+      documentoUsuario: jurado.DocumentoJurado,
+      fechaNacimientoUsuario: jurado.fechaNacimiento,
       emailUsuario: jurado.CorreoJurado,
-      direccionUsuario: "Calle 10 #182",
+      direccionUsuario: jurado.DireccionJurado,
       celularUsuario: jurado.TelefonoJurado,
       telefonoUsuario: jurado.TelefonoJurado,
       estadoUsuario: "Empleado",
-      clave: "61723",
-      idRol: "6180946419782f27f0016929"
+      clave: this.toolsService.passwordGenerator(),
+      idRol: "619add1d3f20a54b28f7c715"
     }
 
     /* let url = `${Keys.urlUsuarios}/usuarios` */

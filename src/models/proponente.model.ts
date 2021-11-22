@@ -32,6 +32,7 @@ export class Proponente extends Entity {
 
   @property({
     type: 'string',
+    required: false,
   })
   OtrosNombresProponente?: string;
 
@@ -39,13 +40,7 @@ export class Proponente extends Entity {
     type: 'string',
     required: true,
   })
-  PrimerApellidoProponente: string;
-
-  @property({
-    type: 'string',
-    required: true,
-  })
-  SegundoApellidoProponente: string;
+  ApellidosProponente: string;
 
   @property({
     type: 'string',
@@ -64,6 +59,18 @@ export class Proponente extends Entity {
     required: true,
   })
   CelularProponente: string;
+
+  @property({
+    type: 'date',
+    required: true,
+  })
+  fechaNacimiento: string;
+
+  @property({
+    type: 'string',
+    required: true,
+  })
+  Direccion: string;
 
   @belongsTo(() => TipoVinculacion, {name: 'tiene_tipoVinculacion'})
   IdTipoVinculacion: number;

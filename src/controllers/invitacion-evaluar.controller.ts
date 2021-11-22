@@ -17,14 +17,18 @@ import {
   requestBody,
   response,
 } from '@loopback/rest';
+import {Keys} from '../config/keys';
 import {InvitacionEvaluar} from '../models';
-import {InvitacionEvaluarRepository} from '../repositories';
+import {InvitacionEvaluarRepository, JuradoRepository} from '../repositories';
+const fetch = require('node-fetch');
 
 export class InvitacionEvaluarController {
   constructor(
     @repository(InvitacionEvaluarRepository)
-    public invitacionEvaluarRepository : InvitacionEvaluarRepository,
-  ) {}
+    public invitacionEvaluarRepository: InvitacionEvaluarRepository,
+    @repository(JuradoRepository)
+    public juradoRepository: JuradoRepository
+  ) { }
 
   @post('/invitacion-evaluars')
   @response(200, {
@@ -44,6 +48,22 @@ export class InvitacionEvaluarController {
     })
     invitacionEvaluar: Omit<InvitacionEvaluar, 'IdInvitacionEvaluar'>,
   ): Promise<InvitacionEvaluar> {
+
+    let jurado = this.juradoRepository.findById(invitacionEvaluar.IdJurado)
+    
+    let credentials = {
+      correo: (await jurado).CorreoJurado
+    }
+
+    let res = await fetch(Keys.urlInvitacion, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(credentials)
+    })
+    console.log("responsacion: /n" + await res.text())
     return this.invitacionEvaluarRepository.create(invitacionEvaluar);
   }
 
