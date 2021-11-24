@@ -1,19 +1,45 @@
+<ul id="dropdown1" class="dropdown-content">
+  <li *ngIf ="!session" ><a routerLink="security/login">Iniciar Sesión</a></li>
+  <li *ngIf ="session" ><a routerLink="security/logout">Cerrar Sesión</a></li>
+  <li *ngIf ="session" ><a routerLink="security/change-password">Cambiar clave</a></li>
+  <li *ngIf ="!session" ><a routerLink="security/create-user">Crear cuenta</a></li>
+</ul>
+
+<ul id="dropdown2" class="dropdown-content">
+  <li><a routerLink="negocios/list-comites">Comités</a></li>
+  <li><a routerLink="negocios/list-departamentos">Departamentos</a></li>
+  <li><a routerLink="negocios/list-estadosSolicitud">Estado de la solicitud</a></li>
+  <li><a routerLink="negocios/list-facultades">Facultades</a></li>
+  <li><a routerLink="negocios/list-lineasInvestigacion">Líneas de investigación</a></li>
+  <li><a routerLink="negocios/list-modalidades">Modalidades</a></li>
+  <li><a routerLink="negocios/list-recordatorios">Recordatorios</a></li>
+  <li><a routerLink="negocios/list-resultadosEvaluaciones">Resultados</a></li>
+  <li><a routerLink="negocios/list-tiposSolicitud">Tipos de solicitud</a></li>
+  <li><a routerLink="negocios/list-tiposVinculacion">Tipos de vinculación</a></li>
+</ul>
+
+<ul id="dropdown3" class="dropdown-content">
+  <li><a routerLink="#!">1</a></li>
+  <li><a routerLink="#!">2</a></li>
+  <li><a routerLink="#!">3</a></li>
+  <li><a routerLink="#!">4</a></li>
+</ul>
+
 <nav>
-    <div class="nav-wrapper">
-      <a href="#!" class="brand-logo">Logo</a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <div class= "nav-wrapper">
+      <a routerLink="home" class="brand-logo">Inicio</a>
+      <a routerLink="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="sass.html">Sass</a></li>
-        <li><a href="badges.html">Components</a></li>
-        <li><a href="collapsible.html">Javascript</a></li>
-        <li><a href="mobile.html">Mobile</a></li>
+        <li><a routerLink="jurado/list-jurados">Jurados</a></li>
+        <li><a routerLink="proponente/list-proponentes">Proponentes</a></li>
+        <li><a routerLink="solicitud/list-solicitudes">Solicitudes</a></li>
+        <li><a routerLink="invitacionEvaluar/list-invitacionesEvaluar">Invitaciones para evaluar</a></li>
+        <li><a class="dropdown-trigger3" data-target="dropdown3">Reportes<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger2" data-target="dropdown2">Negocios<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a class="dropdown-trigger1" data-target="dropdown1">Cuenta<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
     </div>
   </nav>
 
   <ul class="sidenav" id="mobile-demo">
-    <li><a href="sass.html">Sass</a></li>
-    <li><a href="badges.html">Components</a></li>
-    <li><a href="collapsible.html">Javascript</a></li>
-    <li><a href="mobile.html">Mobile</a></li>
   </ul>
