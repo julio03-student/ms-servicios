@@ -7,4 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
     var instancesdD2 = M.Dropdown.init(dropDown2, {});
     var dropDown3 = document.querySelectorAll('.dropdown-trigger3');
     var instancesdD3 = M.Dropdown.init(dropDown3, {});
+    var generalModal = document.querySelectorAll('#modal-general-message');
+    var instancesModalGeneral = M.Modal.init(generalModal, {
+      opacity: 0.8
+    });
   });

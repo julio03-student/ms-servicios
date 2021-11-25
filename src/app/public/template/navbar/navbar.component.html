@@ -30,12 +30,12 @@
       <a routerLink="home" class="brand-logo">Inicio</a>
       <a routerLink="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
-        <li><a routerLink="jurado/list-jurados">Jurados</a></li>
-        <li><a routerLink="proponente/list-proponentes">Proponentes</a></li>
-        <li><a routerLink="solicitud/list-solicitudes">Solicitudes</a></li>
-        <li><a routerLink="invitacionEvaluar/list-invitacionesEvaluar">Invitaciones para evaluar</a></li>
-        <li><a class="dropdown-trigger3" data-target="dropdown3">Reportes<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li><a class="dropdown-trigger2" data-target="dropdown2">Negocios<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li *ngIf ="session"><a routerLink="jurado/list-jurados">Jurados</a></li>
+        <li *ngIf ="session"><a routerLink="proponente/list-proponentes">Proponentes</a></li>
+        <li *ngIf ="session"><a routerLink="solicitud/list-solicitudes">Solicitudes</a></li>
+        <li *ngIf ="session"><a routerLink="invitacionEvaluar/list-invitacionesEvaluar">Invitaciones para evaluar</a></li>
+        <li *ngIf ="session"><a class="dropdown-trigger3" data-target="dropdown3">Reportes<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li *ngIf ="session"><a class="dropdown-trigger2" data-target="dropdown2">Negocios<i class="material-icons right">arrow_drop_down</i></a></li>
         <li><a class="dropdown-trigger1" data-target="dropdown1">Cuenta<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
     </div>
