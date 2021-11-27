@@ -19,7 +19,7 @@ import {
   response,
 } from '@loopback/rest';
 import { Configuracion } from '../llaves/configuracion';
-import {Credenciales, CredencialesRecuperarPassword, NotificacionEmail, NotificacionSms, Usuario} from '../models';
+import {Credenciales, CredencialesRecuperarPassword, FormatoCorreo, NotificacionEmail, NotificacionSms, Usuario} from '../models';
 import {CambiarClave} from '../models/cambiar-clave.model';
 import {UsuarioRepository} from '../repositories';
 import {AdminClavesService, NotificacionesService, SesionUsuariosService} from '../services';
@@ -54,6 +54,7 @@ export class UsuarioController {
     })
     usuario: Omit<Usuario, '_idUsuario'>,
   ): Promise<Usuario> {
+    console.log('creando user')
     let clave = this.servicioClaves.CrearClaveAleatoria()
     console.log(clave);
     let claveCifrada = this.servicioClaves.CifrarTexto(clave)
@@ -255,6 +256,7 @@ export class UsuarioController {
       let claveCifrada = this.servicioClaves.CifrarTexto(clave);
       usuario.clave = this.servicioClaves.CifrarTexto(clave)
       await this.usuarioRepository.updateById(usuario._idUsuario, usuario)
+      console.log(clave)
 
       let datos = new NotificacionSms();
       datos.destino = usuario.celularUsuario;
@@ -263,6 +265,36 @@ export class UsuarioController {
 
     }
     return usuario
+  }
+
+  @post('/formato-correo')
+  @response(200, {
+    description: 'Recuperar clave de usuarios',
+    content: {'application/json': {schema: {}}},
+  })
+  async enviarEmail(
+    @requestBody({
+      content: {
+        'application/json': {}
+      },
+    })
+    credenciales: FormatoCorreo,
+  ): Promise<NotificacionEmail | null> {
+    let usuario = await this.usuarioRepository.findOne({
+      where: {
+        emailUsuario: credenciales.correo
+      }
+    })
+
+    let email = new NotificacionEmail();
+
+    if(usuario){
+      email.asunto = credenciales.asunto
+      email.destinatario = usuario.emailUsuario
+      email.mensaje = `Cordial saludo ${usuario.nombresUsuario} ${credenciales.mensaje}`
+      this.servicioNotificaciones.EnviarCorreo(email)
+    }
+    return email
   }
 
 }

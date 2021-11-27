@@ -7,3 +7,4 @@ export * from './cambiar-clave.model';
 export * from './notificacion-email.model';
 export * from './credenciales-recuperar-password.model';
 export * from './notificacion-sms.model';
+export * from './formato-correo.model';
