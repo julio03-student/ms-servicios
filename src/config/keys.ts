@@ -11,5 +11,5 @@ export namespace Keys{
   export const argToken = "token"
   export const argRolValidar = "rol"
   export const urlUsuarios = "http://localhost:3002/usuarios"
-  export const urlInvitacion = 'http://localhost:3002/enviar-correo'
+  export const urlFormato = 'http://localhost:3002/formato-correo'
 }

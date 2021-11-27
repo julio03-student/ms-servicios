@@ -50,12 +50,15 @@ export class InvitacionEvaluarController {
   ): Promise<InvitacionEvaluar> {
 
     let jurado = this.juradoRepository.findById(invitacionEvaluar.IdJurado)
-    
+
     let credentials = {
-      correo: (await jurado).CorreoJurado
+      correo: (await jurado).CorreoJurado,
+      asunto: 'Invitacion a Evaluar',
+      mensaje: `<br> Se le envia amablemente ésta invitación para que sea Jurado en la evaluación de un trabajo academico.
+      <br> Esperamos su pronta respuesta. <br> <br><button type="button">Aceptar</button> <button type="button">Rechazar</button>`
     }
 
-    let res = await fetch(Keys.urlInvitacion, {
+    let res = await fetch(Keys.urlFormato, {
       method: 'POST',
       headers: {
         'Accept': 'application/json, text/plain, */*',

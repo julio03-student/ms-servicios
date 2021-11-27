@@ -1,4 +1,5 @@
 import {service} from '@loopback/core';
+import {authenticate} from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -24,6 +25,7 @@ import {JuradoRepository} from '../repositories';
 const fetch = require('node-fetch');
 import {ToolsService} from '../services';
 
+@authenticate("admin")
 export class JuradoController {
   constructor(
     @repository(JuradoRepository)
@@ -64,6 +66,7 @@ export class JuradoController {
       idRol: "619add1d3f20a54b28f7c715"
     }
 
+
     /* let url = `${Keys.urlUsuarios}/usuarios` */
 
     let res = await fetch(Keys.urlUsuarios, {
@@ -89,7 +92,7 @@ export class JuradoController {
   ): Promise<Count> {
     return this.juradoRepository.count(where);
   }
-
+  @authenticate.skip()
   @get('/jurados')
   @response(200, {
     description: 'Array of Jurado model instances',
@@ -126,7 +129,7 @@ export class JuradoController {
   ): Promise<Count> {
     return this.juradoRepository.updateAll(jurado, where);
   }
-
+  @authenticate.skip()
   @get('/jurados/{id}')
   @response(200, {
     description: 'Jurado model instance',
