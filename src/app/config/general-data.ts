@@ -4,5 +4,8 @@ export namespace GeneralData {
     export const invalidFormMessage = `Formulario inválido`
     export const validFormMessage = `Formulario válido`
     export const USER_ADMIN_URL = 'http://localhost:3002'
+    export const BUSINESS_ADMIN_URL = 'http://localhost:3000'
     export const GENERAL_MESSAGE_ERROR = 'Error al conectarse con el backend' 
+    export const SAVED_MESSAGE = 'Registro exitoso!'
+    export const ERROR_MESSAGE = 'Error en el registro'
 }

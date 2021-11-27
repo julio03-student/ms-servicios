@@ -18,7 +18,7 @@ export class SecurityService {
   }
 
   Login(modelo: UserCredencialsModel): Observable<SessionData> {
-    console.log( modelo.username+":"+modelo.password)
+    /* console.log( modelo.username+":"+modelo.password) */
     return this.http.post<SessionData>(`${this.url}/identificar-usuario`, {
       usuario: modelo.username,
       clave: modelo.password

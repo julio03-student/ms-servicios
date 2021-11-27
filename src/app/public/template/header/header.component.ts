@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.securityService.GetSessionStatus().subscribe({
       next: (data: SessionData) => {
-        console.log("Header "+data.usuario)
+        /* console.log("Header "+data.usuario) */
         if (data.usuario?.nombresUsuario){
           this.user_data = data.usuario?.nombresUsuario + " " + data.usuario?.apellidosUsuario
         }
