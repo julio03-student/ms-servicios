@@ -20,6 +20,7 @@ import {
 import {TipoSolicitud} from '../models';
 import {TipoSolicitudRepository} from '../repositories';
 
+@authenticate("admin")
 export class TipoSolicitudController {
   constructor(
     @repository(TipoSolicitudRepository)
@@ -57,7 +58,7 @@ export class TipoSolicitudController {
   ): Promise<Count> {
     return this.tipoSolicitudRepository.count(where);
   }
-
+  @authenticate.skip()
   @get('/tipo-solicituds')
   @response(200, {
     description: 'Array of TipoSolicitud model instances',
@@ -94,7 +95,7 @@ export class TipoSolicitudController {
   ): Promise<Count> {
     return this.tipoSolicitudRepository.updateAll(tipoSolicitud, where);
   }
-
+  @authenticate.skip()
   @get('/tipo-solicituds/{id}')
   @response(200, {
     description: 'TipoSolicitud model instance',

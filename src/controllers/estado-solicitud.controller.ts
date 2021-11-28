@@ -58,6 +58,7 @@ export class EstadoSolicitudController {
     return this.estadoSolicitudRepository.count(where);
   }
 
+  @authenticate.skip()
   @get('/estado-solicituds')
   @response(200, {
     description: 'Array of EstadoSolicitud model instances',
@@ -95,6 +96,7 @@ export class EstadoSolicitudController {
     return this.estadoSolicitudRepository.updateAll(estadoSolicitud, where);
   }
 
+  @authenticate.skip()
   @get('/estado-solicituds/{id}')
   @response(200, {
     description: 'EstadoSolicitud model instance',

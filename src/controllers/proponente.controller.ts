@@ -24,6 +24,7 @@ const fetch = require('node-fetch');
 import {ToolsService} from '../services';
 import {service} from '@loopback/core';
 
+@authenticate("admin")
 export class ProponenteController {
   constructor(
     @repository(ProponenteRepository)
@@ -87,6 +88,7 @@ export class ProponenteController {
     return this.proponenteRepository.count(where);
   }
 
+  @authenticate.skip()
   @get('/proponentes')
   @response(200, {
     description: 'Array of Proponente model instances',
@@ -124,6 +126,7 @@ export class ProponenteController {
     return this.proponenteRepository.updateAll(proponente, where);
   }
 
+  @authenticate.skip()
   @get('/proponentes/{id}')
   @response(200, {
     description: 'Proponente model instance',

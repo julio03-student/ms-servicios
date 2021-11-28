@@ -22,6 +22,7 @@ import {InvitacionEvaluar} from '../models';
 import {InvitacionEvaluarRepository, JuradoRepository} from '../repositories';
 const fetch = require('node-fetch');
 
+@authenticate("admin")
 export class InvitacionEvaluarController {
   constructor(
     @repository(InvitacionEvaluarRepository)
@@ -81,6 +82,7 @@ export class InvitacionEvaluarController {
     return this.invitacionEvaluarRepository.count(where);
   }
 
+  @authenticate.skip()
   @get('/invitacion-evaluars')
   @response(200, {
     description: 'Array of InvitacionEvaluar model instances',
@@ -118,6 +120,7 @@ export class InvitacionEvaluarController {
     return this.invitacionEvaluarRepository.updateAll(invitacionEvaluar, where);
   }
 
+  @authenticate.skip()
   @get('/invitacion-evaluars/{id}')
   @response(200, {
     description: 'InvitacionEvaluar model instance',

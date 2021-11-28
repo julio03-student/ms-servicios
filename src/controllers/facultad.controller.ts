@@ -20,6 +20,7 @@ import {
 import {Facultad} from '../models';
 import {FacultadRepository} from '../repositories';
 
+@authenticate("admin")
 export class FacultadController {
   constructor(
     @repository(FacultadRepository)
@@ -58,6 +59,7 @@ export class FacultadController {
     return this.facultadRepository.count(where);
   }
 
+  @authenticate.skip()
   @get('/facultads')
   @response(200, {
     description: 'Array of Facultad model instances',
@@ -95,6 +97,7 @@ export class FacultadController {
     return this.facultadRepository.updateAll(facultad, where);
   }
 
+  @authenticate.skip()
   @get('/facultads/{id}')
   @response(200, {
     description: 'Facultad model instance',

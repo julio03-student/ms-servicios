@@ -20,6 +20,7 @@ import {
 import {TipoVinculacion} from '../models';
 import {TipoVinculacionRepository} from '../repositories';
 
+@authenticate("admin")
 export class TipoVinculacionController {
   constructor(
     @repository(TipoVinculacionRepository)
@@ -57,7 +58,7 @@ export class TipoVinculacionController {
   ): Promise<Count> {
     return this.tipoVinculacionRepository.count(where);
   }
-
+  @authenticate.skip()
   @get('/tipo-vinculacions')
   @response(200, {
     description: 'Array of TipoVinculacion model instances',
@@ -94,7 +95,7 @@ export class TipoVinculacionController {
   ): Promise<Count> {
     return this.tipoVinculacionRepository.updateAll(tipoVinculacion, where);
   }
-
+  @authenticate.skip()
   @get('/tipo-vinculacions/{id}')
   @response(200, {
     description: 'TipoVinculacion model instance',

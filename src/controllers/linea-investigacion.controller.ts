@@ -20,6 +20,7 @@ import {
 import {LineaInvestigacion} from '../models';
 import {LineaInvestigacionRepository} from '../repositories';
 
+@authenticate("admin")
 export class LineaInvestigacionController {
   constructor(
     @repository(LineaInvestigacionRepository)
@@ -58,6 +59,7 @@ export class LineaInvestigacionController {
     return this.lineaInvestigacionRepository.count(where);
   }
 
+  @authenticate.skip()
   @get('/linea-investigacions')
   @response(200, {
     description: 'Array of LineaInvestigacion model instances',
@@ -95,6 +97,7 @@ export class LineaInvestigacionController {
     return this.lineaInvestigacionRepository.updateAll(lineaInvestigacion, where);
   }
 
+  @authenticate.skip()
   @get('/linea-investigacions/{id}')
   @response(200, {
     description: 'LineaInvestigacion model instance',
