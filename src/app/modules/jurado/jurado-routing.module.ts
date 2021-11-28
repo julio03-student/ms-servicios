@@ -12,7 +12,7 @@ const routes: Routes = [
     component: ListJuradoComponent
   },
   {
-    path: "edit-jurado",
+    path: "edit-jurado/:id",
     component: EditJuradoComponent
   },
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
     component: CreateJuradoComponent
   },
   {
-    path: "remove-jurado",
+    path: "remove-jurado/:id",
     component: RemoveJuradoComponent
   }
 ];

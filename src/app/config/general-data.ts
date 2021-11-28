@@ -8,4 +8,6 @@ export namespace GeneralData {
     export const GENERAL_MESSAGE_ERROR = 'Error al conectarse con el backend' 
     export const SAVED_MESSAGE = 'Registro exitoso!'
     export const ERROR_MESSAGE = 'Error en el registro'
+    export const REMOVE_MESSAGE = 'Eliminación exitosa!'
+    export const REMOVE_ERROR_MESSAGE = 'Error en la eliminación!'
 }

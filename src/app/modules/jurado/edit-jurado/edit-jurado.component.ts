@@ -44,7 +44,8 @@ export class EditJuradoComponent implements OnInit {
   }
 
   SearchRecord(){
-    let id = parseInt(this.activeRoute.snapshot.params['id']);
+    console.log("Buscando....")
+    let id = parseInt(this.activeRoute.snapshot.params["id"]);
     this.service.SearchRecord(id).subscribe({
       next: (data: JuradoModel) => {
         this.form.controls["id"].setValue(data.IdJurado)

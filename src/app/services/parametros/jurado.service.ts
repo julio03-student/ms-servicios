@@ -44,6 +44,7 @@ export class JuradoService {
   }
 
   EditRecord(data: JuradoModel): Observable<JuradoModel> {
+    console.log("Editanto....");
     
     return this.http.put<JuradoModel>(`${this.url}/jurados/${data.IdJurado}`, {
       IdJurado: data.IdJurado,
@@ -65,5 +66,14 @@ export class JuradoService {
 
   SearchRecord(id: number): Observable<JuradoModel>{
     return this.http.get<JuradoModel>(`${this.url}/jurados/${id}`)
+  }
+
+  RemoveRecord(id: number): Observable<any>{
+    return this.http.delete(`${this.url}/jurados/${id}`,
+    {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.token}`
+      })
+    })
   }
 }
