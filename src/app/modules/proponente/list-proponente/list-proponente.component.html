@@ -1,1 +1,61 @@
-<p>list-proponente works!</p>
+<table class="table reponsive-table">
+    <thead>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Otros nombres</th>
+        <th>Apellidos</th>
+        <th>Telefono</th>
+        <th>Documento</th>
+        <th>Correo</th>
+        <th>Direccion</th>
+        <th>Fecha Nacimiento</th>
+        <th>Acciones</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let r of proponentelist">
+            <td>
+                {{r.IdProponente}}
+            </td>
+            <td>
+                {{r.PrimerNombreProponente}}
+            </td>
+            <td>
+                {{r.OtrosNombresProponente}}
+            </td>
+            <td>
+                {{r.ApellidosProponente}}
+            </td>
+            <td>
+                {{r.CelularProponente}}
+            </td>
+            <td>
+                {{r.DocumentoIdProponente}}
+            </td>
+            <td>
+                {{r.CorreoProponente}}
+            </td>
+            <td>
+                {{r.Direccion}}
+            </td>
+            <td>
+                {{r.fechaNacimiento}}
+            </td>
+            <td class="row">
+                <div class="input-field col s12">
+                    <a routerLink="/proponente/edit-proponente/{{r.IdProponente}}" class="waves-effect waves-light btn-small green"><i class="material-icons right">edit</i>editar</a>
+                </div>
+                <div class="input-field col s12">
+                    <a routerLink="/proponente/remove-proponente/{{r.IdProponente}}" class="waves-effect waves-light btn-small red"><i class="material-icons right ">delete</i>borrar</a>
+                </div>
+                
+            </td>
+        </tr>
+    </tbody>
+         
+</table>
+
+<div class="row">
+    <div class="input-field col s2">
+        <a routerLink="/proponente/create-proponente" class="waves-effect waves-light btn-small blue"><i class="material-icons right">save</i>Agregar</a>
+    </div>
+</div> 

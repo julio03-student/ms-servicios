@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProponenteModel } from 'src/app/models/parametros/proponente.model';
+import { ProponenteService } from 'src/app/services/parametros/proponente.service.service';
 
 @Component({
   selector: 'app-list-proponente',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListProponenteComponent implements OnInit {
 
-  constructor() { }
+  proponentelist: ProponenteModel[] = []
+
+  constructor(
+    private proponenteservice: ProponenteService
+  ) { }
 
   ngOnInit(): void {
+    this.GetRecordsList()
+  }
+
+  GetRecordsList(){
+    this.proponenteservice.GetRecordList().subscribe({
+      next: (data: ProponenteModel[]) =>{
+        console.log("Lista: "+data)
+        this.proponentelist = data
+      }
+    })
   }
 
 }

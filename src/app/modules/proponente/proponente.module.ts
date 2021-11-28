@@ -6,6 +6,7 @@ import { CreateProponenteComponent } from './create-proponente/create-proponente
 import { EditProponenteComponent } from './edit-proponente/edit-proponente.component';
 import { ListProponenteComponent } from './list-proponente/list-proponente.component';
 import { RemoveProponenteComponent } from './remove-proponente/remove-proponente.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { RemoveProponenteComponent } from './remove-proponente/remove-proponente
   ],
   imports: [
     CommonModule,
-    ProponenteRoutingModule
+    ProponenteRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ProponenteModule { }

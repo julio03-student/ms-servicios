@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
       password:["ztI8hO0w", [Validators.required, Validators.minLength(GeneralData.passwordMinLenght)]]
     })
   }
-
+  
   Login(){
     if(this.form.invalid){
       OpenGeneralMessage(GeneralData.invalidFormMessage)

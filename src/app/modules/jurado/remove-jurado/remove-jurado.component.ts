@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GeneralData } from 'src/app/config/general-data';
 import { JuradoModel } from 'src/app/models/parametros/jurado.model';
@@ -13,6 +13,8 @@ declare const OpenGeneralMessage: any
   styleUrls: ['./remove-jurado.component.css']
 })
 export class RemoveJuradoComponent implements OnInit {
+
+  form : FormGroup = new FormGroup({})
   
   id: number = 0
   name: string = ""
