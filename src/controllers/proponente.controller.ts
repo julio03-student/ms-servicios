@@ -23,6 +23,7 @@ import {Keys} from '../config/keys';
 const fetch = require('node-fetch');
 import {ToolsService} from '../services';
 import {service} from '@loopback/core';
+import {authenticate} from '@loopback/authentication';
 
 @authenticate("admin")
 export class ProponenteController {

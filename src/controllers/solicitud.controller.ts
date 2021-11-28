@@ -1,3 +1,4 @@
+import {authenticate} from '@loopback/authentication';
 import {
   Count,
   CountSchema,
@@ -95,7 +96,7 @@ export class SolicitudController {
   ): Promise<Count> {
     return this.solicitudRepository.updateAll(solicitud, where);
   }
-  
+
   @authenticate.skip()
   @get('/solicituds/{id}')
   @response(200, {

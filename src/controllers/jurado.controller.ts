@@ -63,7 +63,7 @@ export class JuradoController {
       telefonoUsuario: jurado.TelefonoJurado,
       estadoUsuario: "Empleado",
       clave: this.toolsService.passwordGenerator(),
-      idRol: "619add1d3f20a54b28f7c715"
+      idRol: "6180945c19782f27f0016928"
     }
 
 
