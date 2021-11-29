@@ -1,1 +1,43 @@
-<p>list-recordatorio works!</p>
+<table class="table reponsive-table">
+    <thead>
+        <th>Id</th>
+        <th>Fecha recordatorio</th>
+        <th>Horario recordatorio</th>
+        <th>Tipo recordatorio</th>
+        <th>Descripción</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let r of recordatoriolist">
+            <td>
+                {{r.IdRecordatorio}}
+            </td>
+            <td>
+                {{r.FechaRecordatorio}}
+            </td>
+            <td>
+                {{r.HorarioRecordatorio}}
+            </td>
+            <td>
+                {{r.TipoRecordatorio}}
+            </td>
+            <td>
+                {{r.DescripcionRecordatorio}}
+            </td>
+            <td class="row">
+                <div class="input-field col s12">
+                    <a routerLink="/business/edit-recordatorio/{{r.IdRecordatorio}}" class="waves-effect waves-light btn-small green"><i class="material-icons right">edit</i>editar</a>
+                </div>
+                <div class="input-field col s12">
+                    <a routerLink="/business/remove-recordatorio/{{r.IdRecordatorio}}" class="waves-effect waves-light btn-small red"><i class="material-icons right ">delete</i>borrar</a>
+                </div>
+                
+            </td>
+        </tr>
+    </tbody>       
+</table>
+
+<div class="row">
+    <div class="input-field col s2">
+        <a routerLink="/business/create-recordatorio" class="waves-effect waves-light btn-small blue"><i class="material-icons right">save</i>Agregar</a>
+    </div>
+</div> 

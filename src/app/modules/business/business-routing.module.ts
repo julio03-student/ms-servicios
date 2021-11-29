@@ -48,7 +48,7 @@ const routes: Routes = [
     component: ListComiteComponent
   },
   {
-    path: "edit-comite",
+    path: "edit-comite/:id",
     component: EditComiteComponent
   },
   {
@@ -56,7 +56,7 @@ const routes: Routes = [
     component: CreateComiteComponent
   },
   {
-    path: "remove-comite",
+    path: "remove-comite/:id",
     component: RemoveComiteComponent
   },
   {
@@ -144,7 +144,7 @@ const routes: Routes = [
     component: ListRecordatorioComponent
   },
   {
-    path: "edit-recordatorio",
+    path: "edit-recordatorio/:id",
     component: EditRecordatorioComponent
   },
   {
@@ -152,7 +152,7 @@ const routes: Routes = [
     component: CreateRecordatorioComponent
   },
   {
-    path: "remove-recordatorio",
+    path: "remove-recordatorio/;id",
     component: RemoveRecordatorioComponent
   },
   {

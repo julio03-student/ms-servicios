@@ -1,1 +1,32 @@
-<p>create-recordatorio works!</p>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+      <div class="row">
+        <div class="input-field col s4">
+          <input formControlName="fecha_recordatorio" id="fecha_recordatorio" type="date">
+          <label for="fecha_recordatorio">Fecha recordatorio</label>
+        </div>
+        <div class="input-field col s4">
+          <input formControlName="horario_recordatorio" id="horario_recordatorio" type="date">
+          <label for="horario_recordatorio">Horario recordatorio</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s4">
+          <input formControlName="tipo_recordatorio" id="tipo_recordatorio" type="text">
+          <label for="tipo_recordatorio">Tipo recordatorio</label>
+        </div>
+        <div class="input-field col s4">
+          <input formControlName="descripcion_recordatorio" id="descripcion_recordatorio" type="text">
+          <label for="descripcion_recordatorio">Descripción</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s2">
+            <a (click)="SaveRecord()" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud_upload</i>Guardar</a>
+        </div>
+       <div class="input-field col s2">
+            <a routerLink="/business/list-recordatorios" class="waves-effect waves-light btn-large"><i class="material-icons left">close</i>Cancelar</a>
+       </div>
+      </div>
+    </form>
+</div>

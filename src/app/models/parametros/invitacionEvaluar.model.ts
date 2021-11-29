@@ -4,4 +4,6 @@ export class InvitacionEvaluarModel{
     FechaRespuesta?: Date;
     EstadoInvitacion?: string;
     ObservacionesInvitacionEvaluar?: string;
+    IdJurado?: number;
+    IdRecordatorio?: number;
 }

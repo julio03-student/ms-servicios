@@ -40,8 +40,6 @@ export class EditJuradoComponent implements OnInit {
       direccion:["",[Validators.required]],
       fecha_nacimiento:["",[Validators.required]],
       vinculacion:["",[Validators.required]],
-      invitacion_evaluars:["",[Validators.required]],
-      linea_investigacions:["",[Validators.required]],
     })
   }
 
@@ -59,8 +57,6 @@ export class EditJuradoComponent implements OnInit {
         this.form.controls["phone"].setValue(data.TelefonoJurado)
         this.form.controls["vinculacion"].setValue(data.VinculacionJurado)
         this.form.controls["fecha_nacimiento"].setValue(data.fechaNacimiento)
-        this.form.controls["invitacion_evaluars"].setValue(data.invitacionEvaluars)
-        this.form.controls["linea_investigacions"].setValue(data.lineaInvestigacions)
       }
     })
   }
@@ -75,8 +71,6 @@ export class EditJuradoComponent implements OnInit {
     model.TelefonoJurado = this.form.controls["phone"].value
     model.VinculacionJurado = this.form.controls["vinculacion"].value
     model.fechaNacimiento = this.form.controls["fecha_nacimiento"].value
-    model.invitacionEvaluars = this.form.controls["invitacion_evaluars"].value
-    model.lineaInvestigacions = this.form.controls["linea_investigacions"].value
 
     console.log(model);
     

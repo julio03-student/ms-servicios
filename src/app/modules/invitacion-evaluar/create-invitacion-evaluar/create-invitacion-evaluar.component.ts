@@ -34,6 +34,8 @@ export class CreateInvitacionEvaluarComponent implements OnInit {
       fecha_respuesta:["",[Validators.required]],
       estado_invitacion:["",[Validators.required]],
       observaciones_invitacion:["",[Validators.required]],
+      id_jurado:["",[Validators.required]],
+      id_recordatorio:["",[Validators.required]],
     })
   }
 
@@ -43,6 +45,8 @@ export class CreateInvitacionEvaluarComponent implements OnInit {
     model.FechaRespuesta = this.form.controls["fecha_respuesta"].value
     model.EstadoInvitacion = this.form.controls['estado_invitacion'].value
     model.ObservacionesInvitacionEvaluar = this.form.controls["observaciones_invitacion"].value
+    model.IdJurado = this.form.controls["id_jurado"].value
+    model.IdRecordatorio = this.form.controls["id_recordatorio"].value
 
     console.log(model);
     

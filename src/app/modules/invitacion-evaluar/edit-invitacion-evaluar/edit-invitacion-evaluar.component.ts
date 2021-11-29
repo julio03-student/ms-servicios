@@ -36,6 +36,8 @@ export class EditInvitacionEvaluarComponent implements OnInit {
       fecha_respuesta:["",[Validators.required]],
       estado_invitacion:["",[Validators.required]],
       observaciones_invitacion:["",[Validators.required]],
+      id_jurado:["",[Validators.required]],
+      id_recordatorio:["",[Validators.required]],
     })
   }
 
@@ -49,6 +51,8 @@ export class EditInvitacionEvaluarComponent implements OnInit {
         this.form.controls["fecha_respuesta"].setValue(data.FechaRespuesta)
         this.form.controls["estado_invitacion"].setValue(data.EstadoInvitacion)
         this.form.controls["observaciones_invitacion"].setValue(data.ObservacionesInvitacionEvaluar)
+        this.form.controls["id_jurado"].setValue(data.IdJurado)
+        this.form.controls["id_recordatorio"].setValue(data.IdRecordatorio)
       }
     })
   }
@@ -56,10 +60,12 @@ export class EditInvitacionEvaluarComponent implements OnInit {
   SaveRecord(){
     let model = new InvitacionEvaluarModel();
     model.IdInvitacionEvaluar = this.form.controls["id"].value
-    model.FechaInvitacion = this.form.controls["fecha_inivitacion"].value;
+    model.FechaInvitacion = this.form.controls["fecha_invitacion"].value;
     model.FechaRespuesta = this.form.controls["fecha_respuesta"].value
     model.EstadoInvitacion = this.form.controls['estado_invitacion'].value
     model.ObservacionesInvitacionEvaluar = this.form.controls["observaciones_invitacion"].value
+    model.IdJurado = this.form.controls["id_jurado"].value
+    model.IdRecordatorio = this.form.controls["id_recordatorio"].value
 
     console.log(model);
     
