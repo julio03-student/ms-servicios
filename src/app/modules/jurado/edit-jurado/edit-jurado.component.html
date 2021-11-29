@@ -1,52 +1,59 @@
 <div class="row">
-    <form [formGroup]="form" class="col s12">
-        <input type="hidden" formControlName="id">
-      <div class="row">
-        <div class="input-field col s4">
-          <input formControlName="name" id="name" type="text">
-          <label class="active" for="name">Nombre</label>
-        </div>
-        <div class="input-field col s4">
-          <input formControlName="last_name" id="last_name" type="text">
-          <label class="active" for="last_name">Apellidos</label>
-        </div>
-        <div class="input-field col s4">
-            <input formControlName="phone" id="phone" type="text">
-            <label class="active" for="phone">Telefono</label>
-        </div>
+  <form [formGroup]="form" class="col s12">
+    <div class="row">
+      <div class="input-field col s4">
+        <input formControlName="name" id="name" type="text">
+        <label for="name">Nombre</label>
       </div>
-      <div class="row">
-        <div class="input-field col s4">
-            <input formControlName="documento" name="documento" id="documento" type="text">
-            <label class="active" for="documento">Documento</label>
-        </div>
-        <div class="input-field col s4">
-          <input formControlName="email" id="email" type="email" class="validate">
-          <label class="active" for="email">Email</label>
-        </div>
-        <div class="input-field col s4">
-            <input formControlName="direccion" id="direccion" type="text">
-            <label class="active" for="direccion">Dirección</label>
-        </div>
+      <div class="input-field col s4">
+        <input formControlName="last_name" id="last_name" type="text">
+        <label for="last_name">Apellidos</label>
       </div>
-      <div class="row">
-        <div class="input-field col s4">
-            <input formControlName="fecha_nacimiento" id="fecha_nacimiento" type="date">
-            <label class="active" for="fecha_nacimiento">Fecha Nacimiento</label>
-        </div>
-        <div class="input-field col s4">
-            <input formControlName="vinculacion" id="vinculacion" type="text">
-            <label class="active" for="vinculacion">Vinculación</label>
-        </div>
+      <div class="input-field col s4">
+          <input formControlName="phone" id="phone" type="text">
+          <label for="phone">Telefono</label>
       </div>
-      <div class="row">
-        <div class="input-field col s2">
-            <a (click)="SaveRecord()" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud_upload</i>Guardar</a>
-        </div>
-       <div class="input-field col s2">
-            <a routerLink="/jurado/list-jurados" class="waves-effect waves-light btn-large"><i class="material-icons left">close</i>Cancelar</a>
-       </div>
-       
+    </div>
+    <div class="row">
+      <div class="input-field col s4">
+          <input formControlName="documento" name="documento" id="documento" type="text">
+          <label for="documento">Documento</label>
       </div>
-    </form>
-  </div>
+      <div class="input-field col s4">
+        <input formControlName="email" id="email" type="email" class="validate">
+        <label for="email">Email</label>
+      </div>
+      <div class="input-field col s4">
+          <input formControlName="direccion" id="direccion" type="text">
+          <label for="direccion">Dirección</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s4">
+          <input formControlName="fecha_nacimiento" id="fecha_nacimiento" type="date">
+          <label for="fecha_nacimiento">Fecha Nacimiento</label>
+      </div>
+      <div class="input-field col s4">
+          <input formControlName="vinculacion" id="vinculacion" type="text">
+          <label for="vinculacion">Vinculación</label>
+      </div>
+      <div class="input-field col s4">
+          <input formControlName="invitacion_evaluars" id="invitacion_evaluars" type="text">
+          <label for="invitacion_evaluars">Invitaciones para evaluar</label>
+      </div>
+      <div class="input-field col s4">
+          <input formControlName="linea_investigacions" id="linea_investigacions" type="text">
+          <label for="linea_investigacions">Líneas de investigación</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s2">
+          <a (click)="SaveRecord()" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud_upload</i>Guardar</a>
+      </div>
+     <div class="input-field col s2">
+          <a routerLink="/jurado/list-jurados" class="waves-effect waves-light btn-large"><i class="material-icons left">close</i>Cancelar</a>
+     </div>
+     
+    </div>
+  </form>
+</div>

@@ -1,1 +1,31 @@
-<p>create-solicitud works!</p>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+      <div class="row">
+        <div class="input-field col s4">
+          <input formControlName="fecha_solicitud" id="fecha_solicitud" type="date">
+          <label for="fecha_solicitud">Fecha solicitud</label>
+        </div>
+        <div class="input-field col s4">
+            <input formControlName="nombre_trabajo" id="nombre_trabajo" type="text">
+            <label for="nombre_trabajo">Nombre del trabajo</label>
+        </div>
+        <div class="input-field col s4">
+          <input formControlName="archivo_solicitud" id="archivo_solicitud" type="text">
+          <label for="archivo_solicitud">Archivo de la solicitud</label>
+        </div>
+        <div class="input-field col s4">
+            <input formControlName="descripcion_general" id="descripcion_general" type="text">
+            <label for="descripcion_general">Descripción general</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s2">
+            <a (click)="SaveRecord()" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud_upload</i>Guardar</a>
+        </div>
+       <div class="input-field col s2">
+            <a routerLink="/solicitud/list-solicitudes" class="waves-effect waves-light btn-large"><i class="material-icons left">close</i>Cancelar</a>
+       </div>
+       
+      </div>
+    </form>
+  </div>

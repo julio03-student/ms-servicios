@@ -11,7 +11,7 @@ const routes: Routes = [
     component: ListInvitacionEvaluarComponent
   },
   {
-    path: "edit-invitacionEvaluar",
+    path: "edit-invitacionEvaluar/:id",
     component: EditInvitacionEvaluarComponent
   },
   {
@@ -19,7 +19,7 @@ const routes: Routes = [
     component: CreateInvitacionEvaluarComponent
   },
   {
-    path: "remove-invitacionEvaluar",
+    path: "remove-invitacionEvaluar/:id",
     component: RemoveInvitacionEvaluarComponent
   }
 ];

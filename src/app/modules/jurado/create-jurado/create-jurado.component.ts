@@ -37,6 +37,8 @@ export class CreateJuradoComponent implements OnInit {
       direccion:["",[Validators.required]],
       fecha_nacimiento:["",[Validators.required]],
       vinculacion:["",[Validators.required]],
+      invitacion_evaluars:["",[Validators.required]],
+      linea_investigacions:["",[Validators.required]],
     })
   }
 
@@ -50,6 +52,8 @@ export class CreateJuradoComponent implements OnInit {
     model.TelefonoJurado = this.form.controls["phone"].value
     model.VinculacionJurado = this.form.controls["vinculacion"].value
     model.fechaNacimiento = this.form.controls["fecha_nacimiento"].value
+    model.invitacionEvaluars = this.form.controls["invitacion_evaluars"].value
+    model.lineaInvestigacions = this.form.controls["linea_investigacions"].value
 
     console.log(model);
     

@@ -11,7 +11,7 @@ const routes: Routes = [
     component: ListSolicitudComponent
   },
   {
-    path: "edit-solicitud",
+    path: "edit-solicitud/:id",
     component: EditSolicitudComponent
   },
   {
@@ -19,7 +19,7 @@ const routes: Routes = [
     component: CreateSolicitudComponent
   },
   {
-    path: "remove-solicitud",
+    path: "remove-solicitud/:id",
     component: RemoveSolicitudComponent
   }
 ];

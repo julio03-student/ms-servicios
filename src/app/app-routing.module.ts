@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListJuradoComponent } from './modules/jurado/list-jurado/list-jurado.component';
 import { NotFoundComponent } from './public/errors/not-found/not-found.component';
 import { HomeComponent } from './public/general/home/home.component';
 
@@ -35,7 +34,7 @@ const routes: Routes = [
     loadChildren : () => import("./modules/invitacion-evaluar/invitacion-evaluar.module").then(x => x.InvitacionEvaluarModule)
   },
   {
-    path: "negocios",
+    path: "bussiness",
     loadChildren : () => import("./modules/business/business.module").then(x => x.BusinessModule)
   },
   {

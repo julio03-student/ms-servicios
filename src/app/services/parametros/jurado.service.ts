@@ -55,7 +55,9 @@ export class JuradoService {
       CorreoJurado: data.CorreoJurado,
       DireccionJurado: data.DireccionJurado,
       fechaNacimiento: `${data.fechaNacimiento}T01:33:27.000Z`,
-      VinculacionJurado: data.VinculacionJurado
+      VinculacionJurado: data.VinculacionJurado,
+      invitacionEvaluars: data.invitacionEvaluars,
+      lineaInvestigacions: data.lineaInvestigacions,
     },
     {
       headers: new HttpHeaders({

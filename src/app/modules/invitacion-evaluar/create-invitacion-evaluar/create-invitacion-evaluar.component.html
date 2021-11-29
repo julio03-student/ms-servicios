@@ -1,1 +1,31 @@
-<p>create-invitacion-evaluar works!</p>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+      <div class="row">
+        <div class="input-field col s4">
+          <input formControlName="fecha_invitacion" id="fecha_invitacion" type="date">
+          <label for="fecha_invitacion">Fecha invitación</label>
+        </div>
+        <div class="input-field col s4">
+            <input formControlName="fecha_respuesta" id="fecha_respuesta" type="date">
+            <label for="fecha_respuesta">Nombre del trabajo</label>
+        </div>
+        <div class="input-field col s4">
+          <input formControlName="estado_invitacion" id="estado_invitacion" type="text">
+          <label for="estado_invitacion">Estado de la invitación</label>
+        </div>
+        <div class="input-field col s4">
+            <input formControlName="observaciones_invitacion" id="observaciones_invitacion" type="text">
+            <label for="observaciones_invitacion">Observaciones</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s2">
+            <a (click)="SaveRecord()" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud_upload</i>Guardar</a>
+        </div>
+       <div class="input-field col s2">
+            <a routerLink="/invitacionEvaluar/list-invitacionesEvaluar" class="waves-effect waves-light btn-large"><i class="material-icons left">close</i>Cancelar</a>
+       </div>
+       
+      </div>
+    </form>
+  </div>

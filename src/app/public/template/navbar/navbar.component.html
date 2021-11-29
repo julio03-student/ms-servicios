@@ -1,21 +1,21 @@
 <ul id="dropdown1" class="dropdown-content">
-  <li *ngIf ="!session" ><a routerLink="security/login">Iniciar Sesión</a></li>
-  <li *ngIf ="session" ><a routerLink="security/logout">Cerrar Sesión</a></li>
-  <li *ngIf ="session" ><a routerLink="security/change-password">Cambiar clave</a></li>
-  <li *ngIf ="!session" ><a routerLink="security/create-user">Crear cuenta</a></li>
+  <li *ngIf="!session"><a routerLink="security/login">Iniciar Sesión</a></li>
+  <li *ngIf="session"><a routerLink="security/logout">Cerrar Sesión</a></li>
+  <li *ngIf="session"><a routerLink="security/change-password">Cambiar clave</a></li>
+  <li *ngIf="!session"><a routerLink="security/create-user">Crear cuenta</a></li>
 </ul>
 
 <ul id="dropdown2" class="dropdown-content">
-  <li><a routerLink="negocios/list-comites">Comités</a></li>
-  <li><a routerLink="negocios/list-departamentos">Departamentos</a></li>
-  <li><a routerLink="negocios/list-estadosSolicitud">Estado de la solicitud</a></li>
-  <li><a routerLink="negocios/list-facultades">Facultades</a></li>
-  <li><a routerLink="negocios/list-lineasInvestigacion">Líneas de investigación</a></li>
-  <li><a routerLink="negocios/list-modalidades">Modalidades</a></li>
-  <li><a routerLink="negocios/list-recordatorios">Recordatorios</a></li>
-  <li><a routerLink="negocios/list-resultadosEvaluaciones">Resultados</a></li>
-  <li><a routerLink="negocios/list-tiposSolicitud">Tipos de solicitud</a></li>
-  <li><a routerLink="negocios/list-tiposVinculacion">Tipos de vinculación</a></li>
+  <li><a routerLink="bussiness/list-comites">Comités</a></li>
+  <li><a routerLink="bussiness/list-departamentos">Departamentos</a></li>
+  <li><a routerLink="bussiness/list-estadosSolicitud">Estado de la solicitud</a></li>
+  <li><a routerLink="bussiness/list-facultades">Facultades</a></li>
+  <li><a routerLink="bussiness/list-lineasInvestigacion">Líneas de investigación</a></li>
+  <li><a routerLink="bussiness/list-modalidades">Modalidades</a></li>
+  <li><a routerLink="bussiness/list-recordatorios">Recordatorios</a></li>
+  <li><a routerLink="bussiness/list-resultadosEvaluaciones">Resultados</a></li>
+  <li><a routerLink="bussiness/list-tiposSolicitud">Tipos de solicitud</a></li>
+  <li><a routerLink="bussiness/list-tiposVinculacion">Tipos de vinculación</a></li>
 </ul>
 
 <ul id="dropdown3" class="dropdown-content">
@@ -26,20 +26,33 @@
 </ul>
 
 <nav>
-    <div class= "nav-wrapper">
-      <a routerLink="home" class="brand-logo">Inicio</a>
-      <a routerLink="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul class="right hide-on-med-and-down">
-        <li *ngIf ="session"><a routerLink="jurado/list-jurados">Jurados</a></li>
-        <li *ngIf ="session"><a routerLink="proponente/list-proponentes">Proponentes</a></li>
-        <li *ngIf ="session"><a routerLink="solicitud/list-solicitudes">Solicitudes</a></li>
-        <li *ngIf ="session"><a routerLink="invitacionEvaluar/list-invitacionesEvaluar">Invitaciones para evaluar</a></li>
-        <li *ngIf ="session"><a class="dropdown-trigger3" data-target="dropdown3">Reportes<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li *ngIf ="session"><a class="dropdown-trigger2" data-target="dropdown2">Negocios<i class="material-icons right">arrow_drop_down</i></a></li>
-        <li><a class="dropdown-trigger1" data-target="dropdown1">Cuenta<i class="material-icons right">arrow_drop_down</i></a></li>
-      </ul>
-    </div>
-  </nav>
+  <div class="nav-wrapper">
+    <a routerLink="home" class="brand-logo">Inicio</a>
+    <a routerLink="home" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li *ngIf="session"><a routerLink="jurado/list-jurados">Jurados</a></li>
+      <li *ngIf="session"><a routerLink="proponente/list-proponentes">Proponentes</a></li>
+      <li *ngIf="session"><a routerLink="solicitud/list-solicitudes">Solicitudes</a></li>
+      <li *ngIf="session"><a routerLink="invitacionEvaluar/list-invitacionesEvaluar">Invitaciones para evaluar</a></li>
+      <li *ngIf="session"><a class="dropdown-trigger3" data-target="dropdown3">Reportes<i
+            class="material-icons right">arrow_drop_down</i></a></li>
+      <li *ngIf="session"><a class="dropdown-trigger2" data-target="dropdown2">Negocios<i
+            class="material-icons right">arrow_drop_down</i></a></li>
+      <li><a class="dropdown-trigger1" data-target="dropdown1">Cuenta<i
+            class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+  </div>
+</nav>
 
-  <ul class="sidenav" id="mobile-demo">
-  </ul>
+<!-- <ul class="sidenav" id="mobile-demo">
+  <li *ngIf="session"><a routerLink="jurado/list-jurados">Jurados</a></li>
+  <li *ngIf="session"><a routerLink="proponente/list-proponentes">Proponentes</a></li>
+  <li *ngIf="session"><a routerLink="solicitud/list-solicitudes">Solicitudes</a></li>
+  <li *ngIf="session"><a routerLink="invitacionEvaluar/list-invitacionesEvaluar">Invitaciones para evaluar</a></li>
+  <li *ngIf="session"><a class="dropdown-trigger3" data-target="dropdown3">Reportes<i
+        class="material-icons right">arrow_drop_down</i></a></li>
+  <li *ngIf="session"><a class="dropdown-trigger2" data-target="dropdown2">Negocios<i
+        class="material-icons right">arrow_drop_down</i></a></li>
+  <li><a class="dropdown-trigger1" data-target="dropdown1">Cuenta<i class="material-icons right">arrow_drop_down</i></a>
+  </li>
+</ul> -->
