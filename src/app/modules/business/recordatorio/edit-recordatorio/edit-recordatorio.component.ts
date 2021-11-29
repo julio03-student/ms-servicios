@@ -31,7 +31,8 @@ export class EditRecordatorioComponent implements OnInit {
 
   CreateForm(){
     this.form = this.fb.group({
-      id:["", [Validators.required]],fecha_recordatorio:["",[Validators.required]],
+      id:["", [Validators.required]],
+      fecha_recordatorio:["",[Validators.required]],
       horario_recordatorio:["",[Validators.required]],
       tipo_recordatorio:["",[Validators.required]],
       descripcion_recordatorio:["",[Validators.required]],

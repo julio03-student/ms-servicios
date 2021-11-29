@@ -1,3 +1,5 @@
+import { SolicitudModel } from "./solicitud.model";
+
 export class InvitacionEvaluarModel{
     IdInvitacionEvaluar?: number;
     FechaInvitacion?: Date;
@@ -6,4 +8,6 @@ export class InvitacionEvaluarModel{
     ObservacionesInvitacionEvaluar?: string;
     IdJurado?: number;
     IdRecordatorio?: number;
+    solicitudes?: SolicitudModel[];
+    /* resultadoEvaluacions: ResultadoEvaluacion[]; */
 }

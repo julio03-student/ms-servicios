@@ -7,7 +7,7 @@
         </div>
         <div class="input-field col s4">
             <input formControlName="fecha_respuesta" id="fecha_respuesta" type="date">
-            <label for="fecha_respuesta">Nombre del trabajo</label>
+            <label for="fecha_respuesta">Fecha de respuesta</label>
         </div>
         <div class="input-field col s4">
           <input formControlName="estado_invitacion" id="estado_invitacion" type="text">
@@ -18,12 +18,16 @@
             <label for="observaciones_invitacion">Observaciones</label>
         </div>
         <div class="input-field col s4">
-            <input formControlName="id_jurado" id="id_jurado" type="number">
-            <label for="id_jurado">IdJurado</label>
+          <select id="selJurados" formControlName="id_jurado">
+            <option *ngFor="let c of juradoList" value="{{c.IdJurado}}">{{c.NombreJurado + " " +c.ApellidosJurado}}</option>
+          </select>
+            <label>IdJurado</label>
         </div>
         <div class="input-field col s4">
-            <input formControlName="id_recordatorio" id="id_recordatorio" type="number">
-            <label for="id_recordatorio">IdRecordatorio</label>
+          <select id="selRecordatorios" formControlName="id_recordatorio">
+            <option *ngFor="let c of recordatorioList" value="{{c.IdRecordatorio}}">{{c.DescripcionRecordatorio}}</option>
+          </select>
+            <label>IdRecordatorio</label>
         </div>
       </div>
       <div class="row">

@@ -43,7 +43,7 @@ export class RecordatorioService {
     console.log("Editanto....");
     
     return this.http.put<RecordatorioModel>(`${this.url}/recordatorios/${data.IdRecordatorio}`, {
-      IdProponente: data.IdRecordatorio,
+      IdRecordatorio: data.IdRecordatorio,
       FechaRecordatorio: `${data.FechaRecordatorio}T01:33:27.000Z`,
       HorarioRecordatorio: `${data.HoraRecordatorio}T01:33:27.000Z`,
       TipoRecordatorio: data.TipoRecordatorio,

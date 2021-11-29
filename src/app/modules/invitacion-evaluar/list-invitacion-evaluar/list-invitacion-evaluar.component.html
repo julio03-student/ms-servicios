@@ -5,8 +5,7 @@
         <th>Fecha de respuesta</th>
         <th>Estado de la invitacion</th>
         <th>Observaciones</th>
-        <th>IdJurado</th>
-        <th>IdRecordatorio</th>
+        <th>Solicitudes</th>
         <th>Acciones</th>
     </thead>
     <tbody>
@@ -27,14 +26,13 @@
                 {{r.ObservacionesInvitacionEvaluar}}
             </td>
             <td>
-                {{r.IdJurado}}
-            </td>
-            <td>
-                {{r.IdRecordatorio}}
+                <ul>
+                    <li *ngFor="let c of r.solicitudes">{{c.NombreTrabajoSolicitud}}</li>
+                </ul>
             </td>
             <td class="row">
                 <div class="input-field col s12">
-                    <a routerLink="/invitacionEvaluar/edit-invitacionEvaluar/{{r.IdInvitacionEvaluar}}}" class="waves-effect waves-light btn-small green"><i class="material-icons right">edit</i>editar</a>
+                    <a routerLink="/invitacionEvaluar/edit-invitacionEvaluar/{{r.IdInvitacionEvaluar}}" class="waves-effect waves-light btn-small green"><i class="material-icons right">edit</i>editar</a>
                 </div>
                 <div class="input-field col s12">
                     <a routerLink="/invitacionEvaluar/remove-invitacionEvaluar/{{r.IdInvitacionEvaluar}}" class="waves-effect waves-light btn-small red"><i class="material-icons right ">delete</i>borrar</a>
