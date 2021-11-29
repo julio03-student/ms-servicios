@@ -25,7 +25,8 @@ export class ProponenteService {
   }
 
   SaveRecord(data: ProponenteModel): Observable<ProponenteModel> {
-
+    console.log(typeof(data.IdTipoVinculacion));
+    
     return this.http.post<ProponenteModel>(`${this.url}/proponentes`, {
       PrimerNombreProponente: data.PrimerNombreProponente,
       OtrosNombresProponente: data.OtrosNombresProponente,

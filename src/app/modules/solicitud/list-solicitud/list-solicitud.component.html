@@ -5,6 +5,8 @@
         <th>Nombre del trabajo</th>
         <th>Archivo de la solicitud</th>
         <th>Descripción general</th>
+        <th>Proponentes</th>
+        <th>Comites</th>
         <th>Acciones</th>
     </thead>
     <tbody>
@@ -24,9 +26,19 @@
             <td>
                 {{r.DescripcionGeneralSolicitud}}
             </td>
+            <td>
+                <ul>
+                    <li *ngFor="let c of r.proponentes">{{c.PrimerNombreProponente}}</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li *ngFor="let c of r.comites">{{c.NombreComite}}</li>
+                </ul>
+            </td>
             <td class="row">
                 <div class="input-field col s12">
-                    <a routerLink="/solicitud/edit-solicitud/{{r.IdSolicitud}}}" class="waves-effect waves-light btn-small green"><i class="material-icons right">edit</i>editar</a>
+                    <a routerLink="/solicitud/edit-solicitud/{{r.IdSolicitud}}" class="waves-effect waves-light btn-small green"><i class="material-icons right">edit</i>editar</a>
                 </div>
                 <div class="input-field col s12">
                     <a routerLink="/solicitud/remove-solicitud/{{r.IdSolicitud}}" class="waves-effect waves-light btn-small red"><i class="material-icons right ">delete</i>borrar</a>

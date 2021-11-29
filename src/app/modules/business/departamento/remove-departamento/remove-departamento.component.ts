@@ -29,7 +29,7 @@ export class RemoveDepartamentoComponent implements OnInit {
   }
 
   SearchRecord(){
-    console.log("Buscando....")
+    console.log("Buscando...."+this.activeRoute.snapshot.params["id"])
     let id = parseInt(this.activeRoute.snapshot.params["id"]);
     this.service.SearchRecord(id).subscribe({
       next: (data: DepartamentoModel) => {
@@ -37,7 +37,6 @@ export class RemoveDepartamentoComponent implements OnInit {
           this.id = data.IdDepartamento
           this.name = data.NombreDepartamento
         }
-       
       }
     })
   }

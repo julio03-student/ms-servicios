@@ -42,7 +42,7 @@ export class CreateResultadoEvaluacionComponent implements OnInit {
     model.DescripcionResultadoEvaluacion = this.form.controls["descripcion_resultado"].value;
     model.FechaResultadoEvaluacion = this.form.controls["fecha_resultado"].value;
     model.FormatoDiligenciado = this.form.controls["formato"].value;
-    model.IdInvitacionEvaluar = this.form.controls["idInvitacion"].value;
+    model.IdInvitacionEvaluar = parseInt(this.form.controls["idInvitacion"].value);
     console.log(model);
     
     this.service.SaveRecord(model).subscribe({

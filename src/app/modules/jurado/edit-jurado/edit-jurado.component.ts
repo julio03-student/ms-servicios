@@ -63,6 +63,7 @@ export class EditJuradoComponent implements OnInit {
 
   SaveRecord(){
     let model = new JuradoModel();
+    model.IdJurado = this.form.controls["id"].value
     model.NombreJurado = this.form.controls["name"].value;
     model.ApellidosJurado = this.form.controls['last_name'].value
     model.CorreoJurado = this.form.controls["email"].value

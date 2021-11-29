@@ -28,7 +28,7 @@ export class ResultadosEvaluacionService {
 
     return this.http.post<ResultadosEvaluacionModel>(`${this.url}/resultado-evaluacions`, {
       DescripcionResultadoEvaluacion: data.DescripcionResultadoEvaluacion,
-      FechaResultadoEvaluacion : data.FechaResultadoEvaluacion,
+      FechaResultadoEvaluacion : `${data.FechaResultadoEvaluacion}T01:33:27.000Z`,
       FormatoDiligenciado: data.FormatoDiligenciado,
       IdInvitacionEvaluar: data.IdInvitacionEvaluar
     },

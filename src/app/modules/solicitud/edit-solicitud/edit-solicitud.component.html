@@ -14,8 +14,40 @@
           <label for="archivo_solicitud">Archivo de la solicitud</label>
         </div>
         <div class="input-field col s4">
-            <input formControlName="descripcion_general" id="descripcion_general" type="text">
-            <label for="descripcion_general">Descripción general</label>
+          <input formControlName="descripcion_general" id="descripcion_general" type="text">
+          <label for="descripcion_general">Descripción general</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s4">
+          <select id="selModalidades" formControlName="id_modalidad">
+            <option *ngFor="let c of modalidadList" value="{{c.IdModalidad}}">{{c.NombreModalidad}}</option>
+          </select>
+            <label>Modalidad</label>
+        </div>
+        <div class="input-field col s4">
+          <select id="selEstadoSolicitudes" formControlName="id_estado">
+            <option *ngFor="let c of estadoList" value="{{c.IdEstadoSolicitud}}">{{c.NombreEstadoSolicitud}}</option>
+          </select>
+            <label>Estado Solicitud</label>
+        </div>
+        <div class="input-field col s4">
+          <select id="selTipoSolicitud" formControlName="id_tipo_solicitud">
+            <option *ngFor="let c of tipoSolicitudList" value="{{c.IdTipoSolicitud}}">{{c.NombreTipoSolicitud}}</option>
+          </select>
+            <label>Tipo Solicitud</label>
+        </div>
+        <div class="input-field col s4">
+          <select id="selLineaInvestigacion" formControlName="id_linea_investigacion">
+            <option *ngFor="let c of lineaInvestigacionList" value="{{c.IdLineaInvestigacion}}">{{c.NombreLineaInvestigacion}}</option>
+          </select>
+            <label>Linea Investigacion</label>
+        </div>
+        <div class="input-field col s4">
+          <select id="selInvitacionEvaluar" formControlName="id_invitacion_evaluar">
+            <option *ngFor="let c of invitacionEvaluarList" value="{{c.IdInvitacionEvaluar}}">{{c.ObservacionesInvitacionEvaluar}}</option>
+          </select>
+            <label>Invitacion Evaluar</label>
         </div>
       </div>
       <div class="row">

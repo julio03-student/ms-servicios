@@ -51,7 +51,7 @@ export class CreateProponenteComponent implements OnInit {
     model.DocumentoIdProponente = this.form.controls["documento"].value
     model.CelularProponente = this.form.controls["phone"].value
     model.fechaNacimiento = this.form.controls["fecha_nacimiento"].value
-    model.IdTipoVinculacion = this.form.controls["IdVinculacion"].value
+    model.IdTipoVinculacion = parseInt(this.form.controls["IdVinculacion"].value)
 
     console.log(model);
     
