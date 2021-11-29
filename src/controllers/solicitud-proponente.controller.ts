@@ -16,18 +16,22 @@ import {
   requestBody,
   response
 } from '@loopback/rest';
+import {Keys} from '../config/keys';
 import {
 Solicitud,
 SolicitudProponente,
 Proponente,
 ArregloSolicitudes,
 } from '../models';
-import {SolicitudProponenteRepository, SolicitudRepository} from '../repositories';
+import {InvitacionEvaluarRepository, JuradoRepository, ProponenteRepository, SolicitudProponenteRepository, SolicitudRepository} from '../repositories';
 
 export class SolicitudProponenteController {
   constructor(
     @repository(SolicitudRepository) protected solicitudRepository: SolicitudRepository,
-    @repository(SolicitudProponenteRepository) protected solicitudProponenteRepository: SolicitudProponenteRepository
+    @repository(SolicitudProponenteRepository) protected solicitudProponenteRepository: SolicitudProponenteRepository,
+    @repository(InvitacionEvaluarRepository) public invitacionEvaluarRepository : InvitacionEvaluarRepository,
+    @repository(JuradoRepository) public juradoRepository : JuradoRepository,
+    @repository(ProponenteRepository) public proponenteRepository : ProponenteRepository
   ) { }
 
   @get('/solicituds/{id}/proponentes', {
@@ -69,6 +73,46 @@ export class SolicitudProponenteController {
       },
     }) datos: Omit<SolicitudProponente, 'IdSolicitudProponente'>,
   ): Promise<SolicitudProponente | null> {
+
+    let solicitud = this.solicitudRepository.findById(datos.IdSolicitud)
+    let proponente = this.proponenteRepository.findById(datos.IdProponente)
+    let invitacion = this.invitacionEvaluarRepository.findById((await solicitud).IdInvitacionEvaluar);
+    let jurado = this.juradoRepository.findById((await invitacion).IdJurado)
+
+    let credentialsJurado = {
+      correo: (await jurado).CorreoJurado,
+      asunto: 'Invitacion a Evaluar',
+      mensaje: `<br> Se le envia amablemente ésta invitación para que sea Jurado en la evaluación de un trabajo academico.
+      <br> Esperamos su pronta respuesta. <br> <br><button type="button">Aceptar</button> <button type="button">Rechazar</button>`
+    }
+
+    let res = await fetch(Keys.urlFormato, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(credentialsJurado)
+    })
+
+    let credentialsProponente = {
+      correo: (await proponente).CorreoProponente,
+      asunto: 'Estado solicitud',
+      mensaje: `<br> Su solictud ha sido registrada exitosamente!<br>
+      <strong>Fecha:</strong>${(await solicitud).FechaSolicitud}<br>
+      <strong>Nombre del trabajo::</strong>${(await solicitud).NombreTrabajoSolicitud}<br>
+      <strong>Fecha:</strong>${(await solicitud).FechaSolicitud}<br>`
+    }
+
+    let res1 = await fetch(Keys.urlFormato, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(credentialsJurado)
+    })
+
     let registro = await this.solicitudProponenteRepository.create(datos)
     return registro
   }
