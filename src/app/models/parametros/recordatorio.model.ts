@@ -1,7 +1,7 @@
 export class RecordatorioModel{
     IdRecordatorio?: number;
     FechaRecordatorio?: Date;
-    HorarioRecordatorio?: Date;
+    HoraRecordatorio?: Date;
     TipoRecordatorio?: string;
     DescripcionRecordatorio?: string;
 }

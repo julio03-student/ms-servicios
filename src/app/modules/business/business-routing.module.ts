@@ -64,7 +64,7 @@ const routes: Routes = [
     component: ListDepartamentoComponent
   },
   {
-    path: "edit-departamento",
+    path: "edit-departamentoe/:id",
     component: EditDepartamentoComponent
   },
   {
@@ -72,7 +72,7 @@ const routes: Routes = [
     component: CreateDepartamentoComponent
   },
   {
-    path: "remove-departamento",
+    path: "remove-departamentoe/:id",
     component: RemoveDepartamentoComponent
   },
   {
@@ -80,7 +80,7 @@ const routes: Routes = [
     component: ListEstadoSolicitudComponent
   },
   {
-    path: "edit-estadoSolicitud",
+    path: "edit-estadoSolicitude/:id",
     component: EditEstadoSolicitudComponent
   },
   {
@@ -88,7 +88,7 @@ const routes: Routes = [
     component: CreateEstadoSolicitudComponent
   },
   {
-    path: "remove-estadoSolicitud",
+    path: "remove-estadoSolicitude/:id",
     component: RemoveEstadoSolicitudComponent
   },
   {
@@ -96,7 +96,7 @@ const routes: Routes = [
     component: ListFacultadComponent
   },
   {
-    path: "edit-facultad",
+    path: "edit-facultade/:id",
     component: EditFacultadComponent
   },
   {
@@ -104,7 +104,7 @@ const routes: Routes = [
     component: CreateFacultadComponent
   },
   {
-    path: "remove-facultad",
+    path: "remove-facultade/:id",
     component: RemoveFacultadComponent
   },
   {
@@ -112,7 +112,7 @@ const routes: Routes = [
     component: ListLineaInvestigacionComponent
   },
   {
-    path: "edit-lineaInvestigacion",
+    path: "edit-lineaInvestigacione/:id",
     component: EditLineaInvestigacionComponent
   },
   {
@@ -120,7 +120,7 @@ const routes: Routes = [
     component: CreateLineaInvestigacionComponent
   },
   {
-    path: "remove-lineaInvestigacion",
+    path: "remove-lineaInvestigacione/:id",
     component: RemoveLineaInvestigacionComponent
   },
   {
@@ -160,7 +160,7 @@ const routes: Routes = [
     component: ListResultadoEvaluacionComponent
   },
   {
-    path: "edit-resultadoEvaluacion",
+    path: "edit-resultadoEvaluacione/:id",
     component: EditResultadoEvaluacionComponent
   },
   {
@@ -168,7 +168,7 @@ const routes: Routes = [
     component: CreateResultadoEvaluacionComponent
   },
   {
-    path: "remove-resultadoEvaluacion",
+    path: "remove-resultadoEvaluacione/:id",
     component: RemoveResultadoEvaluacionComponent
   },
   {
@@ -176,7 +176,7 @@ const routes: Routes = [
     component: ListTipoSolicitudComponent
   },
   {
-    path: "edit-tipoSolicitud",
+    path: "edit-tipoSolicitude/:id",
     component: EditTipoSolicitudComponent
   },
   {
@@ -184,7 +184,7 @@ const routes: Routes = [
     component: CreateTipoSolicitudComponent
   },
   {
-    path: "remove-tipoSolicitud",
+    path: "remove-tipoSolicitude/:id",
     component: RemoveTipoSolicitudComponent
   },
   {
@@ -192,7 +192,7 @@ const routes: Routes = [
     component: ListTipoVinculacionComponent
   },
   {
-    path: "edit-tipoVinculacion",
+    path: "edit-tipoVinculacion/:id",
     component: EditTipoVinculacionComponent
   },
   {
@@ -200,7 +200,7 @@ const routes: Routes = [
     component: CreateTipoVinculacionComponent
   },
   {
-    path: "remove-tipoVinculacion",
+    path: "remove-tipoVinculacion/:id",
     component: RemoveTipoVinculacionComponent
   }
 ];

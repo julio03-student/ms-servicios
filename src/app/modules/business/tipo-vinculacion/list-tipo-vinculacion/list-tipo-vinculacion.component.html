@@ -1,1 +1,38 @@
-<p>list-tipo-vinculacion works!</p>
+<table class="table reponsive-table">
+    <thead>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let r of tipoVinculacionList">
+            <td>
+                {{r.IdTipoVinculacion}}
+            </td>
+            <td>
+                {{r.NombreTipoVinculacion}}
+            </td>
+            <td>
+                {{r.DescripcionTipoVinculacion}}
+            </td>
+            <!-- <td>
+                {{r.Formato}}
+            </td> -->
+            <td class="row">
+                <div class="input-field col s12">
+                    <a routerLink="/business/edit-tipoVinculacion/{{r.IdTipoVinculacion}}" class="waves-effect waves-light btn-small green"><i class="material-icons right">edit</i>editar</a>
+                </div>
+                <div class="input-field col s12">
+                    <a routerLink="/business/remove-tipoVinculacion/{{r.IdTipoVinculacion}}" class="waves-effect waves-light btn-small red"><i class="material-icons right ">delete</i>borrar</a>
+                </div>
+                
+            </td>
+        </tr>
+    </tbody>       
+</table>
+
+<div class="row">
+    <div class="input-field col s2">
+        <a routerLink="/business/create-tipoVinculacion" class="waves-effect waves-light btn-small blue"><i class="material-icons right">save</i>Agregar</a>
+    </div>
+</div>

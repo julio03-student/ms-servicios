@@ -26,12 +26,19 @@ export class InvitacionEvaluarService {
 
   SaveRecord(data: InvitacionEvaluarModel): Observable<InvitacionEvaluarModel> {
 
-    return this.http.post<InvitacionEvaluarModel>(`${this.url}/invitacion-evaluars`, {
+    let iv = {
       FechaInvitacion: `${data.FechaInvitacion}T01:33:27.000Z`,
       FechaRespuesta: `${data.FechaRespuesta}T01:33:27.000Z`,
       EstadoInvitacion: data.EstadoInvitacion,
-      ObservacionesInvitacionEvaluar: data.ObservacionesInvitacionEvaluar
-    },
+      ObservacionesInvitacionEvaluar: data.ObservacionesInvitacionEvaluar,
+      IdJurado: data.IdJurado,
+      IdRecordatorio: data.IdRecordatorio
+    }
+
+    console.log(iv);
+    
+
+    return this.http.post<InvitacionEvaluarModel>(`${this.url}/invitacion-evaluars`, iv,
     {
       headers: new HttpHeaders({
         Authorization: `Bearer ${this.token}`

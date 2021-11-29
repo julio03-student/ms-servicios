@@ -45,7 +45,7 @@ export class EditRecordatorioComponent implements OnInit {
       next: (data: RecordatorioModel) => {
         this.form.controls["id"].setValue(data.IdRecordatorio)
         this.form.controls["fecha_recordatorio"].setValue(data.FechaRecordatorio)
-        this.form.controls["horario_recordatorio"].setValue(data.HorarioRecordatorio)
+        this.form.controls["horario_recordatorio"].setValue(data.HoraRecordatorio)
         this.form.controls["tipo_recordatorio"].setValue(data.TipoRecordatorio)
         this.form.controls["descripcion_recordatorio"].setValue(data.DescripcionRecordatorio)
       }
@@ -56,7 +56,7 @@ export class EditRecordatorioComponent implements OnInit {
     let model = new RecordatorioModel();
     model.IdRecordatorio = this.form.controls["id"].value
     model.FechaRecordatorio = this.form.controls["fecha_recordatorio"].value;
-    model.HorarioRecordatorio = this.form.controls["horario_recordatorio"].value;
+    model.HoraRecordatorio = this.form.controls["horario_recordatorio"].value;
     model.TipoRecordatorio = this.form.controls["tipo_recordatorio"].value;
     model.DescripcionRecordatorio = this.form.controls["descripcion_recordatorio"].value;
 

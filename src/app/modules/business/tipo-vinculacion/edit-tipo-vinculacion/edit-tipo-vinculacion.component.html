@@ -1,1 +1,23 @@
-<p>edit-tipo-vinculacion works!</p>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+        <input type="hidden" formControlName="id">
+      <div class="row">
+        <div class="input-field col s4">
+          <input class="active" formControlName="name" id="name" type="text">
+          <label for="name">Nombre</label>
+        </div>
+        <div class="input-field col s4">
+          <input class="active" formControlName="descripcion" id="descripcion" type="text">
+          <label for="name">Descripción</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s2">
+            <a (click)="SaveRecord()" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud_upload</i>Guardar</a>
+        </div>
+        <div class="input-field col s2">
+              <a routerLink="/business/list-tiposVinculacion" class="waves-effect waves-light btn-large"><i class="material-icons left">close</i>Cancelar</a>
+        </div>
+      </div>
+    </form>
+</div>

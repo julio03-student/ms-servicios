@@ -40,7 +40,7 @@ export class CreateRecordatorioComponent implements OnInit {
   SaveRecord(){
     let model = new RecordatorioModel();
     model.FechaRecordatorio = this.form.controls["fecha_recordatorio"].value;
-    model.HorarioRecordatorio = this.form.controls["horario_recordatorio"].value;
+    model.HoraRecordatorio = this.form.controls["horario_recordatorio"].value;
     model.TipoRecordatorio = this.form.controls["tipo_recordatorio"].value;
     model.DescripcionRecordatorio = this.form.controls["descripcion_recordatorio"].value;
     console.log(model);

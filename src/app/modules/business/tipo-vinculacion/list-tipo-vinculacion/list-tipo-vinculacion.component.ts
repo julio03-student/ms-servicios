@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TipoVinculacionModel } from 'src/app/models/parametros/tipo-vinculacion.model';
+import { TipoVinculacionService } from 'src/app/services/parametros/tipo-vinculacion.service';
 
 @Component({
   selector: 'app-list-tipo-vinculacion',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListTipoVinculacionComponent implements OnInit {
 
-  constructor() { }
+  tipoVinculacionList: TipoVinculacionModel[] = []
+
+  constructor(
+    private tipoVinculacionService: TipoVinculacionService
+  ) { }
 
   ngOnInit(): void {
+    this.GetRecordsList()
+  }
+
+  GetRecordsList(){
+    this.tipoVinculacionService.GetRecordList().subscribe({
+      next: (data: TipoVinculacionModel[]) =>{
+        console.log("Lista: "+data)
+        this.tipoVinculacionList = data
+      }
+    })
   }
 
 }
