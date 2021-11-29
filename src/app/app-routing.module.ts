@@ -34,7 +34,7 @@ const routes: Routes = [
     loadChildren : () => import("./modules/invitacion-evaluar/invitacion-evaluar.module").then(x => x.InvitacionEvaluarModule)
   },
   {
-    path: "bussiness",
+    path: "business",
     loadChildren : () => import("./modules/business/business.module").then(x => x.BusinessModule)
   },
   {

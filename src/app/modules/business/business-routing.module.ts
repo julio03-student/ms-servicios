@@ -128,7 +128,7 @@ const routes: Routes = [
     component: ListModalidadComponent
   },
   {
-    path: "edit-modalidad",
+    path: "edit-modalidad/:id",
     component: EditModalidadComponent
   },
   {
@@ -136,7 +136,7 @@ const routes: Routes = [
     component: CreateModalidadComponent
   },
   {
-    path: "remove-modalidad",
+    path: "remove-modalidad/:id",
     component: RemoveModalidadComponent
   },
   {

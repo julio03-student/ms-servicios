@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalidadModel } from 'src/app/models/parametros/modalidad.model';
+import { ModalidadService } from 'src/app/services/parametros/modalidad.service';
 
 @Component({
   selector: 'app-list-modalidad',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListModalidadComponent implements OnInit {
 
-  constructor() { }
+  modalidadList: ModalidadModel[] = []
+
+  constructor(
+    private modalidadService: ModalidadService
+  ) { }
 
   ngOnInit(): void {
+    this.GetRecordsList()
+  }
+
+  GetRecordsList(){
+    this.modalidadService.GetRecordList().subscribe({
+      next: (data: ModalidadModel[]) =>{
+        console.log("Lista: "+data)
+        this.modalidadList = data
+      }
+    })
   }
 
 }

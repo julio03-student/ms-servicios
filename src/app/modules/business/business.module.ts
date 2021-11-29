@@ -51,6 +51,7 @@ import { CreateDepartamentoComponent } from './departamento/create-departamento/
 import { EditDepartamentoComponent } from './departamento/edit-departamento/edit-departamento.component';
 import { ListDepartamentoComponent } from './departamento/list-departamento/list-departamento.component';
 import { RemoveDepartamentoComponent } from './departamento/remove-departamento/remove-departamento.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -107,7 +108,9 @@ import { RemoveDepartamentoComponent } from './departamento/remove-departamento/
   ],
   imports: [
     CommonModule,
-    BusinessRoutingModule
+    BusinessRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class BusinessModule { }

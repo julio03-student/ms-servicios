@@ -1,1 +1,22 @@
-<p>create-modalidad works!</p>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+      <div class="row">
+        <div class="input-field col s4">
+          <input formControlName="name" id="name" type="text">
+          <label for="name">Nombre</label>
+        </div>
+        <!-- <div class="input-field col s4">
+          <input formControlName="formato" id="formato" type="text">
+          <label for="formato">Formato</label>
+        </div> -->
+      </div>
+      <div class="row">
+        <div class="input-field col s2">
+            <a (click)="SaveRecord()" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud_upload</i>Guardar</a>
+        </div>
+       <div class="input-field col s2">
+            <a routerLink="/business/list-modalidades" class="waves-effect waves-light btn-large"><i class="material-icons left">close</i>Cancelar</a>
+       </div>
+      </div>
+    </form>
+</div>
