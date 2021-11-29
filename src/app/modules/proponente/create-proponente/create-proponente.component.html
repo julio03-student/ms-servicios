@@ -1,4 +1,20 @@
 <div class="row">
+  <div class="col s12">
+    <div class="row">
+      <div class="col s12 center-align">
+        <img *ngIf="!uploadedFile" class= "default_image" src="/assets/images/default_image.jpg" >
+        <img *ngIf="uploadedFile" class= "default_image" src="{{url}}/archivo/1/{{uploadedFilename}}" >
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12 center-align">
+        <input class="btn btn-warning orange pad" id="fileImage" type="file" name = "image" (change) = "OnchangeInputFile($event)">
+        &nbsp;<button class="btn pad" (click) = "UploadImage()">Cargar imagen</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
     <form [formGroup]="form" class="col s12">
       <div class="row">
         <div class="input-field col s4">

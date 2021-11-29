@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GeneralData } from 'src/app/config/general-data';
 import { ProponenteModel } from 'src/app/models/parametros/proponente.model';
+import { UploadedFileModel } from 'src/app/models/upload.file.model';
 import { LocalStorageService } from '../share/local-storage.service';
 
 @Injectable({
@@ -36,7 +37,8 @@ export class ProponenteService {
       CorreoProponente: data.CorreoProponente,
       Direccion: data.Direccion,
       fechaNacimiento: `${data.fechaNacimiento}T01:33:27.000Z`,
-      IdTipoVinculacion: data.IdTipoVinculacion
+      IdTipoVinculacion: data.IdTipoVinculacion,
+      image: data.image
     },
     {
       headers: new HttpHeaders({
@@ -58,7 +60,8 @@ export class ProponenteService {
       CorreoProponente: data.CorreoProponente,
       Direccion: data.Direccion,
       fechaNacimiento: `${data.fechaNacimiento}T01:33:27.000Z`,
-      IdTipoVinculacion: data.IdTipoVinculacion
+      IdTipoVinculacion: data.IdTipoVinculacion,
+      image: data.image
     },
     {
       headers: new HttpHeaders({
@@ -73,6 +76,18 @@ export class ProponenteService {
 
   RemoveRecord(id: number): Observable<any>{
     return this.http.delete(`${this.url}/proponentes/${id}`,
+    {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.token}`
+      })
+    })
+  }
+
+  UploadFile(formData: FormData): Observable<UploadedFileModel>{
+     
+    return this.http.post<UploadedFileModel>(
+      `${this.url}/CargarImagen`, 
+      formData,
     {
       headers: new HttpHeaders({
         Authorization: `Bearer ${this.token}`
