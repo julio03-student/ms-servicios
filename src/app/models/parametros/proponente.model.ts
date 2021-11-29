@@ -8,4 +8,5 @@ export class ProponenteModel{
     CorreoProponente?: string;
     Direccion?: string;
     fechaNacimiento?: Date;
+    IdTipoVinculacion?: number;
 }

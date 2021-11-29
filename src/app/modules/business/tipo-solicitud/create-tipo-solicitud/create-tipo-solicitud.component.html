@@ -1,1 +1,22 @@
-<p>create-tipo-solicitud works!</p>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+      <div class="row">
+        <div class="input-field col s4">
+          <input formControlName="nombre_tipo" id="nombre_tipo" type="text">
+          <label for="nombre_tipo">Nombre</label>
+        </div>
+        <div class="input-field col s4">
+          <input formControlName="descripcion_tipo" id="descripcion_tipo" type="text">
+          <label for="descripcion_tipo">Descripción</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s2">
+            <a (click)="SaveRecord()" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud_upload</i>Guardar</a>
+        </div>
+       <div class="input-field col s2">
+            <a routerLink="/business/list-tiposSolicitud" class="waves-effect waves-light btn-large"><i class="material-icons left">close</i>Cancelar</a>
+       </div>
+      </div>
+    </form>
+</div>

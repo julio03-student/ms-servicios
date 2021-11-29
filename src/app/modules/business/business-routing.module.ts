@@ -11,7 +11,7 @@ import { ListDepartamentoComponent } from './departamento/list-departamento/list
 import { RemoveDepartamentoComponent } from './departamento/remove-departamento/remove-departamento.component';
 import { CreateEstadoSolicitudComponent } from './estado-solicitud/create-estado-solicitud/create-estado-solicitud.component';
 import { EditEstadoSolicitudComponent } from './estado-solicitud/edit-estado-solicitud/edit-estado-solicitud.component';
-import { ListEstadoSolicitudComponent } from './estado-solicitud/list-estado-solicitud/list-estado-solicitud.component';
+import { ListEstadosSolicitudComponent } from './estado-solicitud/list-estado-solicitud/list-estado-solicitud.component';
 import { RemoveEstadoSolicitudComponent } from './estado-solicitud/remove-estado-solicitud/remove-estado-solicitud.component';
 import { CreateFacultadComponent } from './facultad/create-facultad/create-facultad.component';
 import { EditFacultadComponent } from './facultad/edit-facultad/edit-facultad.component';
@@ -64,7 +64,7 @@ const routes: Routes = [
     component: ListDepartamentoComponent
   },
   {
-    path: "edit-departamentoe/:id",
+    path: "edit-departamento/:id",
     component: EditDepartamentoComponent
   },
   {
@@ -72,15 +72,15 @@ const routes: Routes = [
     component: CreateDepartamentoComponent
   },
   {
-    path: "remove-departamentoe/:id",
+    path: "remove-departamento/:id",
     component: RemoveDepartamentoComponent
   },
   {
     path: "list-estadosSolicitud",
-    component: ListEstadoSolicitudComponent
+    component: ListEstadosSolicitudComponent
   },
   {
-    path: "edit-estadoSolicitude/:id",
+    path: "edit-estadoSolicitud/:id",
     component: EditEstadoSolicitudComponent
   },
   {
@@ -88,7 +88,7 @@ const routes: Routes = [
     component: CreateEstadoSolicitudComponent
   },
   {
-    path: "remove-estadoSolicitude/:id",
+    path: "remove-estadoSolicitud/:id",
     component: RemoveEstadoSolicitudComponent
   },
   {

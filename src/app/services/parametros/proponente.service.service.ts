@@ -35,6 +35,7 @@ export class ProponenteService {
       CorreoProponente: data.CorreoProponente,
       Direccion: data.Direccion,
       fechaNacimiento: `${data.fechaNacimiento}T01:33:27.000Z`,
+      IdTipoVinculacion: data.IdTipoVinculacion
     },
     {
       headers: new HttpHeaders({
@@ -56,6 +57,7 @@ export class ProponenteService {
       CorreoProponente: data.CorreoProponente,
       Direccion: data.Direccion,
       fechaNacimiento: `${data.fechaNacimiento}T01:33:27.000Z`,
+      IdTipoVinculacion: data.IdTipoVinculacion
     },
     {
       headers: new HttpHeaders({

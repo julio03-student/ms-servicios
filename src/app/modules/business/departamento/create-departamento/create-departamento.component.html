@@ -1,1 +1,22 @@
-<p>create-departamento works!</p>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+      <div class="row">
+        <div class="input-field col s4">
+          <input formControlName="nombre_departamento" id="nombre_departamento" type="text">
+          <label for="nombre_departamento">Nombre departamento</label>
+        </div>
+        <div class="input-field col s4">
+            <input formControlName="id_facultad" id="id_facultad" type="number">
+            <label for="id_facultad">Id de la facultad</label>
+          </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s2">
+            <a (click)="SaveRecord()" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud_upload</i>Guardar</a>
+        </div>
+       <div class="input-field col s2">
+            <a routerLink="/business/list-departamentos" class="waves-effect waves-light btn-large"><i class="material-icons left">close</i>Cancelar</a>
+       </div>
+      </div>
+    </form>
+</div>

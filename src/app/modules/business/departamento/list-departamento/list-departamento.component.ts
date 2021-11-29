@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DepartamentoModel } from 'src/app/models/parametros/departamento.model';
+import { DepartamentoService } from 'src/app/services/parametros/departamentos.service';
 
 @Component({
   selector: 'app-list-departamento',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListDepartamentoComponent implements OnInit {
 
-  constructor() { }
+  departamentolist: DepartamentoModel[] = []
+
+  constructor(
+    private departamentoservice: DepartamentoService
+  ) { }
 
   ngOnInit(): void {
+    this.GetRecordsList()
   }
 
+  GetRecordsList(){
+    this.departamentoservice.GetRecordList().subscribe({
+      next: (data: DepartamentoModel[]) =>{
+        console.log("Lista: "+data)
+        this.departamentolist = data
+      }
+    })
+  }
 }

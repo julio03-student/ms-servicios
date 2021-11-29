@@ -37,6 +37,7 @@ export class CreateProponenteComponent implements OnInit {
       email:["",[Validators.required]],
       direccion:["",[Validators.required]],
       fecha_nacimiento:["",[Validators.required]],
+      IdVinculacion:["",[Validators.required]]
     })
   }
 
@@ -50,6 +51,7 @@ export class CreateProponenteComponent implements OnInit {
     model.DocumentoIdProponente = this.form.controls["documento"].value
     model.CelularProponente = this.form.controls["phone"].value
     model.fechaNacimiento = this.form.controls["fecha_nacimiento"].value
+    model.IdTipoVinculacion = this.form.controls["IdVinculacion"].value
 
     console.log(model);
     

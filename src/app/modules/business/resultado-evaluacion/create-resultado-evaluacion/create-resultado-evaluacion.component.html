@@ -1,1 +1,32 @@
-<p>create-resultado-evaluacion works!</p>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+      <div class="row">
+        <div class="input-field col s4">
+          <input formControlName="descripcion_resultado" id="descripcion_resultado" type="string">
+          <label for="descripcion_resultado">Descripción</label>
+        </div>
+        <div class="input-field col s4">
+          <input formControlName="fecha_resultado" id="fecha_resultado" type="date">
+          <label for="fecha_resultado">Fecha resultado</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s4">
+          <input formControlName="formato" id="formato" type="text">
+          <label for="formato">Formato diligenciado</label>
+        </div>
+        <div class="input-field col s4">
+          <input formControlName="idInvitacion" id="idInvitacion" type="number">
+          <label for="idInvitacion">Id de la invitación</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s2">
+            <a (click)="SaveRecord()" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud_upload</i>Guardar</a>
+        </div>
+       <div class="input-field col s2">
+            <a routerLink="/business/list-resultadosEvaluaciones" class="waves-effect waves-light btn-large"><i class="material-icons left">close</i>Cancelar</a>
+       </div>
+      </div>
+    </form>
+</div>

@@ -20,7 +20,7 @@ import { RemoveTipoSolicitudComponent } from './tipo-solicitud/remove-tipo-solic
 import { EstadoSolicitudComponent } from './estado-solicitud/estado-solicitud.component';
 import { CreateEstadoSolicitudComponent } from './estado-solicitud/create-estado-solicitud/create-estado-solicitud.component';
 import { EditEstadoSolicitudComponent } from './estado-solicitud/edit-estado-solicitud/edit-estado-solicitud.component';
-import { ListEstadoSolicitudComponent } from './estado-solicitud/list-estado-solicitud/list-estado-solicitud.component';
+import { ListEstadosSolicitudComponent } from './estado-solicitud/list-estado-solicitud/list-estado-solicitud.component';
 import { RemoveEstadoSolicitudComponent } from './estado-solicitud/remove-estado-solicitud/remove-estado-solicitud.component';
 import { ModalidadComponent } from './modalidad/modalidad.component';
 import { CreateModalidadComponent } from './modalidad/create-modalidad/create-modalidad.component';
@@ -74,7 +74,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     EstadoSolicitudComponent,
     CreateEstadoSolicitudComponent,
     EditEstadoSolicitudComponent,
-    ListEstadoSolicitudComponent,
+    ListEstadosSolicitudComponent,
     RemoveEstadoSolicitudComponent,
     ModalidadComponent,
     CreateModalidadComponent,
