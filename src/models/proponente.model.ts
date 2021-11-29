@@ -72,6 +72,12 @@ export class Proponente extends Entity {
   })
   Direccion: string;
 
+  @property({
+    type: 'string',
+    required: true,
+  })
+  image: string;
+
   @belongsTo(() => TipoVinculacion, {name: 'tiene_tipoVinculacion'})
   IdTipoVinculacion: number;
 
