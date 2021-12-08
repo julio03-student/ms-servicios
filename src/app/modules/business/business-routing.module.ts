@@ -152,7 +152,7 @@ const routes: Routes = [
     component: CreateRecordatorioComponent
   },
   {
-    path: "remove-recordatorio/;id",
+    path: "remove-recordatorio/:id",
     component: RemoveRecordatorioComponent
   },
   {
