@@ -18,14 +18,16 @@ import {
   requestBody,
   response,
 } from '@loopback/rest';
+import {Keys} from '../config/keys';
 import {Solicitud} from '../models';
-import {SolicitudRepository} from '../repositories';
-
-@authenticate("admin")
+import {InvitacionEvaluarRepository, JuradoRepository, SolicitudRepository} from '../repositories';
+const fetch = require('node-fetch');
+/* @authenticate("admin") */
 export class SolicitudController {
   constructor(
-    @repository(SolicitudRepository)
-    public solicitudRepository : SolicitudRepository,
+    @repository(SolicitudRepository) public solicitudRepository : SolicitudRepository,
+    @repository(InvitacionEvaluarRepository) public invitacionEvaluarRepository : InvitacionEvaluarRepository,
+    @repository(JuradoRepository) public juradoRepository : JuradoRepository,
   ) {}
 
   @post('/solicituds')
@@ -46,6 +48,27 @@ export class SolicitudController {
     })
     solicitud: Omit<Solicitud, 'IdSolicitud'>,
   ): Promise<Solicitud> {
+    console.log('Creando')
+     let invitacion = this.invitacionEvaluarRepository.findById(solicitud.IdInvitacionEvaluar)
+    console.log(invitacion)
+    let jurado = await this.juradoRepository.findById((await invitacion).IdJurado)
+    console.log("Jurado: ",jurado)
+    let credentialsJurado = {
+      correo: (await jurado).CorreoJurado,
+      asunto: 'Invitacion a Evaluar',
+      mensaje: `<br> Se le envia amablemente ésta invitación para que sea Jurado en la evaluación de un trabajo academico.
+      <br> Esperamos su pronta respuesta. <br> <br><button type="button">Aceptar</button> <button type="button">Rechazar</button>`
+    }
+
+    let res = await fetch(Keys.urlFormato, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(credentialsJurado)
+    })
+
     return this.solicitudRepository.create(solicitud);
   }
 

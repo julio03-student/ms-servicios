@@ -23,7 +23,7 @@ import {InvitacionEvaluar} from '../models';
 import {InvitacionEvaluarRepository, JuradoRepository} from '../repositories';
 const fetch = require('node-fetch');
 
-@authenticate("admin")
+/* @authenticate("admin") */
 export class InvitacionEvaluarController {
   constructor(
     @repository(InvitacionEvaluarRepository)
@@ -147,7 +147,7 @@ export class InvitacionEvaluarController {
   ): Promise<void> {
     await this.invitacionEvaluarRepository.replaceById(id, invitacionEvaluar);
   }
-
+  @authenticate.skip()
   @del('/invitacion-evaluars/{id}')
   @response(204, {
     description: 'InvitacionEvaluar DELETE success',
