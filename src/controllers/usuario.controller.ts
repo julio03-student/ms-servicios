@@ -221,13 +221,13 @@ export class UsuarioController {
     })
     credencialesClave: CambiarClave
   ): Promise<Boolean> {
+    console.log('Enviando EMAIL');
     let usuario = await this.servicioClaves.CambiarClave(credencialesClave)
     if(usuario){
       let datos = new NotificacionEmail();
       datos.destinatario = usuario.emailUsuario;
       datos.asunto = Configuracion.asuntoCambio;
       datos.mensaje = `Hola ${usuario.nombresUsuario} <br/> ${Configuracion.mensajeCambioClave}`
-      this.servicioNotificaciones.EnviarCorreo(datos);
       this.servicioNotificaciones.EnviarCorreo(datos);
     }
     return usuario != null;
