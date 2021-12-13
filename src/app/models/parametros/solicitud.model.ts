@@ -12,6 +12,7 @@ export class SolicitudModel{
     IdTipoSolicitud?: number;
     IdLineaInvestigacion?: number;
     IdInvitacionEvaluar?: number;
+    IdProponente?: number;
     proponentes?: ProponenteModel[];
     comites?: ComiteModel[];
 }

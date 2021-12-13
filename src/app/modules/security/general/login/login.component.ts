@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
     if(this.form.invalid){
       OpenGeneralMessage(GeneralData.invalidFormMessage)
     }else{
-      OpenGeneralMessage(GeneralData.validFormMessage)
+     
       let modelo = new UserCredencialsModel()
       modelo.username = this.GetForm['username'].value
       console.log("Clave ingresada:" + modelo.password)
@@ -50,6 +50,7 @@ export class LoginComponent implements OnInit {
           this.localStorageService.SaveSessionData(data)
           data.isLoggedIn = true
           this.securityService.RefreshSessionData(data)
+          OpenGeneralMessage(GeneralData.validFormMessage)
         },
         error: (error: any) =>{
           OpenGeneralMessage(GeneralData.GENERAL_MESSAGE_ERROR)

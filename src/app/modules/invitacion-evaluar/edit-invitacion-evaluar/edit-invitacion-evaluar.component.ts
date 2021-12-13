@@ -3,9 +3,14 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GeneralData } from 'src/app/config/general-data';
 import { InvitacionEvaluarModel } from 'src/app/models/parametros/invitacionEvaluar.model';
+import { JuradoModel } from 'src/app/models/parametros/jurado.model';
+import { RecordatorioModel } from 'src/app/models/parametros/recordatorio.model';
 import { InvitacionEvaluarService } from 'src/app/services/parametros/invitaciones-evaluar.service';
+import { JuradoService } from 'src/app/services/parametros/jurado.service';
+import { RecordatorioService } from 'src/app/services/parametros/recordatorio.service';
 
 declare const OpenGeneralMessage: any
+declare const InitSelectById: any;
 
 @Component({
   selector: 'app-edit-invitacionEvaluar',
@@ -15,17 +20,21 @@ declare const OpenGeneralMessage: any
 export class EditInvitacionEvaluarComponent implements OnInit {
 
   form: FormGroup = new FormGroup({})
-  
+  juradoList: JuradoModel[] =[]
+  recordatorioList: RecordatorioModel[] = []
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private service: InvitacionEvaluarService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private juradoService: JuradoService,
+    private recordatorioService: RecordatorioService
   ) { }
 
   ngOnInit(): void {
     this.CreateForm()
+    this.GetOptionsToSelects()
     this.SearchRecord()
   }
 
@@ -79,6 +88,29 @@ export class EditInvitacionEvaluarComponent implements OnInit {
       }
     })
   }
+  GetOptionsToSelects() {
+    this.juradoService.GetRecordList().subscribe(
+      {
+        next: (data: JuradoModel[]) => {
+          console.log("data: " + data)
+          this.juradoList = data;
+          setTimeout(() => {
+            InitSelectById("selJurados");
+          }, 100);
+        }
+      }
+    );
 
+    this.recordatorioService.GetRecordList().subscribe(
+      {
+        next: (data: RecordatorioModel[]) => {
+          this.recordatorioList = data;
+          setTimeout(() => {
+            InitSelectById("selRecordatorios");
+          }, 100);
+        }
+      }
+    );
+  }
 
 }

@@ -5,12 +5,14 @@ import { GeneralData } from 'src/app/config/general-data';import { EstadoSolicit
 import { InvitacionEvaluarModel } from 'src/app/models/parametros/invitacionEvaluar.model';
 import { LineaInvestigacionModel } from 'src/app/models/parametros/linea-investigacion.model';
 import { ModalidadModel } from 'src/app/models/parametros/modalidad.model';
+import { ProponenteModel } from 'src/app/models/parametros/proponente.model';
 import { SolicitudModel } from 'src/app/models/parametros/solicitud.model';
 import { TipoSolicitud } from 'src/app/models/parametros/tipoSolicitud.model';
 import { EstadosSolicitudService } from 'src/app/services/parametros/estados-solicitud.service';
 import { InvitacionEvaluarService } from 'src/app/services/parametros/invitaciones-evaluar.service';
 import { LineaInvestigacionService } from 'src/app/services/parametros/linea-investigacion.service';
 import { ModalidadService } from 'src/app/services/parametros/modalidad.service';
+import { ProponenteService } from 'src/app/services/parametros/proponente.service.service';
 import { SolicitudService } from 'src/app/services/parametros/solicitud.service';
 import { TipoSolicitudService } from 'src/app/services/parametros/tipo-solicitud.service';
 
@@ -30,6 +32,7 @@ export class CreateSolicitudComponent implements OnInit {
   tipoSolicitudList: TipoSolicitud[] = []
   lineaInvestigacionList: LineaInvestigacionModel[] = []
   invitacionEvaluarList: InvitacionEvaluarModel[] = []
+  proponentesList: ProponenteModel[] = []
 
 
   constructor(
@@ -40,7 +43,8 @@ export class CreateSolicitudComponent implements OnInit {
     private estadosSolicitudService: EstadosSolicitudService,
     private lineasInvestigacionService: LineaInvestigacionService,
     private invitacionEvaluarService: InvitacionEvaluarService,
-    private tipoSolicitudService: TipoSolicitudService
+    private tipoSolicitudService: TipoSolicitudService,
+    private proponenteService: ProponenteService
   ) { }
 
   ngOnInit(): void {
@@ -59,6 +63,7 @@ export class CreateSolicitudComponent implements OnInit {
       id_tipo_solicitud:[[Validators.required]],
       id_linea_investigacion:[[Validators.required]],
       id_invitacion_evaluar:[[Validators.required]],
+      id_proponente: [[Validators.required]]
     })
   }
 
@@ -73,6 +78,7 @@ export class CreateSolicitudComponent implements OnInit {
     model.IdLineaInvestigacion = parseInt(this.form.controls["id_linea_investigacion"].value);
     model.IdInvitacionEvaluar = parseInt(this.form.controls["id_invitacion_evaluar"].value);
     model.IdTipoSolicitud = parseInt(this.form.controls["id_tipo_solicitud"].value)
+    model.IdProponente = parseInt(this.form.controls["id_proponente"].value)
     console.log(model);
     
     this.service.SaveRecord(model).subscribe({
@@ -143,6 +149,17 @@ export class CreateSolicitudComponent implements OnInit {
         }
       }
     );
+
+    this.proponenteService.GetRecordList().subscribe(
+      {
+        next: (data: ProponenteModel[]) => {
+          this.proponentesList = data;
+          setTimeout(() => {
+            InitSelectById("selProponente");
+          }, 100)
+        }
+      }
+    )
   }
 
 }

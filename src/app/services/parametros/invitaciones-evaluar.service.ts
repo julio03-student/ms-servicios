@@ -54,7 +54,9 @@ export class InvitacionEvaluarService {
       FechaInvitacion: `${data.FechaInvitacion}T01:33:27.000Z`,
       FechaRespuesta: `${data.FechaRespuesta}T01:33:27.000Z`,
       EstadoInvitacion: data.EstadoInvitacion,
-      ObservacionesInvitacionEvaluar: data.ObservacionesInvitacionEvaluar
+      ObservacionesInvitacionEvaluar: data.ObservacionesInvitacionEvaluar,
+      IdJurado: data.IdJurado,
+      IdRecordatorio: data.IdRecordatorio
     },
     {
       headers: new HttpHeaders({

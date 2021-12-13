@@ -38,10 +38,6 @@ const routes: Routes = [
     loadChildren : () => import("./modules/business/business.module").then(x => x.BusinessModule)
   },
   {
-    path: "reportes",
-    loadChildren : () => import("./modules/reports/reports.module").then(x => x.ReportsModule)
-  },
-  {
     path: "**",
     component: NotFoundComponent
   }

@@ -3,9 +3,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GeneralData } from 'src/app/config/general-data';
 import { ProponenteModel } from 'src/app/models/parametros/proponente.model';
+import { TipoVinculacionModel } from 'src/app/models/parametros/tipo-vinculacion.model';
 import { ProponenteService } from 'src/app/services/parametros/proponente.service.service';
+import { TipoVinculacionService } from 'src/app/services/parametros/tipo-vinculacion.service';
 
 declare const OpenGeneralMessage: any
+declare const InitSelectById: any;
 
 @Component({
   selector: 'app-edit-proponente',
@@ -15,17 +18,19 @@ declare const OpenGeneralMessage: any
 export class EditProponenteComponent implements OnInit {
 
   form: FormGroup = new FormGroup({})
-  
+  vinculacionList: TipoVinculacionModel[] = []
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private service: ProponenteService,
-    private activeRoute: ActivatedRoute
+    private activeRoute: ActivatedRoute,
+    private vinculacionService: TipoVinculacionService 
   ) { }
 
   ngOnInit(): void {
     this.CreateForm()
+    this.GetOptionsToSelects()
     this.SearchRecord()
   }
 
@@ -40,7 +45,7 @@ export class EditProponenteComponent implements OnInit {
       email:["",[Validators.required]],
       direccion:["",[Validators.required]],
       fecha_nacimiento:["",[Validators.required]],
-      IdVinculacion:["",[Validators.required]],
+      id_vinculacion:["",[Validators.required]],
     })
   }
 
@@ -58,7 +63,7 @@ export class EditProponenteComponent implements OnInit {
         this.form.controls["documento"].setValue(data.DocumentoIdProponente)
         this.form.controls["phone"].setValue(data.CelularProponente)
         this.form.controls["fecha_nacimiento"].setValue(data.fechaNacimiento)
-        this.form.controls["IdVinculacion"].setValue(data.IdTipoVinculacion)
+        this.form.controls["id_vinculacion"].setValue(data.IdTipoVinculacion)
       }
     })
   }
@@ -74,7 +79,7 @@ export class EditProponenteComponent implements OnInit {
     model.DocumentoIdProponente = this.form.controls["documento"].value
     model.CelularProponente = this.form.controls["phone"].value
     model.fechaNacimiento = this.form.controls["fecha_nacimiento"].value
-    model.IdTipoVinculacion = this.form.controls["IdVinculacion"].value
+    model.IdTipoVinculacion = this.form.controls["id_vinculacion"].value
 
     console.log(model);
     
@@ -87,6 +92,20 @@ export class EditProponenteComponent implements OnInit {
         OpenGeneralMessage(GeneralData.ERROR_MESSAGE)
       }
     })
+  }
+
+  GetOptionsToSelects() {
+    this.vinculacionService.GetRecordList().subscribe(
+      {
+        next: (data: TipoVinculacionModel[]) => {
+          console.log("data: " + data)
+          this.vinculacionList = data;
+          setTimeout(() => {
+            InitSelectById("selVinculacion");
+          }, 100);
+        }
+      }
+    );
   }
 
 

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row pad">
   <form [formGroup]="form" class="col s12">
     <div class="row">
       <div class="input-field col s4">
@@ -11,19 +11,23 @@
       </div>
       <div class="input-field col s4">
         <input formControlName="estado_invitacion" id="estado_invitacion" type="text">
-        <label for="estado_invitacion">Estado de la invitación</label>
+        <label class="active" for="estado_invitacion">Estado de la invitación</label>
       </div>
       <div class="input-field col s4">
           <input formControlName="observaciones_invitacion" id="observaciones_invitacion" type="text">
-          <label for="observaciones_invitacion">Observaciones</label>
+          <label class="active" for="observaciones_invitacion">Observaciones</label>
       </div>
       <div class="input-field col s4">
-          <input formControlName="id_jurado" id="id_jurado" type="number">
-          <label for="id_jurado">IdJurado</label>
+        <select id="selJurados" formControlName="id_jurado">
+          <option *ngFor="let c of juradoList" value="{{c.IdJurado}}">{{c.NombreJurado + " " +c.ApellidosJurado}}</option>
+        </select>
+        <label>Jurado</label>
       </div>
       <div class="input-field col s4">
-          <input formControlName="id_recordatorio" id="id_recordatorio" type="number">
-          <label for="id_recordatorio">IdRecordatorio</label>
+        <select id="selRecordatorios" formControlName="id_recordatorio">
+          <option *ngFor="let c of recordatorioList" value="{{c.IdRecordatorio}}">{{c.DescripcionRecordatorio}}</option>
+        </select>
+          <label>Recordatorio</label>
       </div>
     </div>
     <div class="row">

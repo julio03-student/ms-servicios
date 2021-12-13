@@ -49,6 +49,12 @@
           </select>
             <label>Invitacion Evaluar</label>
         </div>
+        <div class="input-field col s4">
+          <select id="selProponente" formControlName="id_proponente">
+            <option *ngFor="let c of proponentesList" value="{{c.IdProponente}}">{{c.PrimerNombreProponente}}</option>
+          </select>
+            <label>Proponente</label>
+        </div>
       </div>
       <div class="row">
         <div class="input-field col s2">

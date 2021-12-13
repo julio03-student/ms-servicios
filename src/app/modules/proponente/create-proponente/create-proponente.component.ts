@@ -3,10 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GeneralData } from 'src/app/config/general-data';
 import { ProponenteModel } from 'src/app/models/parametros/proponente.model';
+import { TipoVinculacionModel } from 'src/app/models/parametros/tipo-vinculacion.model';
 import { UploadedFileModel } from 'src/app/models/upload.file.model';
 import { ProponenteService } from 'src/app/services/parametros/proponente.service.service';
+import { TipoVinculacionService } from 'src/app/services/parametros/tipo-vinculacion.service';
 
 declare const OpenGeneralMessage: any
+declare const InitSelectById: any;
 
 @Component({
   selector: 'app-create-proponente',
@@ -20,17 +23,19 @@ export class CreateProponenteComponent implements OnInit {
   url: string = GeneralData.BUSINESS_ADMIN_URL
   uploadedFilename?: string = ""
   uploadedFile: boolean = false
-  
+  vinculacionList: TipoVinculacionModel[] = []
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private service: ProponenteService
+    private service: ProponenteService,
+    private vinculacionService: TipoVinculacionService 
   ) { }
 
   ngOnInit(): void {
     this.CreateForm()
-    this.CreateFormFile()
+    this.GetOptionsToSelects()
+    /* this.CreateFormFile() */
   }
 
   CreateForm(){
@@ -43,8 +48,8 @@ export class CreateProponenteComponent implements OnInit {
       email:["",[Validators.required]],
       direccion:["",[Validators.required]],
       fecha_nacimiento:["",[Validators.required]],
-      IdVinculacion:["",[Validators.required]],
-      image:["",[Validators.required]]
+      id_vinculacion:["",[Validators.required]],
+      /* image:["",[Validators.required]] */
     })
   }
 
@@ -65,8 +70,8 @@ export class CreateProponenteComponent implements OnInit {
     model.DocumentoIdProponente = this.form.controls["documento"].value
     model.CelularProponente = this.form.controls["phone"].value
     model.fechaNacimiento = this.form.controls["fecha_nacimiento"].value
-    model.IdTipoVinculacion = parseInt(this.form.controls["IdVinculacion"].value)
-    model.image = this.form.controls["image"].value
+    model.IdTipoVinculacion = parseInt(this.form.controls["id_vinculacion"].value)
+   /*  model.image = this.form.controls["image"].value */
 
     console.log(model);
     
@@ -101,6 +106,20 @@ export class CreateProponenteComponent implements OnInit {
         this.uploadedFile = true
       }
     })
+  }
+
+  GetOptionsToSelects() {
+    this.vinculacionService.GetRecordList().subscribe(
+      {
+        next: (data: TipoVinculacionModel[]) => {
+          console.log("data: " + data)
+          this.vinculacionList = data;
+          setTimeout(() => {
+            InitSelectById("selVinculacion");
+          }, 100);
+        }
+      }
+    );
   }
 
 }

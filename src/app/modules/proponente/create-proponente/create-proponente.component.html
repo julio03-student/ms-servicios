@@ -54,8 +54,10 @@
             <label for="fecha_nacimiento">Fecha Nacimiento</label>
         </div>
         <div class="input-field col s4">
-            <input formControlName="IdVinculacion" id="IdVinculacion" type="text">
-            <label for="IdVinculacion">Id vinculación</label>
+          <select id="selVinculacion" formControlName="id_vinculacion" name="id_vinculacion">
+            <option *ngFor="let c of vinculacionList" value="{{c.IdTipoVinculacion}}">{{c.NombreTipoVinculacion}}</option>
+          </select>
+          <label>Vinculacion</label>
         </div>
       </div>
       <div class="row">

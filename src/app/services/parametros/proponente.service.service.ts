@@ -38,7 +38,7 @@ export class ProponenteService {
       Direccion: data.Direccion,
       fechaNacimiento: `${data.fechaNacimiento}T01:33:27.000Z`,
       IdTipoVinculacion: data.IdTipoVinculacion,
-      image: data.image
+      /* image: data.image */
     },
     {
       headers: new HttpHeaders({
@@ -61,7 +61,7 @@ export class ProponenteService {
       Direccion: data.Direccion,
       fechaNacimiento: `${data.fechaNacimiento}T01:33:27.000Z`,
       IdTipoVinculacion: data.IdTipoVinculacion,
-      image: data.image
+      /* image: data.image */
     },
     {
       headers: new HttpHeaders({

@@ -1,35 +1,35 @@
-<div class="row">
+<div class="row pad">
     <form [formGroup]="form" class="col s12">
       <div class="row">
         <div class="input-field col s4">
           <input formControlName="name" id="name" type="text">
-          <label for="name">Nombre</label>
+          <label class="active" for="name">Nombre</label>
         </div>
         <div class="input-field col s4">
             <input formControlName="otros_nombres" id="otrosNombres" type="text">
-            <label for="otrosNombres">Otros nombres</label>
+            <label class="active" for="otrosNombres">Otros nombres</label>
         </div>
         <div class="input-field col s4">
           <input formControlName="last_name" id="last_name" type="text">
-          <label for="last_name">Apellidos</label>
+          <label class="active" for="last_name">Apellidos</label>
         </div>
         <div class="input-field col s4">
             <input formControlName="phone" id="phone" type="text">
-            <label for="phone">Telefono</label>
+            <label class="active" for="phone">Telefono</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s4">
             <input formControlName="documento" name="documento" id="documento" type="text">
-            <label for="documento">Documento</label>
+            <label class="active" for="documento">Documento</label>
         </div>
         <div class="input-field col s4">
           <input formControlName="email" id="email" type="email" class="validate">
-          <label for="email">Email</label>
+          <label class="active" for="email">Email</label>
         </div>
         <div class="input-field col s4">
             <input formControlName="direccion" id="direccion" type="text">
-            <label for="direccion">Dirección</label>
+            <label class="active" for="direccion">Dirección</label>
         </div>
       </div>
       <div class="row">
@@ -38,8 +38,10 @@
             <label for="fecha_nacimiento">Fecha Nacimiento</label>
         </div>
         <div class="input-field col s4">
-            <input formControlName="IdVinculacion" id="IdVinculacion" type="text">
-            <label for="IdVinculacion">Id vinculación</label>
+          <select id="selVinculacion" formControlName="id_vinculacion" name="id_vinculacion">
+            <option *ngFor="let c of vinculacionList" value="{{c.IdTipoVinculacion}}">{{c.NombreTipoVinculacion}}</option>
+          </select>
+          <label>Vinculacion</label>
         </div>
       </div>
       <div class="row">

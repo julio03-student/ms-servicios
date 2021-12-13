@@ -18,7 +18,7 @@ export class SolicitudService {
     private localStorageService: LocalStorageService
   ) {
     this.token = this.localStorageService.GetTokenFromLS()
-   }
+  }
 
   GetRecordList(): Observable<SolicitudModel[]> {
     return this.http.get<SolicitudModel[]>(`${this.url}/solicituds`)
@@ -30,42 +30,54 @@ export class SolicitudService {
       FechaSolicitud: `${data.FechaSolicitud}T01:33:27.000Z`,
       NombreTrabajoSolicitud: data.NombreTrabajoSolicitud,
       ArchivoSolicitud: data.ArchivoSolicitud,
-      DescripcionGeneralSolicitud: data.DescripcionGeneralSolicitud
+      DescripcionGeneralSolicitud: data.DescripcionGeneralSolicitud,
+      IdModalidad: data.IdModalidad,
+      IdEstado: data.IdEstado,
+      IdTipoSolicitud: data.IdTipoSolicitud,
+      IdLineaInvestigacion: data.IdLineaInvestigacion,
+      IdInvitacionEvaluar: data.IdInvitacionEvaluar,
+      IdProponente: data.IdProponente
     },
-    {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${this.token}`
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.token}`
+        })
       })
-    })
   }
 
   EditRecord(data: SolicitudModel): Observable<SolicitudModel> {
     console.log("Editanto....");
-    
+
     return this.http.put<SolicitudModel>(`${this.url}/solicituds/${data.IdSolicitud}`, {
       IdSolicitud: data.IdSolicitud,
       FechaSolicitud: `${data.FechaSolicitud}T01:33:27.000Z`,
       NombreTrabajoSolicitud: data.NombreTrabajoSolicitud,
       ArchivoSolicitud: data.ArchivoSolicitud,
-      DescripcionGeneralSolicitud: data.DescripcionGeneralSolicitud
+      DescripcionGeneralSolicitud: data.DescripcionGeneralSolicitud,
+      IdModalidad: data.IdModalidad,
+      IdEstado: data.IdEstado,
+      IdTipoSolicitud: data.IdTipoSolicitud,
+      IdLineaInvestigacion: data.IdLineaInvestigacion,
+      IdInvitacionEvaluar: data.IdInvitacionEvaluar,
+      IdProponente: data.IdProponente
     },
-    {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${this.token}`
-      })
-    })
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.token}`
+        })
+      })    
   }
 
-  SearchRecord(id: number): Observable<SolicitudModel>{
+  SearchRecord(id: number): Observable<SolicitudModel> {
     return this.http.get<SolicitudModel>(`${this.url}/solicituds/${id}`)
   }
 
-  RemoveRecord(id: number): Observable<any>{
+  RemoveRecord(id: number): Observable<any> {
     return this.http.delete(`${this.url}/solicituds/${id}`,
-    {
-      headers: new HttpHeaders({
-        Authorization: `Bearer ${this.token}`
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.token}`
+        })
       })
-    })
   }
 }

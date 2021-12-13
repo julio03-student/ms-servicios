@@ -21,13 +21,13 @@
           <select id="selJurados" formControlName="id_jurado">
             <option *ngFor="let c of juradoList" value="{{c.IdJurado}}">{{c.NombreJurado + " " +c.ApellidosJurado}}</option>
           </select>
-            <label>IdJurado</label>
+            <label>Jurado</label>
         </div>
         <div class="input-field col s4">
           <select id="selRecordatorios" formControlName="id_recordatorio">
             <option *ngFor="let c of recordatorioList" value="{{c.IdRecordatorio}}">{{c.DescripcionRecordatorio}}</option>
           </select>
-            <label>IdRecordatorio</label>
+            <label>Recordatorio</label>
         </div>
       </div>
       <div class="row">

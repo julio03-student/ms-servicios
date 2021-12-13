@@ -14,6 +14,8 @@ import { InvitacionEvaluarService } from 'src/app/services/parametros/invitacion
 import { LineaInvestigacionService } from 'src/app/services/parametros/linea-investigacion.service';
 import { ModalidadService } from 'src/app/services/parametros/modalidad.service';
 import { TipoSolicitudService } from 'src/app/services/parametros/tipo-solicitud.service';
+import { ProponenteService } from 'src/app/services/parametros/proponente.service.service';
+import { ProponenteModel } from 'src/app/models/parametros/proponente.model';
 
 declare const OpenGeneralMessage: any
 declare const InitSelectById: any;
@@ -32,6 +34,7 @@ export class EditSolicitudComponent implements OnInit {
   tipoSolicitudList: TipoSolicitud[] = []
   lineaInvestigacionList: LineaInvestigacionModel[] = []
   invitacionEvaluarList: InvitacionEvaluarModel[] = []
+  proponentesList: ProponenteModel[] = []
 
   constructor(
     private fb: FormBuilder,
@@ -42,7 +45,8 @@ export class EditSolicitudComponent implements OnInit {
     private estadosSolicitudService: EstadosSolicitudService,
     private lineasInvestigacionService: LineaInvestigacionService,
     private invitacionEvaluarService: InvitacionEvaluarService,
-    private tipoSolicitudService: TipoSolicitudService
+    private tipoSolicitudService: TipoSolicitudService,
+    private proponenteService: ProponenteService
   ) { }
 
   ngOnInit(): void {
@@ -63,6 +67,7 @@ export class EditSolicitudComponent implements OnInit {
       id_tipo_solicitud:[[Validators.required]],
       id_linea_investigacion:[[Validators.required]],
       id_invitacion_evaluar:[[Validators.required]],
+      id_proponente:[[Validators.required]],
     })
   }
 
@@ -81,6 +86,7 @@ export class EditSolicitudComponent implements OnInit {
         this.form.controls["id_estado"].setValue(data.IdEstado)
         this.form.controls["id_linea_investigacion"].setValue(data.IdLineaInvestigacion)
         this.form.controls["id_invitacion_evaluar"].setValue(data.IdInvitacionEvaluar)
+        this.form.controls["id_proponente"].setValue(data.IdProponente)
       }
     })
   }
@@ -97,6 +103,7 @@ export class EditSolicitudComponent implements OnInit {
     model.IdLineaInvestigacion = parseInt(this.form.controls["id_linea_investigacion"].value);
     model.IdInvitacionEvaluar = parseInt(this.form.controls["id_invitacion_evaluar"].value);
     model.IdTipoSolicitud = parseInt(this.form.controls["id_tipo_solicitud"].value)
+    model.IdProponente = parseInt(this.form.controls["id_proponente"].value)
 
     console.log(model);
     
@@ -167,6 +174,17 @@ export class EditSolicitudComponent implements OnInit {
         }
       }
     );
+
+    this.proponenteService.GetRecordList().subscribe(
+      {
+        next: (data: ProponenteModel[]) => {
+          this.proponentesList = data;
+          setTimeout(() => {
+            InitSelectById("selProponente");
+          }, 100)
+        }
+      }
+    )
   }
 
 
