@@ -42,6 +42,12 @@ import {SolicitudProponente} from './solicitud-proponente.model';
         entityKey: 'IdInvitacionEvaluar',
         foreignKey: 'IdInvitacionEvaluar',
       },
+      fk_solicitud_IdProponente: {
+        name: 'fk_solicitud_IdProponente',
+        entity: 'Proponente',
+        entityKey: 'IdProponente',
+        foreignKey: 'IdProponente',
+      },
     },
   },
 })
@@ -96,6 +102,9 @@ export class Solicitud extends Entity {
 
   @hasMany(() => Proponente, {through: {model: () => SolicitudProponente, keyFrom: 'IdSolicitud', keyTo: 'IdProponente'}})
   proponentes: Proponente[];
+
+  @belongsTo(() => Proponente, {name: 'proponente'})
+  IdProponente: number;
 
   constructor(data?: Partial<Solicitud>) {
     super(data);

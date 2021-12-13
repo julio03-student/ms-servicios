@@ -5,7 +5,7 @@ import {
   repository,
   Where,
 } from '@loopback/repository';
-  import {
+import {
   del,
   get,
   getModelSchemaRef,
@@ -18,9 +18,9 @@ import {
 } from '@loopback/rest';
 import {Keys} from '../config/keys';
 import {
-SolicitudProponente,
-Proponente,
-ArregloSolicitudes,
+  SolicitudProponente,
+  Proponente,
+  ArregloSolicitudes,
 } from '../models';
 import {ProponenteRepository, SolicitudProponenteRepository, SolicitudRepository} from '../repositories';
 
@@ -30,7 +30,7 @@ export class SolicitudProponenteController {
   constructor(
     @repository(SolicitudRepository) protected solicitudRepository: SolicitudRepository,
     @repository(SolicitudProponenteRepository) protected solicitudProponenteRepository: SolicitudProponenteRepository,
-    @repository(ProponenteRepository) public proponenteRepository : ProponenteRepository
+    @repository(ProponenteRepository) public proponenteRepository: ProponenteRepository
   ) { }
 
   @get('/solicituds/{id}/proponentes', {
@@ -75,7 +75,7 @@ export class SolicitudProponenteController {
 
     let solicitud = this.solicitudRepository.findById(datos.IdSolicitud)
 
-    console.log("solicitud: "+solicitud)
+    console.log("solicitud: " + solicitud)
     let proponente = this.proponenteRepository.findById(datos.IdProponente)
 
     let credentialsProponente = {

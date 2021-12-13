@@ -38,10 +38,14 @@ export class SolicitudRepository extends DefaultCrudRepository<
           typeof Solicitud.prototype.IdSolicitud
         >;
 
+  public readonly proponente: BelongsToAccessor<Proponente, typeof Solicitud.prototype.IdSolicitud>;
+
   constructor(
     @inject('datasources.mysql') dataSource: MysqlDataSource, @repository.getter('ModalidadRepository') protected modalidadRepositoryGetter: Getter<ModalidadRepository>, @repository.getter('EstadoSolicitudRepository') protected estadoSolicitudRepositoryGetter: Getter<EstadoSolicitudRepository>, @repository.getter('TipoSolicitudRepository') protected tipoSolicitudRepositoryGetter: Getter<TipoSolicitudRepository>, @repository.getter('LineaInvestigacionRepository') protected lineaInvestigacionRepositoryGetter: Getter<LineaInvestigacionRepository>, @repository.getter('InvitacionEvaluarRepository') protected invitacionEvaluarRepositoryGetter: Getter<InvitacionEvaluarRepository>, @repository.getter('SolicitudComiteRepository') protected solicitudComiteRepositoryGetter: Getter<SolicitudComiteRepository>, @repository.getter('ComiteRepository') protected comiteRepositoryGetter: Getter<ComiteRepository>, @repository.getter('SolicitudProponenteRepository') protected solicitudProponenteRepositoryGetter: Getter<SolicitudProponenteRepository>, @repository.getter('ProponenteRepository') protected proponenteRepositoryGetter: Getter<ProponenteRepository>,
   ) {
     super(Solicitud, dataSource);
+    this.proponente = this.createBelongsToAccessorFor('proponente', proponenteRepositoryGetter,);
+    this.registerInclusionResolver('proponente', this.proponente.inclusionResolver);
     this.proponentes = this.createHasManyThroughRepositoryFactoryFor('proponentes', proponenteRepositoryGetter, solicitudProponenteRepositoryGetter,);
     this.registerInclusionResolver('proponentes', this.proponentes.inclusionResolver);
     this.comites = this.createHasManyThroughRepositoryFactoryFor('comites', comiteRepositoryGetter, solicitudComiteRepositoryGetter,);

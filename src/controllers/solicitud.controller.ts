@@ -19,15 +19,16 @@ import {
   response,
 } from '@loopback/rest';
 import {Keys} from '../config/keys';
-import {Solicitud} from '../models';
-import {InvitacionEvaluarRepository, JuradoRepository, SolicitudRepository} from '../repositories';
+import {Solicitud, SolicitudProponente} from '../models';
+import {InvitacionEvaluarRepository, JuradoRepository, SolicitudProponenteRepository, SolicitudRepository} from '../repositories';
 const fetch = require('node-fetch');
-/* @authenticate("admin") */
+@authenticate("admin")
 export class SolicitudController {
   constructor(
     @repository(SolicitudRepository) public solicitudRepository : SolicitudRepository,
     @repository(InvitacionEvaluarRepository) public invitacionEvaluarRepository : InvitacionEvaluarRepository,
     @repository(JuradoRepository) public juradoRepository : JuradoRepository,
+    @repository(SolicitudProponenteRepository) public solicitudPRepository: SolicitudProponenteRepository
   ) {}
 
   @post('/solicituds')
@@ -57,7 +58,7 @@ export class SolicitudController {
       correo: (await jurado).CorreoJurado,
       asunto: 'Invitacion a Evaluar',
       mensaje: `<br> Se le envia amablemente ésta invitación para que sea Jurado en la evaluación de un trabajo academico.
-      <br> Esperamos su pronta respuesta. <br> <br><button type="button">Aceptar</button> <button type="button">Rechazar</button>`
+      <br> Esperamos su pronta respuesta. <br> <br><button style="text-decoration: none;" type="button"><a target="blank" rel="noopener noreferrer" href="http://localhost:4200/home">Aceptar<a/></button> <button type="button">Rechazar</button>`
     }
 
     let res = await fetch(Keys.urlFormato, {
@@ -69,7 +70,15 @@ export class SolicitudController {
       body: JSON.stringify(credentialsJurado)
     })
 
-    return this.solicitudRepository.create(solicitud);
+    let solicitud1 = this.solicitudRepository.create(solicitud);
+    if((await solicitud1).IdSolicitud){
+      this.solicitudPRepository.create(new SolicitudProponente({
+        IdSolicitud: (await solicitud1).IdSolicitud,
+        IdProponente: (await solicitud1).IdProponente
+      }))
+    }
+    return solicitud1
+
   }
 
   @get('/solicituds/count')
