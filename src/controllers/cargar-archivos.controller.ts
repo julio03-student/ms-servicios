@@ -57,6 +57,40 @@ export class CargarArchivosController {
     return res;
   }
 
+  @post('/CargarImagenProponente/{idJurado}', {
+    responses: {
+      200: {
+        content: {
+          'application/json': {
+            schema: {
+              type: 'object',
+            },
+          },
+        },
+        description: 'Función de carga de imágenes de los jurados.',
+      },
+    },
+  })
+  async cargarImagenJurado(
+    @inject(RestBindings.Http.RESPONSE) response: Response,
+    @requestBody.file() request: Request,
+    @param.path.number('idJurado') idJurado: number
+  ): Promise<object | false> {
+    const rutaImagen = path.join(__dirname, llaves.carpetaImagen);
+    let res = await this.StoreFileToPath(rutaImagen, llaves.nombreCampoImagen, request, response, llaves.extensionesPermitidasIMG);
+    if (res) {
+      const nombre_archivo = response.req?.file?.filename;
+      if (nombre_archivo) {
+        let img = new Imagen();
+        img.nombreImagen = nombre_archivo;
+        img.IdProponente = idJurado;
+        await this.imagenRepository.save(img)
+        return {filename: nombre_archivo};
+      }
+    }
+    return res;
+  }
+
   @post('/CargarImagenProponente/{idProponente}', {
     responses: {
       200: {
