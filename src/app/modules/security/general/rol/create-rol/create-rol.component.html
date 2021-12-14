@@ -1,0 +1,20 @@
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+        <div class="row">
+            <div class="input-field col s4">
+                <input formControlName="nombre_rol" id="nombre_rol" type="text">
+                <label for="nombre_rol">Nombre Rol</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s4">
+                <a (click)="SaveRecord()" class="waves-effect waves-light btn-large"><i
+                        class="material-icons left">cloud_upload</i>Guardar</a>
+            </div>
+            <div class="input-field col s4">
+                <a routerLink="/security/list-roles" class="waves-effect waves-light btn-large"><i
+                        class="material-icons left">close</i>Cancelar</a>
+            </div>
+        </div>
+    </form>
+</div>

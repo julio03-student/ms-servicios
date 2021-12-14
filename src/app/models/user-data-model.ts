@@ -1,11 +1,13 @@
-export class UserData{
-    _id?: string;
+export class UserModel{
+    _idUsuario?: string;
     nombresUsuario?: string;
     documentoUsuario?: string;
     apellidosUsuario?: string;
     celularUsuario?: string;
     emailUsuario?: string;
-    estado?: string;
+    fechaNacimientoUsuario?: Date;
+    direccionUsuario?: string;
+    estadoUsuario?: string;
     idRol?: string;
     
 }

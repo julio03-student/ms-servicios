@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AutenticacionGuard } from 'src/app/guards/autenticacion.guard';
 import { EditComiteComponent } from '../business/comite/edit-comite/edit-comite.component';
 import { CreateJuradoComponent } from './create-jurado/create-jurado.component';
 import { EditJuradoComponent } from './edit-jurado/edit-jurado.component';
@@ -9,19 +10,23 @@ import { RemoveJuradoComponent } from './remove-jurado/remove-jurado.component';
 const routes: Routes = [
   {
     path: "list-jurados",
-    component: ListJuradoComponent
+    component: ListJuradoComponent,
+    canActivate: [AutenticacionGuard]
   },
   {
     path: "edit-jurado/:id",
-    component: EditJuradoComponent
+    component: EditJuradoComponent,
+    canActivate: [AutenticacionGuard]
   },
   {
     path: "create-jurado",
-    component: CreateJuradoComponent
+    component: CreateJuradoComponent,
+    canActivate: [AutenticacionGuard]
   },
   {
     path: "remove-jurado/:id",
-    component: RemoveJuradoComponent
+    component: RemoveJuradoComponent,
+    canActivate: [AutenticacionGuard]
   }
 ];
 

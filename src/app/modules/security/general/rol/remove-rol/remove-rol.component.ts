@@ -2,26 +2,25 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GeneralData } from 'src/app/config/general-data';
-import { UserModel } from 'src/app/models/user-data-model';
-import { UsuariosService } from 'src/app/services/parametros/users.service';
+import { RolModel } from 'src/app/models/rol.model';
+import { RolesService } from 'src/app/services/parametros/roles.service';
 
 declare const OpenGeneralMessage: any
 
 @Component({
-  selector: 'app-remove-user',
-  templateUrl: './remove-user.component.html',
-  styleUrls: ['./remove-user.component.css']
+  selector: 'app-remove-rol',
+  templateUrl: './remove-rol.component.html',
+  styleUrls: ['./remove-rol.component.css']
 })
-export class RemoveUserComponent implements OnInit {
+export class RemoveRolComponent implements OnInit {
 
   id: string = ""
   name: string = ""
-  apellidos: string = ""
   form: FormGroup = new FormGroup({})
 
   constructor(
     private router: Router,
-    private service: UsuariosService,
+    private service: RolesService,
     private activeRoute: ActivatedRoute
   ) { }
 
@@ -33,11 +32,10 @@ export class RemoveUserComponent implements OnInit {
     console.log("Buscando...."+this.activeRoute.snapshot.params["id"])
     let id = this.activeRoute.snapshot.params["id"];
     this.service.SearchRecord(id).subscribe({
-      next: (data: UserModel) => {
-        if(data._idUsuario && data.nombresUsuario && data.apellidosUsuario){
-          this.id = data._idUsuario
-          this.name = data.nombresUsuario
-          this.apellidos = data.apellidosUsuario
+      next: (data: RolModel) => {
+        if(data._idRol && data.nombreRol){
+          this.id = data._idRol
+          this.name = data.nombreRol
         }
       }
     })
@@ -47,9 +45,9 @@ export class RemoveUserComponent implements OnInit {
   RemoveRecord(){
     console.log(this.id)
     this.service.RemoveRecord(this.id).subscribe({
-      next: (data: UserModel) =>{
+      next: (data: RolModel) =>{
         OpenGeneralMessage(GeneralData.REMOVE_MESSAGE)
-        this.router.navigate(['/security/list-users'])
+        this.router.navigate(['/security/list-roles'])
       },
       error: (err:any) => {
         OpenGeneralMessage(GeneralData.REMOVE_ERROR_MESSAGE)

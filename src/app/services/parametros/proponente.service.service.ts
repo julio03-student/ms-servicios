@@ -38,7 +38,7 @@ export class ProponenteService {
       Direccion: data.Direccion,
       fechaNacimiento: `${data.fechaNacimiento}T01:33:27.000Z`,
       IdTipoVinculacion: data.IdTipoVinculacion,
-      /* image: data.image */
+      image: data.image
     },
     {
       headers: new HttpHeaders({
@@ -61,7 +61,7 @@ export class ProponenteService {
       Direccion: data.Direccion,
       fechaNacimiento: `${data.fechaNacimiento}T01:33:27.000Z`,
       IdTipoVinculacion: data.IdTipoVinculacion,
-      /* image: data.image */
+      image: data.image
     },
     {
       headers: new HttpHeaders({
@@ -84,8 +84,7 @@ export class ProponenteService {
   }
 
   UploadFile(formData: FormData): Observable<UploadedFileModel>{
-     
-    return this.http.post<UploadedFileModel>(
+    let cargando = this.http.post<UploadedFileModel>(
       `${this.url}/CargarImagen`, 
       formData,
     {
@@ -93,5 +92,8 @@ export class ProponenteService {
         Authorization: `Bearer ${this.token}`
       })
     })
+    console.log(cargando);
+    
+    return cargando
   }
 }

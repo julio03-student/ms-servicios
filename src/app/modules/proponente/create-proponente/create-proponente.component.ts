@@ -35,7 +35,7 @@ export class CreateProponenteComponent implements OnInit {
   ngOnInit(): void {
     this.CreateForm()
     this.GetOptionsToSelects()
-    /* this.CreateFormFile() */
+    this.CreateFormFile()
   }
 
   CreateForm(){
@@ -49,7 +49,7 @@ export class CreateProponenteComponent implements OnInit {
       direccion:["",[Validators.required]],
       fecha_nacimiento:["",[Validators.required]],
       id_vinculacion:["",[Validators.required]],
-      /* image:["",[Validators.required]] */
+      image:["",[Validators.required]]
     })
   }
 
@@ -71,7 +71,7 @@ export class CreateProponenteComponent implements OnInit {
     model.CelularProponente = this.form.controls["phone"].value
     model.fechaNacimiento = this.form.controls["fecha_nacimiento"].value
     model.IdTipoVinculacion = parseInt(this.form.controls["id_vinculacion"].value)
-   /*  model.image = this.form.controls["image"].value */
+    model.image = this.form.controls["image"].value
 
     console.log(model);
     
@@ -91,21 +91,27 @@ export class CreateProponenteComponent implements OnInit {
       const file = event.target.files[0]
       this.formFile.controls["file"].setValue(file)
       console.log(file);
-      
     }
   }
 
   UploadImage(){
     const formData = new FormData()
-    formData.append("file", this.formFile.controls["file"].value)
-    console.log(this.formFile.controls["file"].value)
+    /* formData.append("file", this.formFile.controls["file"].value);
+    console.log("Imagen: ",this.formFile.controls["file"].value)
+    console.log("File: ",formData.get('file')); */
+    
+    formData.append("file", this.formFile.controls["file"].value);
     this.service.UploadFile(formData).subscribe({
-      next: (data: UploadedFileModel) => {
+      next: (data: UploadedFileModel) =>{
+        console.log("setieando: ", data.filename);
+        
         this.form.controls["image"].setValue(data.filename)
-        this.uploadedFilename = data.filename
-        this.uploadedFile = true
+        this.uploadedFilename = data.filename;
+        this.uploadedFile = true;
       }
-    })
+    });
+    console.log("Upload: ",this.uploadedFilename);
+    
   }
 
   GetOptionsToSelects() {

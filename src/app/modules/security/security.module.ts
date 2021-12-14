@@ -11,7 +11,12 @@ import { ListUsersComponent } from './user/list-users/list-users.component';
 import { EditUserComponent } from './user/edit-user/edit-user.component';
 import { RemoveUserComponent } from './user/remove-user/remove-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { RecaptchaComponent } from './recaptcha/recaptcha.component';
+import { NgxCaptchaModule } from 'ngx-captcha';
+import { CreateRolComponent } from './general/rol/create-rol/create-rol.component';
+import { ListRolesComponent } from './general/rol/list-roles/list-roles.component';
+import { EditRolComponent } from './general/rol/edit-rol/edit-rol.component';
+import { RemoveRolComponent } from './general/rol/remove-rol/remove-rol.component';
 
 @NgModule({
   declarations: [
@@ -22,13 +27,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CreateUserComponent,
     ListUsersComponent,
     EditUserComponent,
-    RemoveUserComponent
+    RemoveUserComponent,
+    CreateRolComponent,
+    EditRolComponent,
+    ListRolesComponent,
+    RemoveRolComponent,
+    RecaptchaComponent
   ],
   imports: [
     CommonModule,
     SecurityRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxCaptchaModule
   ]
 })
 export class SecurityModule { }

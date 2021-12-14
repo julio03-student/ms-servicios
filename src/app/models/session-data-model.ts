@@ -1,7 +1,7 @@
-import { UserData } from "./user-data-model";
+import { UserModel } from "./user-data-model";
 
 export class SessionData{
     token?: string;
-    usuario?: UserData;
+    usuario?: UserModel;
     isLoggedIn: boolean = false;
 }

@@ -2,7 +2,8 @@
   <li *ngIf="!session"><a routerLink="security/login">Iniciar Sesión</a></li>
   <li *ngIf="session"><a routerLink="security/logout">Cerrar Sesión</a></li>
   <li *ngIf="session"><a routerLink="security/change-password">Cambiar clave</a></li>
-  <li *ngIf="!session"><a routerLink="security/create-user">Crear cuenta</a></li>
+  <li *ngIf="session"><a routerLink="security/list-users">Usuarios</a></li>
+  <li *ngIf="session"><a routerLink="security/list-roles">Roles</a></li>
 </ul>
 
 <ul id="dropdown2" class="dropdown-content bussiness">
