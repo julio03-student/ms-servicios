@@ -9,3 +9,9 @@
 .error-message label{
     color: red
 }
+
+.centerAlign{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}

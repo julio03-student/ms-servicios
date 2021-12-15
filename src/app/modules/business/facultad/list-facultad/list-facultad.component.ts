@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralData } from 'src/app/config/general-data';
 import { FacultadModel } from 'src/app/models/parametros/facultad.model';
 import { FacultadService } from 'src/app/services/parametros/facultad.service';
 
@@ -9,6 +10,9 @@ import { FacultadService } from 'src/app/services/parametros/facultad.service';
 })
 export class ListFacultadComponent implements OnInit {
 
+  pageSize: number = GeneralData.RECORDS_BY_PAGE
+  p: number = 1
+  total: number = 0
   facultadList: FacultadModel[] = []
 
   constructor(
@@ -24,6 +28,7 @@ export class ListFacultadComponent implements OnInit {
       next: (data: FacultadModel[]) =>{
         console.log("Lista: "+data)
         this.facultadList = data
+        this.total = this.facultadList.length
       }
     })
   }

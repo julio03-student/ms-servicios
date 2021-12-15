@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralData } from 'src/app/config/general-data';
 import { InvitacionEvaluarModel } from 'src/app/models/parametros/invitacionEvaluar.model';
 import { InvitacionEvaluarService } from 'src/app/services/parametros/invitaciones-evaluar.service';
 
@@ -9,6 +10,9 @@ import { InvitacionEvaluarService } from 'src/app/services/parametros/invitacion
 })
 export class ListInvitacionEvaluarComponent implements OnInit {
 
+  pageSize: number = GeneralData.RECORDS_BY_PAGE
+  p: number = 1
+  total: number = 0
   invitacionesevaluarlist: InvitacionEvaluarModel[] = []
 
   constructor(
@@ -24,6 +28,7 @@ export class ListInvitacionEvaluarComponent implements OnInit {
       next: (data: InvitacionEvaluarModel[]) =>{
         console.log("Lista: "+data)
         this.invitacionesevaluarlist = data
+        this.total = this.invitacionesevaluarlist.length
       }
     })
   }

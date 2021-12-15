@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralData } from 'src/app/config/general-data';
 import { DepartamentoModel } from 'src/app/models/parametros/departamento.model';
 import { DepartamentoService } from 'src/app/services/parametros/departamentos.service';
 
@@ -9,6 +10,9 @@ import { DepartamentoService } from 'src/app/services/parametros/departamentos.s
 })
 export class ListDepartamentoComponent implements OnInit {
 
+  pageSize: number = GeneralData.RECORDS_BY_PAGE
+  p: number = 1
+  total: number = 0
   departamentolist: DepartamentoModel[] = []
 
   constructor(
@@ -24,6 +28,7 @@ export class ListDepartamentoComponent implements OnInit {
       next: (data: DepartamentoModel[]) =>{
         console.log("Lista: "+data)
         this.departamentolist = data
+        this.total = this.departamentolist.length
       }
     })
   }

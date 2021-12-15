@@ -1,3 +1,26 @@
 .bussiness{
     width: 200px;
 }
+
+.pad{
+    padding-left: 20px
+}
+
+.setColor{
+    background: rgb(15, 15, 122)
+}
+
+.imgInicio{
+    height: 50px;
+    padding-right: 15px
+}
+
+.Ucaldas{
+    color: white
+}
+.align{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 15pt;
+}

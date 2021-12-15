@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralData } from 'src/app/config/general-data';
 import { TipoSolicitud } from 'src/app/models/parametros/tipoSolicitud.model';
 import { TipoSolicitudService } from 'src/app/services/parametros/tipo-solicitud.service';
 
@@ -9,6 +10,9 @@ import { TipoSolicitudService } from 'src/app/services/parametros/tipo-solicitud
 })
 export class ListTipoSolicitudComponent implements OnInit {
 
+  pageSize: number = GeneralData.RECORDS_BY_PAGE
+  p: number = 1
+  total: number = 0
   tiposolicitudlist: TipoSolicitud[] = []
 
   constructor(
@@ -24,6 +28,7 @@ export class ListTipoSolicitudComponent implements OnInit {
       next: (data: TipoSolicitud[]) =>{
         console.log("Lista: "+data)
         this.tiposolicitudlist = data
+        this.total = this.tiposolicitudlist.length
       }
     })
   }

@@ -17,7 +17,6 @@ export class RemoveInvitacionEvaluarComponent implements OnInit {
   form: FormGroup = new FormGroup({})
   
   id: number = 0
-  name: string = ""
   constructor(
     private router: Router,
     private service: InvitacionEvaluarService,

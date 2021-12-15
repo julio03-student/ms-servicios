@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GeneralData } from 'src/app/config/general-data';
 import { ProponenteModel } from 'src/app/models/parametros/proponente.model';
 import { TipoVinculacionModel } from 'src/app/models/parametros/tipo-vinculacion.model';
+import { UploadedFileModel } from 'src/app/models/upload.file.model';
 import { ProponenteService } from 'src/app/services/parametros/proponente.service.service';
 import { TipoVinculacionService } from 'src/app/services/parametros/tipo-vinculacion.service';
 
@@ -19,37 +20,43 @@ export class EditProponenteComponent implements OnInit {
 
   form: FormGroup = new FormGroup({})
   vinculacionList: TipoVinculacionModel[] = []
+  uploadForm: FormGroup = this.fb.group({});
+  url: string = GeneralData.BUSINESS_ADMIN_URL
+  uploadedFilename?: string = ""
+  uploadedFile: boolean = false
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private service: ProponenteService,
     private activeRoute: ActivatedRoute,
-    private vinculacionService: TipoVinculacionService 
+    private vinculacionService: TipoVinculacionService
   ) { }
 
   ngOnInit(): void {
     this.CreateForm()
     this.GetOptionsToSelects()
     this.SearchRecord()
+    this.CreateFormFile()
   }
 
-  CreateForm(){
+  CreateForm() {
     this.form = this.fb.group({
-      id: ["",[Validators.required]],
-      name:["",[Validators.required]],
-      otros_nombres:["",[Validators.required]],
-      last_name:["",[Validators.required]],
-      phone:["",[Validators.required]],
-      documento:["",[Validators.required]],
-      email:["",[Validators.required]],
-      direccion:["",[Validators.required]],
-      fecha_nacimiento:["",[Validators.required]],
-      id_vinculacion:["",[Validators.required]],
+      id: ["", [Validators.required]],
+      name: ["", [Validators.required]],
+      otros_nombres: ["", [Validators.required]],
+      last_name: ["", [Validators.required]],
+      phone: ["", [Validators.required]],
+      documento: ["", [Validators.required]],
+      email: ["", [Validators.required]],
+      direccion: ["", [Validators.required]],
+      fecha_nacimiento: ["", [Validators.required]],
+      id_vinculacion: ["", [Validators.required]],
+      image: ["", [Validators.required]],
     })
   }
 
-  SearchRecord(){
+  SearchRecord() {
     console.log("Buscando....")
     let id = parseInt(this.activeRoute.snapshot.params["id"]);
     this.service.SearchRecord(id).subscribe({
@@ -64,11 +71,19 @@ export class EditProponenteComponent implements OnInit {
         this.form.controls["phone"].setValue(data.CelularProponente)
         this.form.controls["fecha_nacimiento"].setValue(data.fechaNacimiento)
         this.form.controls["id_vinculacion"].setValue(data.IdTipoVinculacion)
+        this.uploadForm.controls["file"].setValue(`${this.url}//archivo/1/${data.image}`)
       }
     })
   }
 
-  SaveRecord(){
+  CreateFormFile() {
+    this.uploadForm = this.fb.group({
+      file: ['', [Validators.required]],
+    });
+
+  }
+
+  SaveRecord() {
     let model = new ProponenteModel();
     model.IdProponente = this.form.controls["id"].value
     model.PrimerNombreProponente = this.form.controls["name"].value;
@@ -79,16 +94,17 @@ export class EditProponenteComponent implements OnInit {
     model.DocumentoIdProponente = this.form.controls["documento"].value
     model.CelularProponente = this.form.controls["phone"].value
     model.fechaNacimiento = this.form.controls["fecha_nacimiento"].value
-    model.IdTipoVinculacion = this.form.controls["id_vinculacion"].value
+    model.IdTipoVinculacion = parseInt(this.form.controls["id_vinculacion"].value)
+    model.image = this.form.controls["image"].value;
 
     console.log(model);
-    
+
     this.service.EditRecord(model).subscribe({
-      next: (data: ProponenteModel) =>{
+      next: (data: ProponenteModel) => {
         OpenGeneralMessage(GeneralData.SAVED_MESSAGE)
         this.router.navigate(['/proponente/list-proponentes'])
       },
-      error: (err:any) => {
+      error: (err: any) => {
         OpenGeneralMessage(GeneralData.ERROR_MESSAGE)
       }
     })
@@ -106,6 +122,30 @@ export class EditProponenteComponent implements OnInit {
         }
       }
     );
+  }
+
+  onFileSelect(event: any) {
+
+    if (event.target.files.length > 0) {
+      const f = event.target.files[0];
+      this.fgUpload["file"].setValue(f);
+    }
+  }
+
+  get fgUpload() {
+    return this.uploadForm.controls;
+  }
+
+  UploadImage() {
+    const formData = new FormData()
+    formData.append("file", this.fgUpload["file"].value)
+    this.service.UploadFile(formData).subscribe({
+      next: (data: UploadedFileModel) => {
+        this.form.controls["image"].setValue(data.filename)
+        this.uploadedFilename = data.filename
+        this.uploadedFile = true
+      }
+    })
   }
 
 

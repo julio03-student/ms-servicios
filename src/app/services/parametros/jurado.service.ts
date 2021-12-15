@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GeneralData } from 'src/app/config/general-data';
 import { JuradoModel } from 'src/app/models/parametros/jurado.model';
+import { UploadedFileModel } from 'src/app/models/upload.file.model';
 import { LocalStorageService } from '../share/local-storage.service';
 
 @Injectable({
@@ -34,7 +35,8 @@ export class JuradoService {
       CorreoJurado: data.CorreoJurado,
       DireccionJurado: data.DireccionJurado,
       fechaNacimiento: `${data.fechaNacimiento}T01:33:27.000Z`,
-      VinculacionJurado: data.VinculacionJurado
+      VinculacionJurado: data.VinculacionJurado,
+      image: data.image
     },
     {
       headers: new HttpHeaders({
@@ -56,6 +58,7 @@ export class JuradoService {
       DireccionJurado: data.DireccionJurado,
       fechaNacimiento: `${data.fechaNacimiento}T01:33:27.000Z`,
       VinculacionJurado: data.VinculacionJurado,
+      image: data.image
     },
     {
       headers: new HttpHeaders({
@@ -75,5 +78,19 @@ export class JuradoService {
         Authorization: `Bearer ${this.token}`
       })
     })
+  }
+  
+  UploadFile(formData: FormData): Observable<UploadedFileModel>{
+    let cargando = this.http.post<UploadedFileModel>(
+      `${this.url}/CargarImagen`, 
+      formData,
+    {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.token}`
+      })
+    })
+    console.log(cargando);
+    
+    return cargando
   }
 }

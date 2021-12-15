@@ -1,0 +1,8 @@
+.img{
+    background-image: url("../assets/images/admisiones.jpg");
+    background-size: cover;
+    width: 100%;
+    min-height: 65vh;
+    height: fit-content;
+    padding: 2em
+}

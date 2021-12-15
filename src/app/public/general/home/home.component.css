@@ -1,6 +1,14 @@
 .tittle{
     color: black;
-    background: rgb(252, 144, 134);
-    font-size: 16pt;
-    padding: 5px;
+    font-size: 20pt;
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.774);
+    font-weight: bolder;
+    text-align: center;
+}
+
+.align{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

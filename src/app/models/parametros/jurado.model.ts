@@ -8,4 +8,5 @@ export class JuradoModel{
     DireccionJurado?: string;
     fechaNacimiento?: Date;
     VinculacionJurado?: string;
+    image?: string
 }

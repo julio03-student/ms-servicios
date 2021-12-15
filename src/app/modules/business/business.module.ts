@@ -52,6 +52,7 @@ import { EditDepartamentoComponent } from './departamento/edit-departamento/edit
 import { ListDepartamentoComponent } from './departamento/list-departamento/list-departamento.component';
 import { RemoveDepartamentoComponent } from './departamento/remove-departamento/remove-departamento.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -110,7 +111,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     BusinessRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class BusinessModule { }

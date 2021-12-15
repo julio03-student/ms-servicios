@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralData } from 'src/app/config/general-data';
 import { ProponenteModel } from 'src/app/models/parametros/proponente.model';
 import { ProponenteService } from 'src/app/services/parametros/proponente.service.service';
 
@@ -9,6 +10,10 @@ import { ProponenteService } from 'src/app/services/parametros/proponente.servic
 })
 export class ListProponenteComponent implements OnInit {
 
+  pageSize: number = GeneralData.RECORDS_BY_PAGE
+  p: number = 1
+  total: number = 0
+  url: string = GeneralData.BUSINESS_ADMIN_URL
   proponentelist: ProponenteModel[] = []
 
   constructor(
@@ -24,6 +29,7 @@ export class ListProponenteComponent implements OnInit {
       next: (data: ProponenteModel[]) =>{
         console.log("Lista: "+data)
         this.proponentelist = data
+        this.total = this.proponentelist.length
       }
     })
   }

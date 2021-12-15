@@ -7,6 +7,7 @@ import { CreateSolicitudComponent } from './create-solicitud/create-solicitud.co
 import { ListSolicitudComponent } from './list-solicitud/list-solicitud.component';
 import { EditSolicitudComponent } from './edit-solicitud/edit-solicitud.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     SolicitudRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class SolicitudModule { }

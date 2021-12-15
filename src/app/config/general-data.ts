@@ -12,4 +12,5 @@ export namespace GeneralData {
     export const REMOVE_ERROR_MESSAGE = 'Error en la eliminación!'
     export const confirmEmail = 'Se ha enviado una nueva contraseña a'
     export const CHANGE_PASSWORD_MESSAGE = 'Se ha hecho el cambio de su contraseña satisfactoriamente'
+    export const RECORDS_BY_PAGE = 3
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralData } from 'src/app/config/general-data';
 import { RolModel } from 'src/app/models/rol.model';
 import { RolesService } from 'src/app/services/parametros/roles.service';
 
@@ -9,6 +10,9 @@ import { RolesService } from 'src/app/services/parametros/roles.service';
 })
 export class ListRolesComponent implements OnInit {
 
+  pageSize: number = GeneralData.RECORDS_BY_PAGE
+  p: number = 1
+  total: number = 0
   rollist: RolModel[] = []
 
   constructor(
@@ -24,6 +28,7 @@ export class ListRolesComponent implements OnInit {
       next: (data: RolModel[]) =>{
         console.log("Lista: "+data)
         this.rollist = data
+        this.total = this.rollist.length
       }
     })
   }

@@ -15,7 +15,7 @@
                 <div class='row'>
                     <div class='input-field col s12'>
                         <input formControlName="username" class='validate' type='text' name='email' id='email' />
-                        <label for='email'>Ingrese su usuario</label>
+                        <label for='email' class="active" >Ingrese su usuario</label>
                         <div *ngIf="GetForm['username'].errors && (GetForm['username'].dirty || GetForm['username'].touched)"
                             class="error-message">
                             <label>Por favor ingrese un usuario válido</label>
@@ -27,7 +27,7 @@
                     <div class='input-field col s12'>
                         <input formControlName="password" class='validate' type='password' name='password'
                             id='password' />
-                        <label for='password'>Ingrese su contraseña</label>
+                        <label for='password' class="active" >Ingrese su contraseña</label>
                         <div *ngIf="GetForm['password'].errors  && (GetForm['password'].dirty || GetForm['password'].touched)"
                             class="error-message">
                             <label>Por favor ingrese una contraseña válida</label>
@@ -40,7 +40,7 @@
 
                 <br />
 
-                <div class="row">
+                <div class="row centerAlign">
                     <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" formControlName="recaptcha">
                     </ngx-recaptcha2>
                 </div>

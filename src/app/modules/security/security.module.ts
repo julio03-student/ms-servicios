@@ -17,6 +17,7 @@ import { CreateRolComponent } from './general/rol/create-rol/create-rol.componen
 import { ListRolesComponent } from './general/rol/list-roles/list-roles.component';
 import { EditRolComponent } from './general/rol/edit-rol/edit-rol.component';
 import { RemoveRolComponent } from './general/rol/remove-rol/remove-rol.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { RemoveRolComponent } from './general/rol/remove-rol/remove-rol.componen
     SecurityRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxCaptchaModule
+    NgxCaptchaModule,
+    NgxPaginationModule
   ]
 })
 export class SecurityModule { }

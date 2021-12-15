@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralData } from 'src/app/config/general-data';
 import { JuradoModel } from 'src/app/models/parametros/jurado.model';
 import { JuradoService } from 'src/app/services/parametros/jurado.service';
 
@@ -9,7 +10,11 @@ import { JuradoService } from 'src/app/services/parametros/jurado.service';
 })
 export class ListJuradoComponent implements OnInit {
 
+  pageSize: number = GeneralData.RECORDS_BY_PAGE
+  p: number = 1
+  total: number = 0
   juradoList: JuradoModel[] = []
+  url: string = GeneralData.BUSINESS_ADMIN_URL
 
   constructor(
     private juradoService: JuradoService
@@ -24,6 +29,7 @@ export class ListJuradoComponent implements OnInit {
       next: (data: JuradoModel[]) =>{
         console.log("Lista: "+data)
         this.juradoList = data
+        this.total = this.juradoList.length
       }
     })
   }

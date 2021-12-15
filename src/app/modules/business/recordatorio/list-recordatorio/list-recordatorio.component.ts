@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralData } from 'src/app/config/general-data';
 import { RecordatorioModel } from 'src/app/models/parametros/recordatorio.model';
 import { RecordatorioService } from 'src/app/services/parametros/recordatorio.service';
 
@@ -9,6 +10,9 @@ import { RecordatorioService } from 'src/app/services/parametros/recordatorio.se
 })
 export class ListRecordatorioComponent implements OnInit {
 
+  pageSize: number = GeneralData.RECORDS_BY_PAGE
+  p: number = 1
+  total: number = 0
   recordatoriolist: RecordatorioModel[] = []
 
   constructor(
@@ -24,6 +28,7 @@ export class ListRecordatorioComponent implements OnInit {
       next: (data: RecordatorioModel[]) =>{
         console.log("Lista: "+data)
         this.recordatoriolist = data
+        this.total = this.recordatoriolist.length
       }
     })
   }

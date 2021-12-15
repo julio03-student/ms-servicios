@@ -1,51 +1,78 @@
-<div class="row pad">
-  <form [formGroup]="form" class="col s12">
-    <div class="row">
-      <div class="input-field col s4">
-        <input formControlName="name" id="name" type="text">
-        <label class="active" for="name">Nombre</label>
+<div class="color">
+  <div class="row">
+    <div class="col s12">
+      <form [formGroup]="uploadForm" >
+      <div class="row">
+       
+        <div class="col s12 center-align">
+          <img *ngIf="!uploadedFile" class= "default_image" src="/assets/images/default_image.jpg" >
+          <img *ngIf="uploadedFile" formControlName="fileCharge" class= "default_image" src="{{url}}/archivo/1/{{uploadedFilename}}" >
+        </div>
       </div>
-      <div class="input-field col s4">
-        <input formControlName="last_name" id="last_name" type="text">
-        <label class="active" for="last_name">Apellidos</label>
+      <div class="row">
+        <div class="col s12 center-align">
+          <input class="btn btn-warning orange pad"formControlName="file"
+          (change)="onFileSelect($event)"
+          name="image"
+          class="form-control"
+          type="file"
+          id="fileImage">
+          &nbsp;<button class="btn pad" (click) = "UploadImage()">Cargar imagen</button>
+        </div>
       </div>
-      <div class="input-field col s4">
-          <input formControlName="phone" id="phone" type="text">
-          <label class="active" for="phone">Telefono</label>
-      </div>
+    </form>
     </div>
-    <div class="row">
-      <div class="input-field col s4">
-          <input formControlName="documento" name="documento" id="documento" type="text">
-          <label class="active" for="documento">Documento</label>
+  </div>
+  <div class="row pad">
+    <form [formGroup]="form" class="col s12">
+      <div class="row">
+        <div class="input-field col s4">
+          <input formControlName="name" id="name" type="text">
+          <label class="active" for="name">Nombre</label>
+        </div>
+        <div class="input-field col s4">
+          <input formControlName="last_name" id="last_name" type="text">
+          <label class="active" for="last_name">Apellidos</label>
+        </div>
+        <div class="input-field col s4">
+            <input formControlName="phone" id="phone" type="text">
+            <label class="active" for="phone">Telefono</label>
+        </div>
       </div>
-      <div class="input-field col s4">
-        <input formControlName="email" id="email" type="email" class="validate">
-        <label class="active" for="email">Email</label>
+      <input formControlName="image" id="phone" type="text">
+      <div class="row">
+        <div class="input-field col s4">
+            <input formControlName="documento" name="documento" id="documento" type="text">
+            <label class="active" for="documento">Documento</label>
+        </div>
+        <div class="input-field col s4">
+          <input formControlName="email" id="email" type="email" class="validate">
+          <label class="active" for="email">Email</label>
+        </div>
+        <div class="input-field col s4">
+            <input formControlName="direccion" id="direccion" type="text">
+            <label class="active" for="direccion">Dirección</label>
+        </div>
       </div>
-      <div class="input-field col s4">
-          <input formControlName="direccion" id="direccion" type="text">
-          <label class="active" for="direccion">Dirección</label>
+      <div class="row">
+        <div class="input-field col s4">
+            <input formControlName="fecha_nacimiento" id="fecha_nacimiento" type="date">
+            <label for="fecha_nacimiento">Fecha Nacimiento</label>
+        </div>
+        <div class="input-field col s4">
+            <input formControlName="vinculacion" id="vinculacion" type="text">
+            <label for="vinculacion">Vinculación</label>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s4">
-          <input formControlName="fecha_nacimiento" id="fecha_nacimiento" type="date">
-          <label for="fecha_nacimiento">Fecha Nacimiento</label>
+      <div class="row">
+        <div class="input-field col s2">
+            <a (click)="SaveRecord()" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud_upload</i>Guardar</a>
+        </div>
+       <div class="input-field col s2">
+            <a routerLink="/jurado/list-jurados" class="waves-effect waves-light btn-large"><i class="material-icons left">close</i>Cancelar</a>
+       </div>
+       
       </div>
-      <div class="input-field col s4">
-          <input formControlName="vinculacion" id="vinculacion" type="text">
-          <label for="vinculacion">Vinculación</label>
-      </div>
-    </div>
-    <div class="row">
-      <div class="input-field col s2">
-          <a (click)="SaveRecord()" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud_upload</i>Guardar</a>
-      </div>
-     <div class="input-field col s2">
-          <a routerLink="/jurado/list-jurados" class="waves-effect waves-light btn-large"><i class="material-icons left">close</i>Cancelar</a>
-     </div>
-     
-    </div>
-  </form>
+    </form>
+  </div>
 </div>

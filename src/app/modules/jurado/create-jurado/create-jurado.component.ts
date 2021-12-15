@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GeneralData } from 'src/app/config/general-data';
 import { JuradoModel } from 'src/app/models/parametros/jurado.model';
+import { UploadedFileModel } from 'src/app/models/upload.file.model';
 import { JuradoService } from 'src/app/services/parametros/jurado.service';
 
 declare const OpenGeneralMessage: any
@@ -15,7 +16,10 @@ declare const OpenGeneralMessage: any
 export class CreateJuradoComponent implements OnInit {
 
   form: FormGroup = new FormGroup({})
-  
+  uploadForm: FormGroup = this.fb.group({});
+  url: string = GeneralData.BUSINESS_ADMIN_URL
+  uploadedFilename?: string = ""
+  uploadedFile: boolean = false
 
   constructor(
     private fb: FormBuilder,
@@ -25,6 +29,14 @@ export class CreateJuradoComponent implements OnInit {
 
   ngOnInit(): void {
     this.CreateForm()
+    this.CreateFormFile()
+  }
+
+  CreateFormFile() {
+    this.uploadForm = this.fb.group({
+      file: ['', [Validators.required]],
+    });
+
   }
 
   CreateForm(){
@@ -36,7 +48,8 @@ export class CreateJuradoComponent implements OnInit {
       email:["",[Validators.required]],
       direccion:["",[Validators.required]],
       fecha_nacimiento:["",[Validators.required]],
-      vinculacion:["",[Validators.required]]
+      vinculacion:["",[Validators.required]],
+      image: ["", [Validators.required]],
     })
   }
 
@@ -50,6 +63,7 @@ export class CreateJuradoComponent implements OnInit {
     model.TelefonoJurado = this.form.controls["phone"].value
     model.VinculacionJurado = this.form.controls["vinculacion"].value
     model.fechaNacimiento = this.form.controls["fecha_nacimiento"].value
+    model.image = this.form.controls["image"].value;
 
     console.log(model);
     
@@ -64,4 +78,27 @@ export class CreateJuradoComponent implements OnInit {
     })
   }
 
+  onFileSelect(event: any) {
+
+    if (event.target.files.length > 0) {
+      const f = event.target.files[0];
+      this.fgUpload["file"].setValue(f);
+    }
+  }
+  get fgUpload() {
+    return this.uploadForm.controls;
+  }
+  UploadImage() {
+    const formData = new FormData()
+    formData.append("file", this.fgUpload["file"].value)
+    this.service.UploadFile(formData).subscribe({
+      next: (data: UploadedFileModel) => {
+        this.form.controls["image"].setValue(data.filename)
+        this.uploadedFilename = data.filename
+        this.uploadedFile = true
+      }
+    })
+  }
 }
+
+

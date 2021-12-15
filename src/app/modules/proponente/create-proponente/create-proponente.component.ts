@@ -19,7 +19,7 @@ declare const InitSelectById: any;
 export class CreateProponenteComponent implements OnInit {
 
   form: FormGroup = new FormGroup({})
-  formFile: FormGroup = new FormGroup({})
+  uploadForm: FormGroup = this.fb.group({});
   url: string = GeneralData.BUSINESS_ADMIN_URL
   uploadedFilename?: string = ""
   uploadedFile: boolean = false
@@ -29,7 +29,7 @@ export class CreateProponenteComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private service: ProponenteService,
-    private vinculacionService: TipoVinculacionService 
+    private vinculacionService: TipoVinculacionService
   ) { }
 
   ngOnInit(): void {
@@ -38,29 +38,29 @@ export class CreateProponenteComponent implements OnInit {
     this.CreateFormFile()
   }
 
-  CreateForm(){
+  CreateForm() {
     this.form = this.fb.group({
-      name:["",[Validators.required]],
-      otros_nombres:["",[Validators.required]],
-      last_name:["",[Validators.required]],
-      phone:["",[Validators.required]],
-      documento:["",[Validators.required]],
-      email:["",[Validators.required]],
-      direccion:["",[Validators.required]],
-      fecha_nacimiento:["",[Validators.required]],
-      id_vinculacion:["",[Validators.required]],
-      image:["",[Validators.required]]
+      name: ["", [Validators.required]],
+      otros_nombres: ["", [Validators.required]],
+      last_name: ["", [Validators.required]],
+      phone: ["", [Validators.required]],
+      documento: ["", [Validators.required]],
+      email: ["", [Validators.required]],
+      direccion: ["", [Validators.required]],
+      fecha_nacimiento: ["", [Validators.required]],
+      id_vinculacion: ["", [Validators.required]],
+      image: ["", [Validators.required]],
     })
   }
 
-  CreateFormFile(){
-    this.formFile = this.fb.group({
-      file: ["", []]
-    })
+  CreateFormFile() {
+    this.uploadForm = this.fb.group({
+      file: ['', [Validators.required]],
+    });
 
   }
 
-  SaveRecord(){
+  SaveRecord() {
     let model = new ProponenteModel();
     model.PrimerNombreProponente = this.form.controls["name"].value;
     model.OtrosNombresProponente = this.form.controls["otros_nombres"].value
@@ -71,54 +71,46 @@ export class CreateProponenteComponent implements OnInit {
     model.CelularProponente = this.form.controls["phone"].value
     model.fechaNacimiento = this.form.controls["fecha_nacimiento"].value
     model.IdTipoVinculacion = parseInt(this.form.controls["id_vinculacion"].value)
-    model.image = this.form.controls["image"].value
+    model.image = this.form.controls["image"].value;
 
-    console.log(model);
-    
     this.service.SaveRecord(model).subscribe({
-      next: (data: ProponenteModel) =>{
+      next: (data: ProponenteModel) => {
         OpenGeneralMessage(GeneralData.SAVED_MESSAGE)
         this.router.navigate(['/proponente/list-proponentes'])
       },
-      error: (err:any) => {
+      error: (err: any) => {
         OpenGeneralMessage(GeneralData.ERROR_MESSAGE)
       }
     })
   }
 
-  OnchangeInputFile(event: any){
-    if(event.target.files.lenght > 0){
-      const file = event.target.files[0]
-      this.formFile.controls["file"].setValue(file)
-      console.log(file);
+  onFileSelect(event: any) {
+
+    if (event.target.files.length > 0) {
+      const f = event.target.files[0];
+      this.fgUpload["file"].setValue(f);
     }
   }
-
-  UploadImage(){
+  get fgUpload() {
+    return this.uploadForm.controls;
+  }
+  UploadImage() {
     const formData = new FormData()
-    /* formData.append("file", this.formFile.controls["file"].value);
-    console.log("Imagen: ",this.formFile.controls["file"].value)
-    console.log("File: ",formData.get('file')); */
-    
-    formData.append("file", this.formFile.controls["file"].value);
+    formData.append("file", this.fgUpload["file"].value)
     this.service.UploadFile(formData).subscribe({
-      next: (data: UploadedFileModel) =>{
-        console.log("setieando: ", data.filename);
-        
+      next: (data: UploadedFileModel) => {
         this.form.controls["image"].setValue(data.filename)
-        this.uploadedFilename = data.filename;
-        this.uploadedFile = true;
+        this.uploadedFilename = data.filename
+        this.uploadedFile = true
       }
-    });
-    console.log("Upload: ",this.uploadedFilename);
-    
+    })
   }
 
   GetOptionsToSelects() {
     this.vinculacionService.GetRecordList().subscribe(
       {
         next: (data: TipoVinculacionModel[]) => {
-          console.log("data: " + data)
+          //console.log("data: " + data)
           this.vinculacionList = data;
           setTimeout(() => {
             InitSelectById("selVinculacion");

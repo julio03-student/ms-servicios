@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   CreateForm() {
     this.form = this.fb.group({
       username: ["ingmiguelangelgosan@gmail.com", [Validators.required, Validators.email, Validators.minLength(GeneralData.usernameMinLenght)]],
-      password: ["VI2GDnXA", [Validators.required, Validators.minLength(GeneralData.passwordMinLenght)]],
+      password: ["FvZC1aSN", [Validators.required, Validators.minLength(GeneralData.passwordMinLenght)]],
       recaptcha: ['', Validators.required]
     })
   }

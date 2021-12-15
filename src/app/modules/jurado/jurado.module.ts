@@ -7,6 +7,7 @@ import { EditJuradoComponent } from './edit-jurado/edit-jurado.component';
 import { ListJuradoComponent } from './list-jurado/list-jurado.component';
 import { RemoveJuradoComponent } from './remove-jurado/remove-jurado.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     JuradoRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class JuradoModule { }

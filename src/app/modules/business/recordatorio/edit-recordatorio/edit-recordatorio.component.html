@@ -1,24 +1,24 @@
-<div class="row">
+<div class="row color">
     <form [formGroup]="form" class="col s12">
       <input type="hidden" formControlName="id">
       <div class="row">
         <div class="input-field col s4">
           <input formControlName="fecha_recordatorio" id="fecha_recordatorio" type="date">
-          <label for="fecha_recordatorio">Fecha recordatorio</label>
+          <label class="active" for="fecha_recordatorio">Fecha recordatorio</label>
         </div>
         <div class="input-field col s4">
           <input formControlName="horario_recordatorio" id="horario_recordatorio" type="date">
-          <label for="horario_recordatorio">Horario recordatorio</label>
+          <label class="active" for="horario_recordatorio">Horario recordatorio</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s4">
           <input formControlName="tipo_recordatorio" id="tipo_recordatorio" type="text">
-          <label for="tipo_recordatorio">Tipo recordatorio</label>
+          <label class="active" for="tipo_recordatorio">Tipo recordatorio</label>
         </div>
         <div class="input-field col s4">
           <input formControlName="descripcion_recordatorio" id="descripcion_recordatorio" type="text">
-          <label for="descripcion_recordatorio">Descripción</label>
+          <label class="active" for="descripcion_recordatorio">Descripción</label>
         </div>
       </div>
       <div class="row">

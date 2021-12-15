@@ -9,3 +9,8 @@
     padding-bottom: 5px;
     height:50px
 }
+
+.color{
+    background: rgba(255, 255, 255, 0.925);
+    padding:10px 50px
+}

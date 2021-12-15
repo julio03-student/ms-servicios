@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralData } from 'src/app/config/general-data';
 import { LineaInvestigacionModel } from 'src/app/models/parametros/linea-investigacion.model';
 import { LineaInvestigacionService } from 'src/app/services/parametros/linea-investigacion.service';
 
@@ -9,6 +10,9 @@ import { LineaInvestigacionService } from 'src/app/services/parametros/linea-inv
 })
 export class ListLineaInvestigacionComponent implements OnInit {
 
+  pageSize: number = GeneralData.RECORDS_BY_PAGE
+  p: number = 1
+  total: number = 0
   lineaInvestigacionList: LineaInvestigacionModel[] = []
 
   constructor(
@@ -24,6 +28,7 @@ export class ListLineaInvestigacionComponent implements OnInit {
       next: (data: LineaInvestigacionModel[]) =>{
         console.log("Lista: "+data)
         this.lineaInvestigacionList = data
+        this.total = this.lineaInvestigacionList.length
       }
     })
   }
