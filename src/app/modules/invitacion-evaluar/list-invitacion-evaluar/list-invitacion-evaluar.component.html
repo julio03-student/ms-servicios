@@ -6,7 +6,6 @@
             <th>Fecha de respuesta</th>
             <th>Estado de la invitacion</th>
             <th>Observaciones</th>
-            <th>Solicitudes</th>
             <th>Acciones</th>
         </thead>
         <tbody>
@@ -25,11 +24,6 @@
                 </td>
                 <td>
                     {{r.ObservacionesInvitacionEvaluar}}
-                </td>
-                <td>
-                    <ul>
-                        <li *ngFor="let c of r.solicitudes">{{c.NombreTrabajoSolicitud}}</li>
-                    </ul>
                 </td>
                 <td class="row">
                     <div class="input-field col s12">

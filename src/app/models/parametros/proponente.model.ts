@@ -9,5 +9,6 @@ export class ProponenteModel{
     Direccion?: string;
     fechaNacimiento?: Date;
     IdTipoVinculacion?: number;
+    IdDepartamento?: number;
     image?: string;
 }

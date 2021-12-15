@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GeneralData } from 'src/app/config/general-data';
+import { DepartamentoModel } from 'src/app/models/parametros/departamento.model';
 import { ProponenteModel } from 'src/app/models/parametros/proponente.model';
 import { TipoVinculacionModel } from 'src/app/models/parametros/tipo-vinculacion.model';
 import { UploadedFileModel } from 'src/app/models/upload.file.model';
+import { DepartamentoService } from 'src/app/services/parametros/departamentos.service';
 import { ProponenteService } from 'src/app/services/parametros/proponente.service.service';
 import { TipoVinculacionService } from 'src/app/services/parametros/tipo-vinculacion.service';
 
@@ -24,12 +26,14 @@ export class CreateProponenteComponent implements OnInit {
   uploadedFilename?: string = ""
   uploadedFile: boolean = false
   vinculacionList: TipoVinculacionModel[] = []
+  departamentolist: DepartamentoModel[] = []
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private service: ProponenteService,
-    private vinculacionService: TipoVinculacionService
+    private vinculacionService: TipoVinculacionService,
+    private departamentoservice: DepartamentoService
   ) { }
 
   ngOnInit(): void {
@@ -49,6 +53,7 @@ export class CreateProponenteComponent implements OnInit {
       direccion: ["", [Validators.required]],
       fecha_nacimiento: ["", [Validators.required]],
       id_vinculacion: ["", [Validators.required]],
+      id_departamento: ["", [Validators.required]],
       image: ["", [Validators.required]],
     })
   }
@@ -71,6 +76,7 @@ export class CreateProponenteComponent implements OnInit {
     model.CelularProponente = this.form.controls["phone"].value
     model.fechaNacimiento = this.form.controls["fecha_nacimiento"].value
     model.IdTipoVinculacion = parseInt(this.form.controls["id_vinculacion"].value)
+    model.IdDepartamento = parseInt(this.form.controls["id_departamento"].value)
     model.image = this.form.controls["image"].value;
 
     this.service.SaveRecord(model).subscribe({
@@ -114,6 +120,17 @@ export class CreateProponenteComponent implements OnInit {
           this.vinculacionList = data;
           setTimeout(() => {
             InitSelectById("selVinculacion");
+          }, 100);
+        }
+      }
+    ),
+    this.departamentoservice.GetRecordList().subscribe(
+      {
+        next: (data: DepartamentoModel[]) => {
+          //console.log("data: " + data)
+          this.departamentolist = data;
+          setTimeout(() => {
+            InitSelectById("selDepartamento");
           }, 100);
         }
       }

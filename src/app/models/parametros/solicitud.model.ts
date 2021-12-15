@@ -13,6 +13,7 @@ export class SolicitudModel{
     IdLineaInvestigacion?: number;
     IdInvitacionEvaluar?: number;
     IdProponente?: number;
+    Hash?: string;
     proponentes?: ProponenteModel[];
     comites?: ComiteModel[];
 }

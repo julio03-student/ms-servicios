@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralData } from 'src/app/config/general-data';
-import { ComiteModel } from 'src/app/models/parametros/comite.model';
 import { ProponenteModel } from 'src/app/models/parametros/proponente.model';
 import { SolicitudModel } from 'src/app/models/parametros/solicitud.model';
 import { SolicitudService } from 'src/app/services/parametros/solicitud.service';

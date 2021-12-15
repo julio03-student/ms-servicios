@@ -66,7 +66,7 @@ export class EditRecordatorioComponent implements OnInit {
     this.service.EditRecord(model).subscribe({
       next: (data: RecordatorioModel) =>{
         OpenGeneralMessage(GeneralData.SAVED_MESSAGE)
-        this.router.navigate(['/business/list-modalidades'])
+        this.router.navigate(['/business/list-recordatorios'])
       },
       error: (err:any) => {
         OpenGeneralMessage(GeneralData.ERROR_MESSAGE)

@@ -6,8 +6,7 @@
             <th>Nombre del trabajo</th>
             <th>Archivo de la solicitud</th>
             <th>Descripción general</th>
-            <th>Proponentes</th>
-            <th>Comites</th>
+            <th>Estado</th>
             <th>Acciones</th>
         </thead>
         <tbody>
@@ -28,14 +27,7 @@
                     {{r.DescripcionGeneralSolicitud}}
                 </td>
                 <td>
-                    <ul>
-                        <li *ngFor="let c of r.proponentes">{{c.PrimerNombreProponente}}</li>
-                    </ul>
-                </td>
-                <td>
-                    <ul>
-                        <li *ngFor="let c of r.comites">{{c.NombreComite}}</li>
-                    </ul>
+                    {{r.IdEstado}}
                 </td>
                 <td class="row">
                     <div class="input-field col s12">
@@ -47,7 +39,7 @@
                 </td>
             </tr>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <pagination-controls (pageChange) = "p= $event" previousLabel = "Anterior" nextLabel = "Siguiente"></pagination-controls>
                 </td>
             </tr>

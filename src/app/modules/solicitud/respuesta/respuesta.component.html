@@ -1,0 +1,21 @@
+<div class="row color">
+    <input type="hidden">
+  <div class="row">
+    <div class="input-field col s12">
+        <p>
+            Invitación para evaluar la solicitud de {{nombreProponente}}, con el nombre de
+            {{nombreTrabajo}}
+        </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s2">
+        <a (click)="AceptRequest()" class="waves-effect waves-light btn-large"><i class="material-icons left">cloud_upload</i>Aceptar</a>
+    </div>
+   <div class="input-field col s2">
+        <a (click)="RefuseRequest()" class="waves-effect waves-light btn-large"><i class="material-icons left">close</i>Rechazar</a>
+   </div>
+   
+  </div>
+
+</div>

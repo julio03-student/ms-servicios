@@ -5,6 +5,7 @@ import { CreateSolicitudComponent } from './create-solicitud/create-solicitud.co
 import { EditSolicitudComponent } from './edit-solicitud/edit-solicitud.component';
 import { ListSolicitudComponent } from './list-solicitud/list-solicitud.component';
 import { RemoveSolicitudComponent } from './remove-solicitud/remove-solicitud.component';
+import { RespuestaComponent } from './respuesta/respuesta.component';
 
 const routes: Routes = [
   {
@@ -26,9 +27,13 @@ const routes: Routes = [
     path: "remove-solicitud/:id",
     component: RemoveSolicitudComponent,
     canActivate: [AutenticacionGuard]
+  },
+  {
+    path: "respuesta/:id/:hash",
+    component: RespuestaComponent
   }
 ];
-
+  
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]

@@ -29,7 +29,7 @@ export class InvitacionEvaluarService {
     let iv = {
       FechaInvitacion: `${data.FechaInvitacion}T01:33:27.000Z`,
       FechaRespuesta: `${data.FechaRespuesta}T01:33:27.000Z`,
-      EstadoInvitacion: data.EstadoInvitacion,
+      EstadoInvitacion: "Pendiente",
       ObservacionesInvitacionEvaluar: data.ObservacionesInvitacionEvaluar,
       IdJurado: data.IdJurado,
       IdRecordatorio: data.IdRecordatorio
@@ -53,7 +53,7 @@ export class InvitacionEvaluarService {
       IdInvitacionEvaluar: data.IdInvitacionEvaluar,
       FechaInvitacion: `${data.FechaInvitacion}T01:33:27.000Z`,
       FechaRespuesta: `${data.FechaRespuesta}T01:33:27.000Z`,
-      EstadoInvitacion: data.EstadoInvitacion,
+      EstadoInvitacion: "Pendiente",
       ObservacionesInvitacionEvaluar: data.ObservacionesInvitacionEvaluar,
       IdJurado: data.IdJurado,
       IdRecordatorio: data.IdRecordatorio

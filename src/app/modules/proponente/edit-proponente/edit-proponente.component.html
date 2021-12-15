@@ -69,6 +69,12 @@
             </select>
             <label>Vinculacion</label>
           </div>
+          <div class="input-field col s4">
+            <select id="selDepartamento" formControlName="id_departamento" name="id_departamento">
+              <option *ngFor="let c of departamentolist" value="{{c.IdDepartamento}}">{{c.NombreDepartamento}}</option>
+            </select>
+            <label>Departamento</label>
+          </div>
         </div>
         <div class="row">
           <div class="input-field col s2">

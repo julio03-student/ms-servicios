@@ -38,6 +38,7 @@ export class ProponenteService {
       Direccion: data.Direccion,
       fechaNacimiento: `${data.fechaNacimiento}T01:33:27.000Z`,
       IdTipoVinculacion: data.IdTipoVinculacion,
+      IdDepartamento: data.IdDepartamento,
       image: data.image
     },
     {
@@ -61,6 +62,7 @@ export class ProponenteService {
       Direccion: data.Direccion,
       fechaNacimiento: `${data.fechaNacimiento}T01:33:27.000Z`,
       IdTipoVinculacion: data.IdTipoVinculacion,
+      IdDepartamento: data.IdDepartamento,
       image: data.image
     },
     {

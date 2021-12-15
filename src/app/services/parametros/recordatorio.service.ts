@@ -45,7 +45,7 @@ export class RecordatorioService {
     return this.http.put<RecordatorioModel>(`${this.url}/recordatorios/${data.IdRecordatorio}`, {
       IdRecordatorio: data.IdRecordatorio,
       FechaRecordatorio: `${data.FechaRecordatorio}T01:33:27.000Z`,
-      HorarioRecordatorio: `${data.HoraRecordatorio}T01:33:27.000Z`,
+      HoraRecordatorio: `${data.HoraRecordatorio}T01:33:27.000Z`,
       TipoRecordatorio: data.TipoRecordatorio,
       DescripcionRecordatorio: data.DescripcionRecordatorio
     },

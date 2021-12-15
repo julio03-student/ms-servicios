@@ -95,4 +95,32 @@ export class SolicitudService {
     
     return cargando
   }
+
+  UpdateStatusAcept(id: number): Observable<SolicitudModel>{
+    let bandera = this.http.patch<SolicitudModel>(`${this.url}/solicituds/${id}`,{
+      IdEstado: 7
+    },
+    {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.token}`
+      })
+    })
+    console.log(bandera);
+    return bandera
+    
+  }
+
+  UpdateStatusRefuse(id: number): Observable<SolicitudModel>{
+    let bandera = this.http.patch<SolicitudModel>(`${this.url}/solicituds/${id}`,{
+      IdEstado: 9
+    },
+    {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.token}`
+      })
+    })
+    console.log(bandera);
+    return bandera
+    
+  }
 }
