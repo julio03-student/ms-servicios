@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GeneralData } from 'src/app/config/general-data';
 import { SolicitudModel } from 'src/app/models/parametros/solicitud.model';
+import { UploadedFileModel } from 'src/app/models/upload.file.model';
 import { LocalStorageService } from '../share/local-storage.service';
 
 @Injectable({
@@ -79,5 +80,19 @@ export class SolicitudService {
           Authorization: `Bearer ${this.token}`
         })
       })
+  }
+
+  UploadFile(formData: FormData): Observable<UploadedFileModel>{
+    let cargando = this.http.post<UploadedFileModel>(
+      `${this.url}/CargarDocumento`, 
+      formData,
+    {
+      headers: new HttpHeaders({
+        Authorization: `Bearer ${this.token}`
+      })
+    })
+    console.log(cargando);
+    
+    return cargando
   }
 }

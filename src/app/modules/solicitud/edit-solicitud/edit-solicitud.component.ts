@@ -16,6 +16,7 @@ import { ModalidadService } from 'src/app/services/parametros/modalidad.service'
 import { TipoSolicitudService } from 'src/app/services/parametros/tipo-solicitud.service';
 import { ProponenteService } from 'src/app/services/parametros/proponente.service.service';
 import { ProponenteModel } from 'src/app/models/parametros/proponente.model';
+import { UploadedFileModel } from 'src/app/models/upload.file.model';
 
 declare const OpenGeneralMessage: any
 declare const InitSelectById: any;
@@ -35,6 +36,10 @@ export class EditSolicitudComponent implements OnInit {
   lineaInvestigacionList: LineaInvestigacionModel[] = []
   invitacionEvaluarList: InvitacionEvaluarModel[] = []
   proponentesList: ProponenteModel[] = []
+  uploadForm: FormGroup = this.fb.group({});
+  url: string = GeneralData.BUSINESS_ADMIN_URL
+  uploadedFilename?: string = ""
+  uploadedFile: boolean = false
 
   constructor(
     private fb: FormBuilder,
@@ -53,6 +58,14 @@ export class EditSolicitudComponent implements OnInit {
     this.CreateForm()
     this.SearchRecord()
     this.GetOptionsToSelects()
+    this.CreateFormFile()
+  }
+
+  CreateFormFile() {
+    this.uploadForm = this.fb.group({
+      file: ['', [Validators.required]],
+    });
+
   }
 
   CreateForm(){
@@ -60,7 +73,7 @@ export class EditSolicitudComponent implements OnInit {
       id: ["",[Validators.required]],
       fecha_solicitud:["",[Validators.required]],
       nombre_trabajo:["",[Validators.required]],
-      archivo_solicitud:["",[Validators.required]],
+      file:["",[Validators.required]],
       descripcion_general:["",[Validators.required]],
       id_modalidad:[[Validators.required]],
       id_estado:[[Validators.required]],
@@ -79,7 +92,7 @@ export class EditSolicitudComponent implements OnInit {
         this.form.controls["id"].setValue(data.IdSolicitud)
         this.form.controls["fecha_solicitud"].setValue(data.FechaSolicitud)
         this.form.controls["nombre_trabajo"].setValue(data.NombreTrabajoSolicitud)
-        this.form.controls["archivo_solicitud"].setValue(data.ArchivoSolicitud)
+        this.form.controls["file"].setValue(data.ArchivoSolicitud)
         this.form.controls["descripcion_general"].setValue(data.DescripcionGeneralSolicitud)
         this.form.controls["id_tipo_solicitud"].setValue(data.IdTipoSolicitud)
         this.form.controls["id_modalidad"].setValue(data.IdModalidad)
@@ -96,7 +109,7 @@ export class EditSolicitudComponent implements OnInit {
     model.IdSolicitud = this.form.controls["id"].value
     model.FechaSolicitud = this.form.controls["fecha_solicitud"].value;
     model.NombreTrabajoSolicitud = this.form.controls["nombre_trabajo"].value
-    model.ArchivoSolicitud = this.form.controls['archivo_solicitud'].value
+    model.ArchivoSolicitud = this.form.controls['file'].value
     model.DescripcionGeneralSolicitud = this.form.controls["descripcion_general"].value 
     model.IdModalidad = parseInt(this.form.controls["id_modalidad"].value);
     model.IdEstado = parseInt(this.form.controls["id_estado"].value);
@@ -114,6 +127,28 @@ export class EditSolicitudComponent implements OnInit {
       },
       error: (err:any) => {
         OpenGeneralMessage(GeneralData.ERROR_MESSAGE)
+      }
+    })
+  }
+
+  onFileSelect(event: any) {
+
+    if (event.target.files.length > 0) {
+      const f = event.target.files[0];
+      this.fgUpload["file"].setValue(f);
+    }
+  }
+  get fgUpload() {
+    return this.uploadForm.controls;
+  }
+  UploadFile() {
+    const formData = new FormData()
+    formData.append("file", this.fgUpload["file"].value)
+    this.service.UploadFile(formData).subscribe({
+      next: (data: UploadedFileModel) => {
+        this.form.controls["file"].setValue(data.filename)
+        this.uploadedFilename = data.filename
+        this.uploadedFile = true
       }
     })
   }

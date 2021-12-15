@@ -10,10 +10,6 @@
             <label for="nombre_trabajo">Nombre del trabajo</label>
         </div>
         <div class="input-field col s4">
-          <input formControlName="archivo_solicitud" id="archivo_solicitud" type="text">
-          <label for="archivo_solicitud">Archivo de la solicitud</label>
-        </div>
-        <div class="input-field col s4">
             <input formControlName="descripcion_general" id="descripcion_general" type="text">
             <label for="descripcion_general">Descripción general</label>
         </div>
@@ -55,6 +51,22 @@
           </select>
             <label>Proponente</label>
         </div>
+      </div>
+      <div>
+        <form [formGroup]="uploadForm" >
+          <div class="row">
+            <div class="col s12 center-align">
+              <input class="btn btn-warning orange"formControlName="file"
+              (change)="onFileSelect($event)"
+              name="file"
+              class="form-control"
+              type="file"
+              id="file" >
+              &nbsp;<button class="btn pad" (click) = "UploadFile()">Cargar archivo</button>
+            </div>
+          </div>
+        </form>
+        <input formControlName="file" id="file" type="text">
       </div>
       <div class="row">
         <div class="input-field col s2">
