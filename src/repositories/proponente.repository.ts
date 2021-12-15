@@ -22,10 +22,14 @@ export class ProponenteRepository extends DefaultCrudRepository<
 
   public readonly imagen: HasOneRepositoryFactory<Imagen, typeof Proponente.prototype.IdProponente>;
 
+  public readonly tiene_un: BelongsToAccessor<Departamento, typeof Proponente.prototype.IdProponente>;
+
   constructor(
     @inject('datasources.mysql') dataSource: MysqlDataSource, @repository.getter('TipoVinculacionRepository') protected tipoVinculacionRepositoryGetter: Getter<TipoVinculacionRepository>, @repository.getter('ProponenteDepartamentoRepository') protected proponenteDepartamentoRepositoryGetter: Getter<ProponenteDepartamentoRepository>, @repository.getter('DepartamentoRepository') protected departamentoRepositoryGetter: Getter<DepartamentoRepository>, @repository.getter('ImagenRepository') protected imagenRepositoryGetter: Getter<ImagenRepository>,
   ) {
     super(Proponente, dataSource);
+    this.tiene_un = this.createBelongsToAccessorFor('tiene_un', departamentoRepositoryGetter,);
+    this.registerInclusionResolver('tiene_un', this.tiene_un.inclusionResolver);
     this.imagen = this.createHasOneRepositoryFactoryFor('imagen', imagenRepositoryGetter);
     this.registerInclusionResolver('imagen', this.imagen.inclusionResolver);
     this.departamentos = this.createHasManyThroughRepositoryFactoryFor('departamentos', departamentoRepositoryGetter, proponenteDepartamentoRepositoryGetter,);

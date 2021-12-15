@@ -22,14 +22,15 @@ import {Keys} from '../config/keys';
 import {Solicitud, SolicitudProponente} from '../models';
 import {InvitacionEvaluarRepository, JuradoRepository, SolicitudProponenteRepository, SolicitudRepository} from '../repositories';
 const fetch = require('node-fetch');
+const hashGenerator = require("hash-generator")
 @authenticate("admin")
 export class SolicitudController {
   constructor(
-    @repository(SolicitudRepository) public solicitudRepository : SolicitudRepository,
-    @repository(InvitacionEvaluarRepository) public invitacionEvaluarRepository : InvitacionEvaluarRepository,
-    @repository(JuradoRepository) public juradoRepository : JuradoRepository,
+    @repository(SolicitudRepository) public solicitudRepository: SolicitudRepository,
+    @repository(InvitacionEvaluarRepository) public invitacionEvaluarRepository: InvitacionEvaluarRepository,
+    @repository(JuradoRepository) public juradoRepository: JuradoRepository,
     @repository(SolicitudProponenteRepository) public solicitudPRepository: SolicitudProponenteRepository
-  ) {}
+  ) { }
 
   @post('/solicituds')
   @response(200, {
@@ -49,16 +50,26 @@ export class SolicitudController {
     })
     solicitud: Omit<Solicitud, 'IdSolicitud'>,
   ): Promise<Solicitud> {
+
+    solicitud.Hash = hashGenerator(20)
+
+    let solicitud1 = this.solicitudRepository.create(solicitud);
+    if ((await solicitud1).IdSolicitud) {
+      this.solicitudPRepository.create(new SolicitudProponente({
+        IdSolicitud: (await solicitud1).IdSolicitud,
+        IdProponente: (await solicitud1).IdProponente
+      }))
+    }
+
     console.log('Creando')
-     let invitacion = this.invitacionEvaluarRepository.findById(solicitud.IdInvitacionEvaluar)
-    console.log(invitacion)
+    let enlace = `http://localhost:4200/solicitud/respuesta/${(await solicitud1).IdSolicitud}/${solicitud.Hash}`
+    let invitacion = this.invitacionEvaluarRepository.findById(solicitud.IdInvitacionEvaluar)
     let jurado = await this.juradoRepository.findById((await invitacion).IdJurado)
-    console.log("Jurado: ",jurado)
     let credentialsJurado = {
       correo: (await jurado).CorreoJurado,
       asunto: 'Invitacion a Evaluar',
-      mensaje: `<br> Se le envia amablemente ésta invitación para que sea Jurado en la evaluación de un trabajo academico.
-      <br> Esperamos su pronta respuesta. <br> <br><button style="text-decoration: none;" type="button"><a target="blank" rel="noopener noreferrer" href="http://localhost:4200/home">Aceptar<a/></button> <button type="button">Rechazar</button>`
+      mensaje: `<br> Se le envía amablemente ésta invitación para que sea Jurado en la evaluación de un trabajo academico.
+      <br> Esperamos su pronta respuesta. <br> <br><button style="text-decoration: none;" type="button"><a target="blank" rel="noopener noreferrer" href="${enlace}">Aceptar<a/></button> <button type="button">Rechazar</button>`
     }
 
     let res = await fetch(Keys.urlFormato, {
@@ -70,13 +81,6 @@ export class SolicitudController {
       body: JSON.stringify(credentialsJurado)
     })
 
-    let solicitud1 = this.solicitudRepository.create(solicitud);
-    if((await solicitud1).IdSolicitud){
-      this.solicitudPRepository.create(new SolicitudProponente({
-        IdSolicitud: (await solicitud1).IdSolicitud,
-        IdProponente: (await solicitud1).IdProponente
-      }))
-    }
     return solicitud1
 
   }

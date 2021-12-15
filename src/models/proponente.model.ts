@@ -74,7 +74,7 @@ export class Proponente extends Entity {
 
   @property({
     type: 'string',
-    required: true,
+    required: false,
   })
   image: string;
 
@@ -86,6 +86,9 @@ export class Proponente extends Entity {
 
   @hasOne(() => Imagen, {keyTo: 'IdProponente'})
   imagen: Imagen;
+
+  @belongsTo(() => Departamento, {name: 'tiene_un'})
+  IdDepartamento: number;
 
   constructor(data?: Partial<Proponente>) {
     super(data);

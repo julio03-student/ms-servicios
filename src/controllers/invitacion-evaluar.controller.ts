@@ -23,7 +23,7 @@ import {InvitacionEvaluar} from '../models';
 import {InvitacionEvaluarRepository, JuradoRepository} from '../repositories';
 const fetch = require('node-fetch');
 
-/* @authenticate("admin") */
+@authenticate("admin")
 export class InvitacionEvaluarController {
   constructor(
     @repository(InvitacionEvaluarRepository)

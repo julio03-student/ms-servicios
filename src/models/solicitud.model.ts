@@ -82,6 +82,13 @@ export class Solicitud extends Entity {
   })
   DescripcionGeneralSolicitud: string;
 
+  @property({
+    type: 'string',
+    required: false,
+    unique: true
+  })
+  Hash: string;
+
   @belongsTo(() => Modalidad, {name: 'modalidad'})
   IdModalidad: number;
 
